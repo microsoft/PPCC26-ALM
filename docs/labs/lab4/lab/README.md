@@ -351,7 +351,7 @@ Wait for the deployment to complete.
 
 1. Open the website preview in **Dev** environment by clicking on **Preview** -> **Desktop**.
 
-    ![Preview Site in DevEnvironment](images/preview-site-devenv.png)
+    ![Preview Site in Dev](images/preview-site-devenv.png)
 
 1. Click on **Sign In** button to verify that the local login is enabled.
 
