@@ -7,28 +7,34 @@
 - [Tasks](#-tasks)
   1. [Create Power Pages site](#️-create-power-pages-site)
   1. [Add site to solution](#-add-site-to-solution)
+  1. [Connect the solution to the repository](#-connect-the-solution-to-the-repository)
   1. [Configure Power Pipelines](#-configure-power-pipelines)
-  1. [Deploy to Prod Environment](#-deploy-to-prod-environment)
-  1. [Activate Site in Prod Environment](#️-activate-site-in-prod-environment)
+  1. [Deploy to Production](#-deploy-to-production)
+  1. [Activate the site in Production](#️-activate-the-site-in-production)
   1. [Committing changes to Source Control](#️-committing-changes-to-source-control)
   1. [Cloning the repository locally](#-cloning-the-repository-locally)
   1. [Editing the site in VS Code](#-editing-the-site-in-vs-code)
   1. [Pulling changes in Solution Explorer](#️-pulling-changes-in-solution-explorer)
   1. [Updating Environment Variables](#️-updating-environment-variables)
-  1. [Deploy the updated solution to Prod Environment](#️-deploy-the-updated-solution-to-prod-environment)
+  1. [Deploy the updated solution to Production](#️-deploy-the-updated-solution-to-production)
   1. [Verify changes](#-verify-changes)
-  1. [_Optional: Manage and deploy Single Page Application using Power Pages_](#-optional-manage-and-deploy-single-page-application-using-power-pages)
+  1. [Optional: Manage and deploy a single-page application](#-optional-manage-and-deploy-a-single-page-application)
+  1. [Optional: Use Power Platform Tools and the PAC MCP server](#optional-use-power-platform-tools-and-the-pac-mcp-server)
 
 ## 📋 Pre-requisites
 
-1. Complete labs 1 and 2.
+1. Complete Labs 1 through 3.
+1. Confirm that the environments are named **Dev**, **Hotfix**, **UAT**, and **Production**, as specified in Lab 1.
+1. Confirm that the Azure DevOps Power Platform project repository from Lab 1 is initialized and that you can access it.
+1. Confirm that **Production** is a Managed Environment. Refer to the Managed Environments steps in Lab 3 if it is not enabled.
 1. Install VS Code Desktop from this [download link](https://code.visualstudio.com/download).
 1. Install Git from this [download link](https://git-scm.com/install/windows).
-1. Following steps will work on EDM environments. (This should be enabled by default).
+1. Use environments with Early Release Cycle features enabled. These features are enabled by default in the workshop environments.
 
 ## 🗒️ Overview
 
-In this lab, you will learn how to create a Power Pages site, add it to a solution, and set up Power Pipelines for deploying the solution to a production environment. You will also learn how to commit changes to source control using Azure DevOps and make edits to the site using VS Code with GitHub Copilot.
+In this lab, you will create a Power Pages site in **Dev**, add it to the **PPCCALMDev** solution, and connect that solution to the Azure DevOps repository created in Lab 1.
+You will deploy the solution to **Production**, edit the site through the repository, and use an environment variable to configure local sign-in differently in each environment.
 
 ## 🎯 Tasks
 
@@ -92,6 +98,33 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
     ![Solution with Site](images/solution-with-site.png)
 
+### 🔗 Connect the solution to the repository
+
+Lab 2 connected only the **Contoso Real Estate** solution to Git.
+Git integration is solution-scoped, so connect the new **PPCCALMDev** solution to the existing Lab 1 repository before committing it.
+
+1. In **Dev**, open the **PPCCALMDev** solution and select **Connect to Git**.
+
+    ![Connect to Git](images/connect-to-git.png)
+
+1. Select the same Azure DevOps organization, project, and repository that you created in Lab 1.
+Use these settings:
+
+    - **Connection type**: Solution
+    - **Root Git folder**: `PP`
+
+1. On the repository connection page, use these settings:
+
+    - **Solution**: PPCCALMDev
+    - **Branch**: main
+    - **Git folder**: `PP/PPCCALMDev`
+
+    ![Connect the solution to the repository](images/connect-to-git-repo.png)
+
+1. Select **Connect**.
+Wait for Git integration to finish processing the solution components before continuing.
+The commit button remains unavailable while processing is in progress.
+
 ### 🚀 Configure Power Pipelines
 
 1. Select the newly created solution and click on **Pipelines** from the left menu.
@@ -102,7 +135,7 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
     ![Create Pipeline](images/create-pipeline.png)
 
-1. Name the pipeline **PPCC ALM Workshop pipeline** and select **Prod** environment as the target environment and click on **Save**.
+1. Name the pipeline **PPCC ALM Workshop pipeline**, select **Production** as the target environment, and click **Save**.
 
     ![Create Pipeline](images/create-pipeline-2.png)
 
@@ -110,53 +143,67 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
     ![Pipeline Created](images/pipeline-created.png)
 
-### 🚀 Deploy to Prod Environment
+### 🚀 Deploy to Production
 
-1. Click on **Deploy Here** button to deploy the solution to **Prod** Environment.
+1. Click **Deploy Here** for the **Production** stage.
 
     ![Deploy Here](images/deploy-here.png)
 
-1. On the fly out panel, click on **Deploy** button to start the deployment.
+1. If a Managed Environment warning appears, confirm that **Production** is a Managed Environment and click **Continue**.
+If Production is not managed, stop the deployment and use the steps from Lab 3 to enable Managed Environments before trying again.
 
-1. After the initial verification of deployment is complete, you will get an option to click **“Deploy** on the Summary Panel for Power Pipelines **Deploying Solution** panel.
+1. On **Destination**, verify that **Production** is selected and click **Next**.
+
+1. If an **Environment variables** page appears, provide any required target values and click **Next**.
+The first deployment may skip this page because the solution does not yet contain an environment variable.
+
+1. On **Summary**, review the deployment details and click **Deploy**.
 
     ![Deploy Solution](images/deploy-solution.png)
 
-1. The deployment will start. Wait for the deployment to complete.
+1. Wait for the deployment to complete.
 
     ![Deployment in Progress](images/deployment-in-progress.png)
 
-1. Once the deployment is complete, switch to **Prod** environment from top right corner in Power Pages Maker Studio.
+1. Once the deployment is complete, switch to **Production** from the environment selector in Power Pages Maker Studio.
 
     ![Switch Environment](images/switch-environment.png)
 
-### 🏗️ Activate Site in Prod Environment
+### 🏗️ Activate the site in Production
 
 1. Click on **Inactive Sites** tab to view the list of inactive sites.
 
     ![Inactive Sites](images/inactive-sites.png)
 
-1. Click on **Reactivate** button to activate the site and then click on **Done**.
+1. Click **Reactivate**.
+When prompted, enter or accept a unique generated web address for the Production site, then complete the reactivation.
 
     ![Reactivate Site](images/reactivate-site.png)
 
-1. _Optional:_ Preview the site by clicking on **Preview** button.
+1. Reactivation may remain on **Getting things ready** after the site is usable.
+Return to **Home** or **Active sites** and confirm that the site appears there before previewing it.
+
+    > **Troubleshooting:** If preview shows **Page Not Found** or the site is not ready, wait a few minutes, refresh **Active sites**, and open the site again.
+    > Site provisioning and reactivation can continue after the initial status page stops updating.
+
+1. Preview the site by clicking **Preview**.
+Workshop sites are expected to be **Private**, so select the Microsoft account that you use for the workshop when prompted before the portal page opens.
 
     ![Preview Site](images/preview-site.png)
 
 ### 🛠️ Committing changes to Source Control
 
-1. Go back to **Dev** environment and navigate to **Solutions Explorer** and select the **PPCCALMDev** solution.
+1. Go back to **Dev**, navigate to **Solutions Explorer**, and select the connected **PPCCALMDev** solution.
 
 1. Select **Source Control** from the left menu.
 
     ![Source Control Menu](images/source-control-menu.png)
 
-1. Verify that the **Changes** tab has the some changes listed and click on **Commit** button.
+1. Verify that the **Changes** tab lists the solution changes and click **Commit**.
 
     ![Commit Changes](images/commit-changes.png)
 
-1. Enter a commit message and click on **Commit** button.
+1. Enter a commit message and click **Commit**.
 
     ![Enter Commit Message](images/enter-commit-message.png)
 
@@ -235,15 +282,16 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
 ### 🛠️ Updating Environment Variables
 
-1. From the **Active Sites** tab, click on **Power Pages Management** for your site.
+1. From the **Active Sites** tab, click **Power Pages Management** for your site.
 
     ![Power Pages Management](images/power-pages-management.png)
 
-1. Click on Site Settings.
+1. Click **Site Settings**.
 
     ![Site Settings](images/site-settings.png)
 
-1. Search for the setting **Authentication/Registration/LocalLoginEnabled** and click on it to open.
+1. In the **Name** column, open the column filter and filter for the exact value `Authentication/Registration/LocalLoginEnabled`.
+Open the matching site setting.
 
 1. Change the value of **Source** to **Environment Variable**.
 
@@ -255,7 +303,12 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
 1. Click on **Discard Changes** to open the environment variable creation panel.
 
-1. Create new environment variable with **Schema Name** and **Display Name** as **LocalLoginEnabled** and set the default value to **True**. Click on **Save & Close**.
+1. Create a new environment variable with these values, then click **Save & Close**:
+
+    - **Display Name**: LocalLoginEnabled
+    - **Schema Name**: LocalLoginEnabled
+    - **Data type**: Yes/No (also labeled **Two options** in some interfaces)
+    - **Default value**: Yes
 
     ![Create Environment Variable](images/create-env-var.png)
 
@@ -265,11 +318,13 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
 1. Navigate back to **Power Pages Maker Studio** and open **Solutions Explorer** and select the **PPCCALMDev** solution.
 
-1. Add the newly created environment variable to the solution by clicking on **Add Existing** > **Environment Variable**.
+1. Add the newly created environment variable to the solution by clicking **Add existing** > **More** > **Environment variable**.
 
     ![Add Existing Environment Variable](images/add-existing-env-var.png)
 
-1. Select **LocalLoginEnabled** from the list and click on **Next** and then click on **Add**.
+1. Select **LocalLoginEnabled** and click **Next**.
+In the picker options, select **Include definition** and leave **Include current value** unselected, then click **Add**.
+This packages the variable definition but prompts for the target value during deployment.
 
     ![Select Environment Variable](images/select-env-var-to-add.png)
 
@@ -277,15 +332,20 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
     ![Environment Variable Added](images/env-var-added.png)
 
-### 🛠️ Deploy the updated solution to Prod Environment
+### 🛠️ Deploy the updated solution to Production
 
-1. Go to **Pipelines** tab and click on **Deploy Here** button to deploy the updated solution to **Prod** environment.
+1. Go to **Pipelines** and click **Deploy Here** for **Production**.
 
-1. Click on **Next** and you'll be asked to select a value for the environment variable. Select **No** and click on **Next**.
+1. If the Managed Environment warning appears, confirm that **Production** is managed and click **Continue**.
+
+1. On **Destination**, verify that **Production** is selected and click **Next**.
+
+1. On **Environment variables**, set **LocalLoginEnabled** to **No** and click **Next**.
 
     ![Set Environment Variable Value](images/set-env-var-value.png)
 
-1. Click on **Deploy** to start the deployment process and wait for the deployment to complete.
+1. On **Summary**, review the deployment details and click **Deploy**.
+Wait for the deployment to complete.
 
 ### 🔍 Verify changes
 
@@ -297,27 +357,18 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
     ![Local Login Enabled](images/local-login-enabled.png)
 
-1. Now, go back to **Power Pages Maker Studio** and switch to **Prod** environment from top right corner and preview the site.
+1. Now, go back to **Power Pages Maker Studio**, switch to **Production**, and preview the site.
+If prompted, select the Microsoft account that you use for the workshop to access the private site.
 
-1. Click on **Sign In** button to verify that the local login is disabled.
+1. Click **Sign In** and verify that the local account sign-in option is not available.
 
     ![Local Login Disabled](images/local-login-disabled.png)
 
-### ❗ _Optional: Manage and deploy Single Page Application using Power Pages_
+### Optional: Manage and deploy a single-page application
 
-#### Enable JS extensions for your environments
-
-1. Go to [Power Platform Admin Center](https://admin.powerplatform.microsoft.com/) and select your **Dev** environment.
-
-1. Click on **Settings** and search for **Blocked Attachments**.
-
-    ![Search Blocked Attachments](images/search-blocked-attachments.png)
-
-1. Remove **.js** from the list of blocked attachments and click on **Save**.
-
-    ![Remove .js from Blocked Attachments](images/remove-js-from-blocked-attachments.png)
-
-1. Repeat the same steps for **Prod** environment.
+This optional exercise requires JavaScript file support to be preconfigured by the workshop administrator.
+Do not change blocked attachment or other tenant security settings during the lab.
+Skip this section unless the facilitator confirms that **Dev** and **Production** are ready for the exercise.
 
 #### Deploy Single Page Application site to Power Pages
 
@@ -325,20 +376,21 @@ In this lab, you will learn how to create a Power Pages site, add it to a soluti
 
 1. Navigate to `samples/bring-your-own-code/react/car-sales-website` folder and open it in VS Code.
 
-1. Complete the steps provided in the [README.md](https://github.com/microsoft/power-pages-samples/tree/main/samples/bring-your-own-code/react/car-sales-website#readme) file to set up the local project and upload the website to **Dev** environment.
+1. Complete the steps provided in the [README.md](https://github.com/microsoft/power-pages-samples/tree/main/samples/bring-your-own-code/react/car-sales-website#readme) file to set up the local project and upload the website to **Dev**.
 
-1. Switch to **Prod** environment and import the solution imported in **Dev** environment earlier to ensure the dependencies are met.
+1. Switch to **Production** and import the solution used in **Dev** to ensure that the dependencies are available.
 
-1. Follow the same steps as above to add the site to a solution and deploy it to **Prod** environment using Power Pipelines.
+1. Follow the same steps as above to add the site to a solution and deploy it to **Production** using Power Pipelines.
 
-## Optional: Supercharge your Power Pages development with Power Platform Tools VS Code Extension and PAC MCP Server
+## Optional: Use Power Platform Tools and the PAC MCP server
 
-Power Platform Tools is a Visual Studio Code extension that streamlines the development and management of Power Pages sites. It offers features such as:
+Power Platform Tools is a Visual Studio Code extension for Power Pages development and management.
+It includes:
 
 - Copilot for Power Pages
 - Liquid intellisense support
-- Seamless creation of new content like web pages, web templates etc. using right-click context menus.
-- Power Pages Actions: A single place to manage all your Power Pages sites including site upload/download and site preview.
+- Commands for creating content such as web pages and web templates
+- Power Pages actions for site upload, download, and preview
 
 ### Install Power Platform Tools Extension
 
