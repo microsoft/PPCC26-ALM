@@ -16,22 +16,22 @@ Whether you're a Center of Excellence leader, IT admin, or solution architect, y
 
 ## 📅 Draft agenda
 
-| Time | Topic |
-| --- | --- |
-| 9:00 AM | Introduction |
-| 9:30 AM | [Lab 1: Setup and configure](docs/labs/lab1/lab1.md) |
-| 9:45 AM | [Fusion and Code-first development](docs/labs/lab2/lab2.md) |
-| 10:00 AM | **Coffee break** |
-| 10:15 AM | [Fusion and Code-first development](docs/labs/lab2/lab2.md), continued |
-| 10:30 AM | [Deploy](docs/labs/lab3/lab3.md) |
-| 11:45 AM | **Lunch** |
-| 12:45 PM | [Deploy](docs/labs/lab3/lab3.md), continued |
-| 1:00 PM | Prescriptive guidance for deploying agents, etc at scale<br>↳ Environment groups and routing |
-| 1:30 PM | [Power Pages topics](docs/labs/lab4/README.md)<br>↳ New agent tooling |
-| 2:15 PM | TBD - Automated testing, simple optional module |
-| 2:45 PM | Managed Apps and Agents ALM |
-| 3:15 PM | AMA |
-| 4:00 PM | **Workshop ends** |
+| Time | Topic | Owner |
+| --- | --- | --- |
+| 9:00 AM | Introduction | Casey |
+| 9:30 AM | [Lab 1: Setup and configure](docs/labs/lab1/lab1.md) | Casey |
+| 9:45 AM | [Fusion and Code-first development](docs/labs/lab2/lab2.md) | Marcel |
+| 10:00 AM | **Coffee break** |  |
+| 10:15 AM | [Fusion and Code-first development](docs/labs/lab2/lab2.md), continued | Marcel |
+| 10:30 AM | [Deploy](docs/labs/lab3/lab3.md) | Yash |
+| 11:45 AM | **Lunch** |  |
+| 12:45 PM | [Deploy](docs/labs/lab3/lab3.md), continued | Yash |
+| 1:00 PM | Prescriptive guidance for deploying agents, etc at scale<br>↳ Environment groups and routing | TBD |
+| 1:30 PM | [Power Pages topics](docs/labs/lab4/README.md)<br>↳ New agent tooling | Ashish and Neeraj |
+| 2:15 PM | TBD - Automated testing, simple optional module | Casey and Prabhat |
+| 2:45 PM | Managed Apps and Agents ALM | TBD |
+| 3:15 PM | AMA | All and guests |
+| 4:00 PM | **Workshop ends** |  |
 
 > **Planning status:** This agenda mirrors the current workshop outline. Topics and times remain subject to change while planning continues.
 
