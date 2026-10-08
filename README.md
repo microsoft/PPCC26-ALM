@@ -20,9 +20,9 @@ Whether you're a Center of Excellence leader, IT admin, or solution architect, y
 | --- | --- | --- |
 | Presentation | 9:00 AM | Solutions and DevOps 101 |
 | [Lab 1](docs/labs/lab1/lab1.md) | 9:20 AM | Setup and configure |
-| [Lab 2](docs/labs/lab2/lab2.md) | 9:40 AM | Building Power Platform Solutions |
+| [Lab 2](docs/labs/lab2/lab2.md) | 9:40 AM | Inner-loop ALM: agents, code apps, and solutions |
 | Coffee | 10:00 AM | Coffee break |
-| [Lab 2 (cont)](docs/labs/lab2/lab2.md) | 10:15 AM | Building Power Platform Solutions |
+| [Lab 2 (cont)](docs/labs/lab2/lab2.md) | 10:15 AM | Inner-loop ALM: agents, code apps, and solutions |
 | Lunch | 11:45 AM | Lunch |
 | [Lab 3](docs/labs/lab3/lab3.md) | 12:45 PM | Deploy |
 | [Lab 4](docs/labs/lab4/README.md) | 2:15 PM | Lifecycle Mastery in Power Pages |
@@ -30,11 +30,11 @@ Whether you're a Center of Excellence leader, IT admin, or solution architect, y
 
 ## 🚀 Getting Started
 
-> **💡 Tip:** For a browser-friendly visualization, visit [https://microsoft.github.io/PPCC25-ALM](https://microsoft.github.io/PPCC25-ALM)
+> **💡 Tip:** For a browser-friendly visualization, visit [https://microsoft.github.io/PPCC26-ALM](https://microsoft.github.io/PPCC26-ALM)
 
 1. Start with [Lab 1: Setup](docs/labs/lab1/lab1.md)
 1. Follow the labs in sequence
 
 ---
 
-*Workshop materials for PPCC25 - Power Platform Community Conference 2025*
+*Workshop materials for PPCC26 - Power Platform Community Conference 2026*

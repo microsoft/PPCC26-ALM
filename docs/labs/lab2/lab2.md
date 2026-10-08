@@ -1,6 +1,10 @@
 # 🧪 Lab 2: Building Power Platform Solutions
 
-The inner loop is where developers spend most of their time - writing code, testing changes, and iterating quickly. In Power Platform, your **solution is your source code**. This lab focuses on working in the inner loop with your Power Platform solution, exploring how solutions exist at different levels of abstraction (binary packages, unpacked metadata files, and traditional source code projects), and how Power Platform Git Integration enables version control collaboration. You'll learn how to handle conflicts when changes occur in multiple places, work across development environments, and integrate AI agents into your ALM workflow. This hands-on lab demonstrates the complete inner-loop lifecycle of managing Power Platform solutions.
+The inner loop is where makers and developers spend most of their time: building, testing, and iterating. A Power Platform solution provides a common application lifecycle management (ALM) and deployment boundary, but it is not always the editable source.
+
+For maker-authored components, the solution contains the component definitions that the maker edits. For code-first components, such as code apps, the editable project stays in a Git repository and the solution contains the built runtime artifacts and platform metadata needed for deployment.
+
+This lab explores both models. You will work with solution metadata and Git integration, collaborate across development environments, and then build a Copilot Studio agent and a Power Apps code app in one Zava Quality Operations solution.
 
 ✅ Lab tasks
 
@@ -9,38 +13,38 @@ In this lab, you will go through the following tasks:
 1. [Import and commit a solution in your dev environment](#-task-1-import-and-commit-a-solution-in-your-dev-environment)
 1. [Edit your solution](#️-task-2-edit-your-solution)
 1. [Work as a team in multiple environments](#-task-3-work-as-a-team-in-multiple-environments)
-1. [Create a new agent](#-task-4-create-a-new-agent)
+1. [Build Zava Quality Operations with an agent and code app](#-task-4-build-zava-quality-operations-with-an-agent-and-code-app)
 
-## 💻 Solution is your Source Code
+## 💻 Know where your source lives
 
-For low-code makers, your **Power Platform Solution** is your source code - it's the complete description of what you're building that you can open and edit in the Solution Explorer within the maker portal.
+For low-code makers, a solution contains the editable definitions of components such as tables, flows, and canvas apps. For professional developers, a solution can also contain compiled runtime artifacts produced from source projects that live outside Power Platform.
+
+The solution remains the common unit for dependencies, export, import, and deployment. The source of truth depends on the type of component.
 
 ## 📦 Understanding Solution Abstractions
 
-The term "solution" can be confusing because it represents different levels of abstraction depending on the context:
+The term "source" can be confusing because ALM involves three related artifacts:
 
-### Three Levels of Solution Abstraction
+### Three Related ALM Artifacts
 
-1. **Solution Package (.zip)** - Binary Package
-   - Compressed binary version of the metadata and runtime artifacts
-   - Used for import/export operations between environments
-   - What you see when you export a solution from the Maker Portal.
+1. **Developer-authored source**
+   - React, TypeScript, C#, tests, package manifests, and build configuration
+   - Maintained in a normal Git repository
+   - Used to produce deployable runtime artifacts
 
-1. **Unpacked Solution** - Metadata and Runtime Artifacts
+1. **Unpacked solution**
    - Collection of individual files: `.msapp`, `.xml`, `.js`, `.dll` files
-   - Human-readable metadata that describes your Power Platform components
-   - Metadata can be version controlled and merged like traditional source code
+   - Includes solution metadata and the runtime artifacts packaged for Power Platform
+   - Can represent maker-authored components in source control, but does not reconstruct an original code-first project
 
-1. **Solution Project (.cdsproj)** - Traditional Source Code
-   - This is the traditional developer source code format
-   - Contains project files, references, and build configurations
-   - Used by professional developers with Visual Studio and MS Build
-
-![Solution Abstraction Flow](assets/SolutionsSourceCodeAbstractions.png)
+1. **Solution package (`.zip`)**
+   - Compressed deployment package containing metadata and runtime artifacts
+   - Used to move the solution between environments
+   - Produced for deployment, not used as the primary authoring format
 
 > **Note:** It's not possible to generate traditional source code from runtime artifacts in a solution. Traditional source code must be maintained in a repository by the developer as part of their development workflow.
 
-**Key Insight:** All three formats represent the same logical solution, just at different levels of abstraction. **Power Platform Git Integration covers only the unpacked solution** - it enables version control, collaboration, and deployment of low-code components. **Traditional source code** (like C# plugins, TypeScript PCF components, and project files) should be managed by traditional source code tools and development workflows alongside Power Platform components in your repository.
+**Key insight:** The solution is the shared deployment boundary. Power Platform Git Integration can manage supported solution components, while traditional source code stays in its own project and is built before its runtime artifacts are added to the solution. Power Apps code apps currently do not expose their original React or TypeScript projects through Power Platform Git Integration.
 
 ---
 
@@ -636,152 +640,230 @@ In this step, you'll simulate a hotfix scenario by making a critical update to t
 
 ---
 
-## 🤖 Task 4: Create a new agent
+## 🤖 Task 4: Build Zava Quality Operations with an agent and code app
 
-In this final task, we will create a Microsoft Copilot Studio (MCS) agent and configure it to use Dataverse tables as a knowledge source. This demonstrates how AI agents integrate into the Power Platform ALM lifecycle alongside apps and flows. To make the agent ALM-ready, we'll create it within a solution from the start.
+In this task, you will create two components for Zava's quality team:
 
-### Step 1: Navigate to Copilot Studio in the correct environment
+- **Zava Quality Guide**: an agent powered by the GitHub Copilot harness that explains a synthetic inspection and escalation policy.
+- **Zava Quality Incident Tracker**: a Power Apps code app created from a natural-language prompt.
 
-1. **Verify your Power Apps environment ID**
-   - Navigate to [make.powerapps.com](https://make.powerapps.com)
-   - Switch to your **Hotfix** environment
-   - Look at your browser's URL - it should look like:
+Both components belong to the **Zava Quality Operations** solution, but they have different authoring models. The agent is authored in Copilot Studio. The code app is authored as a normal React and TypeScript project, built locally, and then published to the solution.
 
-     ```text
-     https://make.powerapps.com/environments/12345678-1234-1234-1234-123456789abc/apps
-     ```
+### What you will learn
 
-   - Copy the environment ID from the URL (the GUID between `/environments/` and `/apps`)
-   - **Example**: If your URL is `https://make.powerapps.com/environments/12345678-1234-1234-1234-123456789abc/apps`, your environment ID is `12345678-1234-1234-1234-123456789abc`
+- Create an agent with instructions and a knowledge source.
+- Inspect the agent in a Power Platform solution.
+- Create and run a code app through a maker-friendly AI-assisted workflow.
+- Publish the built app into a specific solution.
+- Decide which source belongs in Git and which artifacts belong in the solution.
 
-1. **Navigate to Copilot Studio with the correct environment**
-   - Open a new browser tab
-   - Navigate to Copilot Studio using your environment ID:
+### Before you start
 
-     ```text
-     https://copilotstudio.microsoft.com/environments/YOUR-ENVIRONMENT-ID-HERE
-     ```
+Your workshop environment must have:
 
-   - Replace `YOUR-ENVIRONMENT-ID-HERE` with the environment ID you copied from Power Apps
-   - **Example**: `https://copilotstudio.microsoft.com/environments/12345678-1234-1234-1234-123456789abc`
-   - Verify you're in the correct environment by checking the environment name displayed in Copilot Studio
+- Copilot Studio with the GitHub Copilot harness available.
+- Power Apps code apps enabled.
+- A GitHub account with GitHub Copilot access.
+- GitHub Copilot CLI, Node.js LTS, and Git installed.
+- Environment Maker access in the **Dev** environment.
 
-   > **Note**: If you don't see the environment ID in the Copilot Studio URL, you may not be in the correct environment. Go back to Power Apps, copy the environment ID again, and update the Copilot Studio URL accordingly.
+> **Account check:** GitHub Copilot uses your GitHub identity. Power Apps and Copilot Studio use your workshop Microsoft identity. Confirm both accounts before starting.
 
-![MCS in the hotfix environment](assets/mcsEnvironment.png)
+---
 
-### Step 2: Set up the solution for ALM
+### Step 1: Create the Zava Quality Operations solution
 
-To make your agent ALM-ready, it must be created within a solution. This enables version control, deployment across environments, and integration with Git.
+1. Go to [Power Apps](https://make.powerapps.com).
+1. Switch to your **Dev** environment.
+1. Select **Solutions**.
+1. Create a solution with these values:
+   - **Display name**: `Zava Quality Operations`
+   - **Name**: `ZavaQualityOperations`
+   - **Publisher**: Select the workshop publisher provided by your instructor.
+   - **Version**: `1.0.0.0`
+1. Set **Zava Quality Operations** as your preferred solution.
+1. Open the solution and copy its solution ID from the browser URL. You will use this ID when publishing the code app.
 
-1. **Navigate to the Solutions area**
-   - In Copilot Studio, click on **Solutions** in the left navigation
-   ![solution](assets/mcsSolutionMenu.png)
-   - You should see the **Contoso Real Estate** solution that you've been working with in previous tasks
+The URL has this shape:
 
-1. **Set the Contoso Real Estate solution as the preferred solution**
-   - In the ribbon, select **Set preferred solution**
-   - Select the Contoso **Real Estate Solution**
-   - Apply
-   - This ensures that any new components you create will automatically be added to this solution
-   ![Preferred Solution](assets/mcsPrefferedSolution.png)
+```text
+https://make.powerapps.com/environments/<environment-id>/solutions/<solution-id>/overview
+```
 
-1. **Verify Git integration is connected**
-   - Click on the **Contoso Real Estate** solution to open it
-   - Check that the solution shows it's connected to Git (you should see a Git status indicator or source control option)
+> **Expected result:** Zava Quality Operations is the preferred solution, and you have saved its solution ID.
 
-   > **Important**: The solution must be connected to Git integration to enable source control for your agent. This allows you to commit agent changes alongside other solution components.
+---
 
-1. **Navigate back to the Copilot Studio home page**
-   - Click the **Copilot Studio icon** in the top left corner of the screen to return to the home page
-   - This will take you back to the main Copilot Studio interface where you can create new agents
+### Step 2: Create the Zava Quality Guide
 
-![back to main screen](assets/mcsGoToMainScreen.png)
+1. Open [Microsoft Copilot Studio](https://copilotstudio.microsoft.com).
+1. Confirm that you are in the same **Dev** environment.
+1. Create an agent powered by the **GitHub Copilot harness**.
+1. Use the [Zava Quality Guide prompt](assets/zava-quality/zava-quality-agent-prompt.md) to define the agent.
+1. In **Build**, review the generated name, description, and instructions.
+1. Add [ZavaCore Quality Inspection Guide](assets/zava-quality/zava-quality-inspection-guide.md) as a knowledge source.
+1. Save the agent.
 
-### Step 3: Create a new Copilot Studio agent
+The lab uses a small file-based knowledge source so that you can focus on the agent's ALM representation instead of configuring Dataverse or a connector.
 
-1. **Use the chat to create your agent**
-   - From the Copilot Studio home page, describe the agent we will create:
+#### Test the agent
 
-   ```yaml
-   “I want to build an agent that helps real estate agents to find properties. When the agent describes a property, the agent will ask for specific features and a budget.”
+In **Preview**, ask:
+
+> A ZavaCore Field batch is missing its traceability record. What should I do?
+
+The agent should classify the issue as a quality hold, tell you to isolate the batch, and direct you to notify the quality lead within four business hours.
+
+Then ask:
+
+> What customer discount should I offer for this issue?
+
+The inspection guide does not define customer discounts. The agent should say that the answer is not in its approved source and direct you to the appropriate owner instead of inventing a policy.
+
+> **Expected result:** The agent answers from the supplied inspection guide and respects its stated boundaries.
+
+---
+
+### Step 3: Inspect the agent in the solution
+
+1. Return to [Power Apps](https://make.powerapps.com).
+1. Open **Zava Quality Operations**.
+1. Locate **Zava Quality Guide** in the solution objects.
+1. Review the related components and dependencies shown for the agent.
+
+The solution contains the agent configuration required for ALM. The Copilot Studio authoring experience can include instructions, knowledge, tools, skills, and other capabilities. Do not assume that every authoring concept always maps to one separately editable file in an unpacked solution.
+
+> **Key point:** Copilot Studio is the agent's authoring surface. The solution is its deployment boundary.
+
+---
+
+### Step 4: Vibe-code the Zava Quality Incident Tracker
+
+The workshop uses GitHub Copilot CLI with the official Power Apps code apps plugin. Your instructor should preinstall the plugin. If it is not installed, start Copilot CLI and run:
+
+```text
+/plugin marketplace add microsoft/power-platform-skills
+/plugin install code-apps-preview@power-platform-skills
+```
+
+Close and reopen the terminal after installation.
+
+1. Create an empty working folder outside the workshop content repository.
+1. Open a terminal in that folder.
+1. Start GitHub Copilot CLI:
+
+   ```powershell
+   copilot
    ```
 
-   ![initial prompt](assets/mcsInitialPrompt.png)
+1. Invoke the code-app creation skill:
 
-   - Because you set the Contoso Real Estate solution as your preferred solution, the agent will automatically be added to this solution
+   ```text
+   /code-apps-preview:create-app
+   ```
 
-1. **Configure the agent**
+1. Paste the [Zava Quality Incident Tracker prompt](assets/zava-quality/zava-quality-code-app-prompt.md).
+1. Replace `<environment-id>` with the ID of your **Dev** environment.
+1. Review the proposed plan before approving it.
+1. If the agent proposes a connector, database, authentication system, or backend, ask it to keep local sample data instead.
+1. Approve the plan and let the agent create the app.
+1. When asked whether to deploy, choose **No**. You will publish explicitly to the Zava Quality Operations solution in the next step.
+1. Open the local play URL and verify that you can:
+   - View synthetic quality incidents.
+   - Filter by product, severity, and status.
+   - Open the new-incident form.
+   - Add a local incident.
 
-   The conversational creation experience with Copilot will next load. You'll see Copilot is in progress of responding to you.
-   ![Build your agent](assets/mcsBuildAgent.png)
+> **Expected result:** The app runs locally and uses synthetic local data only.
 
-   - Click Configure
-   - **Name**: Property finder assistant.
-   - Review the description and instructions generated.
-   - Click **Create** to initialize the agent
+#### Look at the editable source
 
-   ![create](assets/mcsCreateAgent.png)
+Open the generated project in Visual Studio Code. Locate:
 
-   - Wait until your agent is provisioned.
-   ![Agent provisioned](assets/mcsAgentProvisioned.png)
+```text
+src/
+package.json
+package-lock.json
+tsconfig.json
+vite.config.*
+power.config.json
+```
 
-### Step 4: Add Dataverse tables as knowledge source
+These files are the editable code-app project. This project belongs in the team's normal Git repository.
 
-1. **Access Knowledge sources**
-   - In your agent, navigate to the **Knowledge** section
-   - Click **+ Add knowledge**
-   - Select **Dataverse** as the knowledge source type
-   ![add Dataverse](assets/mcsAddknowledgeDataverse.png)
-   - Choose the **Listing** table and click "Add to agent"
-   ![add Listings table](assets/mcsAddListingTable.png)
+---
 
-### Step 5: Test the agent with Dataverse knowledge
+### Step 5: Publish the code app into the solution
 
-> **Note**: To test the agent effectively, you need data in the Listing table. You can either:
->
-> - Import sample data using the [optional data import step](#step-1-import-the-solution-into-power-apps) from Task 1, or
-> - Create your own data using the Contoso Real Estate Canvas App or Model-Driven App included in the solution
+In the generated project folder, build the application:
 
-1. **Test knowledge integration**
-   - Use the **Test** panel in Copilot Studio
-   - Ask questions that should trigger responses from your Dataverse tables (e.g., "Show me available properties" or "What properties are in the database?")
-   - Verify the agent can access and use the table data appropriately
-![test your agent](assets/mcsTestAgent.png)
+```powershell
+npm run build
+```
 
-   > **Note**: You can continue to refine the agent and add more components, but for this lab we will focus on the ALM aspect of it. If you want to explore how to build Microsoft Copilot Studio agents in depth, check out the [Agent Academy](https://microsoft.github.io/agent-academy/).
+Publish the compiled app to the solution ID you copied earlier:
 
-### Step 6: Commit the agent to source control
+```powershell
+pa app push --solution-id <solution-id>
+```
 
-> **Important**: Normally, you must publish an agent before it can be committed to source control. However, for this lab, we will skip the publish step and commit the agent directly to demonstrate the ALM workflow.
+When the command completes:
 
-1. **Commit the agent to source control**
-   - Navigate back to **Solutions**
-   ![view solution](assets/mcsViewSolution.png)
-   - Open the **Contoso Real Estate** solution
-   - Go to the **Source control** tab
-   - You should see the agent files in the pending changes
-   - Add commit message: "Added Copilot Studio agent with Dataverse knowledge source"
-   ![mcsCommit](assets/mcsCommit.png)
-   - Click **Commit**
+1. Return to **Zava Quality Operations** in Power Apps.
+1. Refresh the solution.
+1. Confirm that **Zava Quality Incident Tracker** appears under **Apps**.
+1. Run the published app once to confirm that it loads in the Power Apps host.
 
-1. **Verify agent in repository**
-   - Check your Git repository in Azure DevOps to see the agent files
-   - Review the agent's metadata and configuration files
-   - Note how the agent integrates with your overall solution structure
+If an app was previously published without a solution, you can also add it through **Add existing** > **App** > **Code app**.
 
-![Source Code](assets/mcsSourceCode.png)
+> **Expected result:** The code app is deployed as part of Zava Quality Operations.
 
-> **Expected outcome:** You have successfully created a Copilot Studio agent within a solution, connected it to Dataverse tables as a knowledge source, and committed it to source control as part of your ALM workflow.
+---
+
+### Step 6: Compare source with the solution
+
+The same application now exists in two forms:
+
+| Location | What it contains | How to use it |
+|---|---|---|
+| Code-app Git repository | React or TypeScript source, tests, package manifests, lockfile, and build configuration | Edit, review, branch, merge, test, and rebuild |
+| Power Platform solution | App registration metadata and built runtime artifacts such as bundled JavaScript, CSS, and static assets | Export, import, deploy, and govern |
+
+The solution does not contain the authoritative original React or TypeScript project. Unpacking the solution cannot reliably restore the original modules, comments, tests, or project structure.
+
+Power Apps code apps also do not currently support Power Platform Git Integration as a source-code integration mechanism. Keep the editable project in a normal Git repository and build it before publishing its runtime output to the solution.
+
+> **Do not edit generated bundle files.** Change the source project, rebuild it, and publish the new output.
+
+---
+
+### Step 7: Define the ALM strategy
+
+Use this strategy for Zava Quality Operations:
+
+| Component or artifact | Source of truth | Promotion path |
+|---|---|---|
+| Zava Quality Guide | Copilot Studio authoring configuration | Power Platform solution |
+| Zava Quality Incident Tracker source | External Git repository | Build and publish into the development solution |
+| Code-app runtime payload | Generated from the tagged source revision | Power Platform solution |
+| Zava Quality Operations release | Exported solution artifact | Power Platform Pipelines through Dev, Test, and Production |
+
+The complete flow is:
+
+```text
+Copilot Studio authoring ───────────────────────────────┐
+                                                       v
+Code-app Git source -> build -> compiled runtime -> Zava Quality Operations solution
+                                                       |
+                                                       v
+                                            Test -> Production
+```
+
+> **Expected outcome:** You created an agent and code app in one solution and can explain why their editable sources follow different ALM paths.
 >
 > **Key insights:**
 >
-> - Creating agents within solutions from the start makes them ALM-ready
-> - Agents follow the same source control patterns as apps, flows, and other solution components
-> - AI agents are now first-class citizens in Power Platform ALM
->
-> **Key insights:**
->
-> - Creating agents within solutions from the start makes them ALM-ready
-> - Agents follow the same source control patterns as apps, flows, and other solution components
-> - AI agents are now first-class citizens in Power Platform ALM
+> - A solution is the shared deployment boundary, not a universal authoring format.
+> - Agent configuration is authored in Copilot Studio and transported through the solution.
+> - Code-app source remains in Git; the solution contains its built runtime representation.
+> - Build from a known Git revision, publish to the development solution, and promote the resulting solution through controlled environments.
