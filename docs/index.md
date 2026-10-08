@@ -1,18 +1,15 @@
-# 🚀 Lifecycle Mastery: Managing Power Platform Assets in the Age of Agents
+# 🚀 Lifecycle Mastery: Managing Power Platform and Agents
 
-As AI agents take center stage in Power Platform innovation, the need for robust, scalable, and secure application lifecycle management (ALM) has never been more critical. This hands-on workshop dives deep into how Managed Environments can help you master the lifecycle of apps, flows, and agents—ensuring governance and agility go hand in hand.
+As AI agents take center stage in what you build and how you build it, the need for robust, scalable, and secure application lifecycle management (ALM) has never been more critical. This hands-on workshop will help you master the lifecycle of Power Platform solutions and agents, including how to deploy and operate them together, ensuring intelligence, governance, and agility go hand in hand.
 
-You'll learn how to implement modern ALM strategies using built-in features like solution-aware pipelines, environment routing, maker onboarding policies, and data loss prevention (DLP) enforcement—all designed to support a safe and streamlined deployment experience across the development lifecycle.
+## 🎯 Topics covered
 
-## 🎯 What you'll learn
-
-- Explore how Managed Environments enhance ALM with policy-driven controls and telemetry
-- Set up and use Power Platform Pipelines for secure, automated deployments
-- Apply environment routing to guide apps and agents to the right zones
-- Learn how ALM patterns extend to Copilot Studio agents and future AI workloads
-- Get hands-on with solution packaging, approvals, and rollback strategies
-
-Whether you're a Center of Excellence leader, IT admin, or solution architect, you'll leave with the tools and templates to implement lifecycle best practices that are agent-ready and enterprise-proven.
+- ALM and DevOps fundamentals, environment strategy, and solution management
+- Managed and unmanaged solutions, metadata and data, connection references, and environment variables
+- Source control, team development, and code-first inner-loop workflows
+- Deployment Pipelines, environment groups and routing, approvals, and governance
+- Lifecycle management for Copilot Studio agents, Power Apps code apps, Power Pages, Managed Apps, and Managed Agents
+- Security posture and deployment guidance for operating solutions and agents at scale
 
 ## 📅 Draft agenda
 
