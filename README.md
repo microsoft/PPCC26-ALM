@@ -16,24 +16,17 @@ Whether you're a Center of Excellence leader, IT admin, or solution architect, y
 
 ## 📅 Agenda
 
-| Time | Duration | Session | Lead |
-| --- | ---: | --- | --- |
-| 9:00 AM | 30 min | Introduction | Casey |
-| 9:30 AM | 15 min | [Lab 1: Setup and configure](docs/labs/lab1/lab1.md) | Casey |
-| 9:45 AM | 15 min | [Fusion and Code-first development](docs/labs/lab2/lab2.md), part 1 | Marcel |
-| 10:00 AM | 15 min | **Coffee break** |  |
-| 10:15 AM | 15 min | [Fusion and Code-first development](docs/labs/lab2/lab2.md), continued | Marcel |
-| 10:30 AM | 75 min | [Deploy](docs/labs/lab3/lab3.md), part 1 | Yash |
-| 11:45 AM | 60 min | **Lunch** |  |
-| 12:45 PM | 15 min | [Deploy](docs/labs/lab3/lab3.md), continued | Yash |
-| 1:00 PM | 30 min | Prescriptive guidance for deploying agents at scale, including environment groups and routing | TBD |
-| 1:30 PM | 45 min | [Power Pages topics](docs/labs/lab4/README.md), including new agent tooling | Ashish and Neeraj |
-| 2:15 PM | 30 min | Automated testing (optional module) | Casey and Prabhat |
-| 2:45 PM | 30 min | Managed Apps and Agents ALM | TBD |
-| 3:15 PM | 45 min | AMA | All and guests |
-| 4:00 PM |  | **Workshop ends** |  |
-
-The agenda follows the workshop outline order. Fusion and Code-first development continues after coffee, and Deploy continues after lunch. The outline's untimed Power Pages and automated-testing sections use the remaining 75 minutes.
+| Time | Topic |
+| --- | --- |
+| 9:00 AM | Foundations, [setup](docs/labs/lab1/lab1.md), and [inner-loop development](docs/labs/lab2/lab2.md) |
+| 10:00 AM | **Coffee break** |
+| 10:15 AM | [Inner-loop development](docs/labs/lab2/lab2.md) and [deployment](docs/labs/lab3/lab3.md) |
+| 11:45 AM | **Lunch** |
+| 12:45 PM | [Deployment](docs/labs/lab3/lab3.md) and agents at scale |
+| 1:30 PM | [Power Pages](docs/labs/lab4/README.md) and new agent tooling |
+| 2:15 PM | Automated testing and Managed Apps and Agents ALM |
+| 3:15 PM | AMA |
+| 4:00 PM | **Workshop ends** |
 
 ## 🚀 Getting Started
 
