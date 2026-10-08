@@ -19,20 +19,21 @@ Whether you're a Center of Excellence leader, IT admin, or solution architect, y
 | Time | Duration | Session | Lead |
 | --- | ---: | --- | --- |
 | 9:00 AM | 30 min | Introduction | Casey |
-| 9:30 AM | 15 min | [Lab 1: Setup and configure](docs/labs/lab1/lab1.md) | All |
-| 9:45 AM | 15 min | New agent tooling | TBD |
+| 9:30 AM | 15 min | [Lab 1: Setup and configure](docs/labs/lab1/lab1.md) | Casey |
+| 9:45 AM | 15 min | [Fusion and Code-first development](docs/labs/lab2/lab2.md), part 1 | Marcel |
 | 10:00 AM | 15 min | **Coffee break** |  |
-| 10:15 AM | 30 min | [Fusion and Code-first development](docs/labs/lab2/lab2.md) | Marcel |
-| 10:45 AM | 30 min | Environment groups and routing | TBD |
-| 11:15 AM | 30 min | Automated testing (optional module) | Casey and Prabhat |
+| 10:15 AM | 15 min | [Fusion and Code-first development](docs/labs/lab2/lab2.md), continued | Marcel |
+| 10:30 AM | 75 min | [Deploy](docs/labs/lab3/lab3.md), part 1 | Yash |
 | 11:45 AM | 60 min | **Lunch** |  |
-| 12:45 PM | 90 min | [Deploy](docs/labs/lab3/lab3.md) | Yash |
-| 2:15 PM | 30 min | [Power Pages topics](docs/labs/lab4/README.md) | Ashish and Neeraj |
+| 12:45 PM | 15 min | [Deploy](docs/labs/lab3/lab3.md), continued | Yash |
+| 1:00 PM | 30 min | Prescriptive guidance for deploying agents at scale, including environment groups and routing | TBD |
+| 1:30 PM | 45 min | [Power Pages topics](docs/labs/lab4/README.md), including new agent tooling | Ashish and Neeraj |
+| 2:15 PM | 30 min | Automated testing (optional module) | Casey and Prabhat |
 | 2:45 PM | 30 min | Managed Apps and Agents ALM | TBD |
 | 3:15 PM | 45 min | AMA | All and guests |
 | 4:00 PM |  | **Workshop ends** |  |
 
-Sections without a duration in the workshop outline are allocated across the available time without splitting a session across coffee or lunch.
+The agenda follows the workshop outline order. Fusion and Code-first development continues after coffee, and Deploy continues after lunch. The outline's untimed Power Pages and automated-testing sections use the remaining 75 minutes.
 
 ## 🚀 Getting Started
 
