@@ -16,17 +16,23 @@ Whether you're a Center of Excellence leader, IT admin, or solution architect, y
 
 ## 📅 Agenda
 
-| Lab | Time | Topic |
-| --- | --- | --- |
-| Presentation | 9:00 AM | Solutions and DevOps 101 |
-| [Lab 1](labs/lab1/lab1.md) | 9:20 AM | Setup and configure |
-| [Lab 2](labs/lab2/lab2.md) | 9:40 AM | Inner-loop ALM: agents, code apps, and solutions |
-| Coffee | 10:00 AM | Coffee break |
-| [Lab 2 (cont)](labs/lab2/lab2.md) | 10:15 AM | Inner-loop ALM: agents, code apps, and solutions |
-| Lunch | 11:45 AM | Lunch |
-| [Lab 3](labs/lab3/lab3.md) | 12:45 PM | Deploy |
-| [Lab 4](labs/lab4/README.md) | 2:15 PM | Lifecycle Mastery in Power Pages |
-| [Presentation](https://github.com/microsoft/PPCC25-ALM/blob/main/docs/PPCC25%20ALM%20Workshop%20Presentation.pdf) | 3:00 PM | Best practices & Q&A |
+| Time | Duration | Session | Lead |
+| --- | ---: | --- | --- |
+| 9:00 AM | 30 min | Introduction | Casey |
+| 9:30 AM | 15 min | [Lab 1: Setup and configure](labs/lab1/lab1.md) | All |
+| 9:45 AM | 15 min | New agent tooling | TBD |
+| 10:00 AM | 15 min | **Coffee break** |  |
+| 10:15 AM | 30 min | [Fusion and Code-first development](labs/lab2/lab2.md) | Marcel |
+| 10:45 AM | 30 min | Environment groups and routing | TBD |
+| 11:15 AM | 30 min | Automated testing (optional module) | Casey and Prabhat |
+| 11:45 AM | 60 min | **Lunch** |  |
+| 12:45 PM | 90 min | [Deploy](labs/lab3/lab3.md) | Yash |
+| 2:15 PM | 30 min | [Power Pages topics](labs/lab4/README.md) | Ashish and Neeraj |
+| 2:45 PM | 30 min | Managed Apps and Agents ALM | TBD |
+| 3:15 PM | 45 min | AMA | All and guests |
+| 4:00 PM |  | **Workshop ends** |  |
+
+Sections without a duration in the workshop outline are allocated across the available time without splitting a session across coffee or lunch.
 
 ## 🚀 Getting Started
 
