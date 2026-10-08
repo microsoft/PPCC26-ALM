@@ -14,19 +14,26 @@ You'll learn how to implement modern ALM strategies using built-in features like
 
 Whether you're a Center of Excellence leader, IT admin, or solution architect, you'll leave with the tools and templates to implement lifecycle best practices that are agent-ready and enterprise-proven.
 
-## 📅 Agenda
+## 📅 Draft agenda
 
 | Time | Topic |
 | --- | --- |
-| 9:00 AM | Foundations, [setup](labs/lab1/lab1.md), and [inner-loop development](labs/lab2/lab2.md) |
+| 9:00 AM | Introduction |
+| 9:30 AM | [Lab 1: Setup and configure](labs/lab1/lab1.md) |
+| 9:45 AM | [Fusion and Code-first development](labs/lab2/lab2.md) |
 | 10:00 AM | **Coffee break** |
-| 10:15 AM | [Inner-loop development](labs/lab2/lab2.md) and [deployment](labs/lab3/lab3.md) |
+| 10:15 AM | [Fusion and Code-first development](labs/lab2/lab2.md), continued |
+| 10:30 AM | [Deploy](labs/lab3/lab3.md) |
 | 11:45 AM | **Lunch** |
-| 12:45 PM | [Deployment](labs/lab3/lab3.md) and agents at scale |
-| 1:30 PM | [Power Pages](labs/lab4/README.md) and new agent tooling |
-| 2:15 PM | Automated testing and Managed Apps and Agents ALM |
+| 12:45 PM | [Deploy](labs/lab3/lab3.md), continued |
+| 1:00 PM | Prescriptive guidance for deploying agents, etc at scale<br>↳ Environment groups and routing |
+| 1:30 PM | [Power Pages topics](labs/lab4/README.md)<br>↳ New agent tooling |
+| 2:15 PM | TBD - Automated testing, simple optional module |
+| 2:45 PM | Managed Apps and Agents ALM |
 | 3:15 PM | AMA |
 | 4:00 PM | **Workshop ends** |
+
+> **Planning status:** This agenda mirrors the current workshop outline. Topics and times remain subject to change while planning continues.
 
 ## 🚀 Getting Started
 
