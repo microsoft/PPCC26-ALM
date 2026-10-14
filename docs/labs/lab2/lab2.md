@@ -11,18 +11,6 @@ The central ALM lesson is:
 
 > **A Power Platform solution is the shared deployment boundary, but it is not always the editable source.**
 
-## 🧩 Instructor framing: one solution, different sources
-
-Use the first five minutes to establish the abstraction before attendees build anything:
-
-- A solution groups components for deployment, dependency tracking, and governance.
-- The solution does not replace every component's authoring experience.
-- The agent is authored in Copilot Studio and represented in the solution for ALM.
-- The code app is authored as a normal web project in Git. Its built runtime is published into the solution.
-- Teams review and merge editable source before publishing a known revision into the development solution.
-
-Ask attendees to predict what they expect to find in Git and what they expect to find in the solution. Return to their answers in Task 7.
-
 ## 🎯 What you will learn
 
 By the end of this lab, you will be able to:
@@ -49,18 +37,30 @@ By the end of this lab, you will be able to:
 
 ## 📋 Prerequisites
 
-Your workshop environment must have:
+To complete this lab, you need to have the following environment and resources configured:
 
-- Copilot Studio with the GitHub Copilot harness available.
+### Environment
+
+| Environment Name | Environment Type | Purpose |
+|---|---|---|
+| Dev | Development | Create and test the Zava Quality Operations solution |
+
+The **Dev** environment must have:
+
+- Dataverse provisioned and **Solutions** available.
 - Power Apps code apps enabled.
-- Environment Maker access in the **Dev** environment.
+- Copilot Studio with the GitHub Copilot harness available.
+- Environment Maker access.
+- A workshop solution publisher.
+
+### Accounts and tools
+
+- A workshop Microsoft identity for Power Apps and Copilot Studio.
 - A GitHub account with GitHub Copilot access.
-- GitHub Copilot CLI, Node.js LTS, and Git installed.
-- A workshop solution publisher selected by the instructor.
+- GitHub Copilot CLI, Node.js 22 or later, and Git installed.
+- The Power Apps code apps plugin installed in GitHub Copilot CLI.
 
-> **Account check:** GitHub Copilot uses your GitHub identity. Power Apps and Copilot Studio use your workshop Microsoft identity. Confirm both accounts before starting.
-
-> **Instructor check:** Before delivery, create a test agent with the GitHub Copilot harness in the workshop tenant and confirm that it is represented in the preferred solution as expected.
+GitHub Copilot uses your GitHub identity. Power Apps and Copilot Studio use your workshop Microsoft identity.
 
 ## 🏭 Scenario: Zava Quality Operations
 
@@ -84,19 +84,12 @@ The solution is the deployment boundary for the agent and code app.
 1. Create a solution with these values:
    - **Display name**: `Zava Quality Operations`
    - **Name**: `ZavaQualityOperations`
-   - **Publisher**: Select the workshop publisher provided by your instructor.
+   - **Publisher**: Select the workshop publisher.
    - **Version**: `1.0.0.0`
 1. Set **Zava Quality Operations** as your preferred solution.
 1. Open the solution.
-1. Copy the solution ID from the browser URL and save it for Task 6.
 
-The URL has this shape:
-
-```text
-https://make.powerapps.com/environments/<environment-id>/solutions/<solution-id>/overview
-```
-
-> **Expected result:** Zava Quality Operations is the preferred solution, and you have saved its solution ID.
+> **Expected result:** Zava Quality Operations is the preferred solution.
 
 ---
 
@@ -158,7 +151,13 @@ The workshop uses GitHub Copilot CLI with the official Power Apps code apps plug
 
 ### Step 1: Confirm the code apps plugin
 
-Your instructor should preinstall the plugin. If it is not installed, start GitHub Copilot CLI:
+The code apps plugin should already be installed. Confirm it from PowerShell:
+
+```powershell
+copilot plugin list
+```
+
+If `code-apps-preview@power-platform-skills` is not listed, start GitHub Copilot CLI:
 
 ```powershell
 copilot
@@ -190,20 +189,31 @@ Close and reopen the terminal after installation.
    ```
 
 1. Paste the [Zava Quality Incident Tracker prompt](assets/zava-quality/zava-quality-code-app-prompt.md).
-1. Replace `<environment-id>` with the ID of your **Dev** environment.
 1. Review the proposed plan before approving it.
 1. If the plan includes a connector, database, authentication system, or backend, ask Copilot to keep local sample data instead.
 1. Approve the plan and let Copilot create the app.
-1. When asked whether to deploy, choose **No**. You will publish explicitly to the Zava Quality Operations solution in Task 6.
+1. If Copilot proposes `pa app init`, `pa auth login`, `pa app push`, or a baseline deployment, tell it to continue with local implementation only. You will initialize and publish explicitly in Task 6.
+
+If generation has not produced a runnable project after seven minutes, copy the tested [fallback project](assets/zava-quality/zava-quality-code-app-fallback/README.md) to a new working folder outside the workshop repository, run `npm install`, and continue. Do not troubleshoot generation during the timed lab.
 
 ### Step 3: Validate the local app
 
-Open the local play URL and verify that you can:
+In the generated project folder, run:
+
+```powershell
+npm run lint
+npm run build
+npm run dev
+```
+
+Open the local URL printed by Vite and verify that you can:
 
 - View synthetic quality incidents.
 - Filter by product, severity, and status.
 - Open the new-incident form.
 - Add a local incident.
+
+Stop the local server with <kbd>Ctrl</kbd>+<kbd>C</kbd> when validation is complete.
 
 > **Expected result:** The app runs locally and uses synthetic local data only.
 
@@ -217,10 +227,11 @@ package.json
 package-lock.json
 tsconfig.json
 vite.config.*
-power.config.json
 ```
 
 These files are the editable code-app project. This project belongs in the team's normal Git repository.
+
+`power.config.json` is added when you initialize the project against the Power Apps environment in Task 6.
 
 > **Behind the scenes:** The code app is a normal web project. Power Platform hosts and governs the deployed app, but the original React and TypeScript source remains in the developer's repository.
 
@@ -251,17 +262,39 @@ For the code app:
 
 ## 🚀 Task 6: Publish the code app into the solution
 
-In the generated project folder, build the application:
+The Power Apps CLI must be installed in the project, not globally. In the generated project folder, check for the tested CLI:
+
+```powershell
+Test-Path .\node_modules\.bin\pa.cmd
+```
+
+If the command returns `False`, install the workshop-tested version:
+
+```powershell
+npm install --save-dev @microsoft/power-apps-cli@1.3.0
+```
+
+If `power.config.json` does not exist, initialize the project against the **Dev** environment:
+
+```powershell
+npx --no-install pa app init
+```
+
+Complete the browser sign-in with the workshop Microsoft identity. Follow the prompts to select the **Dev** environment and enter `Zava Quality Incident Tracker` as the display name. Confirm that the command creates `power.config.json`.
+
+Build the application:
 
 ```powershell
 npm run build
 ```
 
-Publish the compiled app to the solution ID you copied in Task 1:
+Publish the compiled app:
 
 ```powershell
-pa app push --solution-id <solution-id>
+npx --no-install pa app push
 ```
+
+Because **Zava Quality Operations** is your preferred solution, the first publish adds the code app to that solution.
 
 When the command completes:
 
@@ -271,6 +304,8 @@ When the command completes:
 1. Run the published app once to confirm that it loads in the Power Apps host.
 
 If an app was previously published without a solution, add it through **Add existing** > **App** > **Code app**.
+
+> **Stop condition:** If initialization cannot authenticate, **Dev** is not available, or the environment reports that Dataverse is unavailable, stop and ask for help. Do not select the default environment as a substitute.
 
 > **Expected result:** The code app is deployed as part of Zava Quality Operations.
 

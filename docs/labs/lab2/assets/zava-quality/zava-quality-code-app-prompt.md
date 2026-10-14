@@ -2,8 +2,6 @@
 
 Create a responsive Power Apps code app called **Zava Quality Incident Tracker** for Zava's quality operations team.
 
-Deploy target: `<environment-id>`
-
 Build a simple maker-friendly experience with:
 
 - A dashboard showing synthetic quality incidents.
@@ -26,4 +24,4 @@ Use local synthetic sample data only. Do not add a connector, database, authenti
 
 Create at least six sample incidents across ZavaCore Field and ZavaCore Systems products. Include a mixture of observation, hold, critical, and closed examples.
 
-Present the implementation plan for approval before creating files. Do not deploy the app after building it; stop after local validation so it can be published explicitly to a Power Platform solution.
+Present the implementation plan for approval before creating files. For this exercise, do not run `pa app init`, `pa auth login`, `pa app push`, or any deployment command. Run the linter and production build, then stop so the attendee can validate locally and publish explicitly to a Power Platform solution.
