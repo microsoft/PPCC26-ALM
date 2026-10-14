@@ -11,6 +11,18 @@ The central ALM lesson is:
 
 > **A Power Platform solution is the shared deployment boundary, but it is not always the editable source.**
 
+## 🧩 Instructor framing: one solution, different sources
+
+Use the first five minutes to establish the abstraction before attendees build anything:
+
+- A solution groups components for deployment, dependency tracking, and governance.
+- The solution does not replace every component's authoring experience.
+- The agent is authored in Copilot Studio and represented in the solution for ALM.
+- The code app is authored as a normal web project in Git. Its built runtime is published into the solution.
+- Teams review and merge editable source before publishing a known revision into the development solution.
+
+Ask attendees to predict what they expect to find in Git and what they expect to find in the solution. Return to their answers in Task 7.
+
 ## 🎯 What you will learn
 
 By the end of this lab, you will be able to:
@@ -25,12 +37,15 @@ By the end of this lab, you will be able to:
 
 | Activity | Time |
 | --- | ---: |
+| Frame the solution abstraction | 5 minutes |
 | Create the solution | 3 minutes |
-| Create and test the agent | 7 minutes |
-| Inspect the agent in the solution | 2 minutes |
-| Vibe-code and run the code app | 10 minutes |
-| Publish the app into the solution | 4 minutes |
+| Create and test the agent | 8 minutes |
+| Inspect the agent in the solution | 4 minutes |
+| Vibe-code and run the code app | 12 minutes |
+| Define the team source workflow | 4 minutes |
+| Publish the app into the solution | 5 minutes |
 | Compare the two ALM models | 4 minutes |
+| **Total** | **45 minutes** |
 
 ## 📋 Prerequisites
 
@@ -44,6 +59,8 @@ Your workshop environment must have:
 - A workshop solution publisher selected by the instructor.
 
 > **Account check:** GitHub Copilot uses your GitHub identity. Power Apps and Copilot Studio use your workshop Microsoft identity. Confirm both accounts before starting.
+
+> **Instructor check:** Before delivery, create a test agent with the GitHub Copilot harness in the workshop tenant and confirm that it is represented in the preferred solution as expected.
 
 ## 🏭 Scenario: Zava Quality Operations
 
@@ -71,7 +88,7 @@ The solution is the deployment boundary for the agent and code app.
    - **Version**: `1.0.0.0`
 1. Set **Zava Quality Operations** as your preferred solution.
 1. Open the solution.
-1. Copy the solution ID from the browser URL and save it for Task 5.
+1. Copy the solution ID from the browser URL and save it for Task 6.
 
 The URL has this shape:
 
@@ -177,7 +194,7 @@ Close and reopen the terminal after installation.
 1. Review the proposed plan before approving it.
 1. If the plan includes a connector, database, authentication system, or backend, ask Copilot to keep local sample data instead.
 1. Approve the plan and let Copilot create the app.
-1. When asked whether to deploy, choose **No**. You will publish explicitly to the Zava Quality Operations solution in Task 5.
+1. When asked whether to deploy, choose **No**. You will publish explicitly to the Zava Quality Operations solution in Task 6.
 
 ### Step 3: Validate the local app
 
@@ -209,7 +226,30 @@ These files are the editable code-app project. This project belongs in the team'
 
 ---
 
-## 🚀 Task 5: Publish the code app into the solution
+## 🌿 Task 5: Define the team source workflow
+
+Before publishing, agree on how a team moves a code-app change from an idea to a release:
+
+| Change | Editable source | Team checkpoint |
+| --- | --- | --- |
+| Agent instructions or knowledge configuration | Copilot Studio | Review the agent behavior and solution dependencies |
+| Code-app interface or logic | Code-app Git repository | Use a feature branch, pull request, and automated build |
+| Development deployment | Built output from an accepted Git revision | Publish into the development solution |
+| Test and production deployment | Exported solution artifact | Promote the same artifact through a controlled pipeline |
+
+For the code app:
+
+1. Make changes on a feature branch rather than directly on the release branch.
+1. Review and merge the source through a pull request.
+1. Restore dependencies, test, and build from the accepted revision.
+1. Publish that built output into the development solution.
+1. Promote the resulting solution artifact through Test and Production. Do not rebuild different source in each environment.
+
+> **Key point:** Git owns the code-app source history. The solution owns the deployable Power Platform representation.
+
+---
+
+## 🚀 Task 6: Publish the code app into the solution
 
 In the generated project folder, build the application:
 
@@ -236,7 +276,7 @@ If an app was previously published without a solution, add it through **Add exis
 
 ---
 
-## 🧭 Task 6: Compare the source and deployment models
+## 🧭 Task 7: Compare the source and deployment models
 
 The same code app now exists in two forms:
 
