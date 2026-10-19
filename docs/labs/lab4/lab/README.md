@@ -20,6 +20,7 @@
   1. [Verify changes](#-verify-changes)
   1. [Optional: Manage and deploy a single-page application](#-optional-manage-and-deploy-a-single-page-application)
   1. [Optional: Use Power Platform Tools and the PAC MCP server](#optional-use-power-platform-tools-and-the-pac-mcp-server)
+  1. [Optional: Install the Power Pages AI plugin for GitHub Copilot CLI](#optional-install-the-power-pages-ai-plugin-for-github-copilot-cli)
 
 ## 📋 Pre-requisites
 
@@ -446,3 +447,59 @@ It includes:
 1. You can now use GitHub Copilot to manage your Power Pages sites using natural language.
 
     ![Power Pages MCP](images/pac-mcp.png)
+
+## Optional: Install the Power Pages AI plugin for GitHub Copilot CLI
+
+The Power Pages plugin adds AI-assisted skills for creating and deploying single-page application (SPA) sites through GitHub Copilot CLI.
+This is separate from the Power Platform Tools extension and the PAC MCP server above.
+Installing the plugin does not change the site you created in this lab.
+
+### Prerequisites
+
+1. Install the latest [GitHub Copilot CLI](https://github.com/features/copilot/cli/) and sign in with a GitHub account that has access to Copilot.
+1. Install [Node.js](https://nodejs.org/) 18 or later, the [Power Platform CLI](https://learn.microsoft.com/power-platform/developer/cli/introduction), and the latest [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli).
+   PAC CLI 2.6.3 or later is required if you use the plugin's server logic features.
+1. Before using skills that connect to Power Platform, authenticate PAC CLI to **Dev** and Azure CLI to the same tenant:
+
+    ```text
+    pac auth create --environment <Dev environment URL>
+    az login --allow-no-subscriptions
+    pac auth list
+    ```
+
+    Replace `<Dev environment URL>` with your environment's instance URL.
+    You can find it in Power Pages home under **Settings** > **Session details**.
+    Verify that the selected PAC authentication profile points to **Dev**.
+
+### Install the plugin
+
+1. Open a terminal in your local working folder and start GitHub Copilot CLI:
+
+    ```text
+    copilot
+    ```
+
+1. Inside the Copilot CLI session, add the Microsoft Power Platform skills marketplace:
+
+    ```text
+    /plugin marketplace add microsoft/power-platform-skills
+    ```
+
+1. Install the Power Pages plugin:
+
+    ```text
+    /plugin install power-pages@power-platform-skills
+    ```
+
+1. Restart GitHub Copilot CLI to load the plugin's skills.
+1. Run `/plugin` and confirm that the Power Pages plugin is installed.
+   Its skills include `/create-site` and `/deploy-site`.
+
+> **Important:** Review generated code and proposed actions before approving them.
+> Creating or deploying a site changes your Power Platform environment.
+> For SPA exercises, use only environments the facilitator has confirmed are ready for JavaScript files; do not change tenant security settings during the lab.
+
+### References
+
+- [Get started with the Power Pages plugin for GitHub Copilot CLI and Claude Code](https://learn.microsoft.com/power-pages/configure/create-code-site-using-claude-code)
+- [Microsoft Power Platform skills marketplace and manual installation instructions](https://github.com/microsoft/power-platform-skills#manual-installation)
