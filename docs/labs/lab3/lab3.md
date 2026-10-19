@@ -106,6 +106,15 @@ Go to the [Power Platform admin center](https://aka.ms/ppac) and confirm that yo
 
 If any of these environments are missing from your tenant, create them manually and give them the names and purposes listed above.
 
+### Enable Managed Environments for Dev
+
+1. In the [Power Platform Admin Center](https://aka.ms/ppac), select **Manage** > **Environments**.
+1. Select the **Dev** environment.
+1. In the ribbon, click **Enable Managed Environments**.
+1. Click **Enable** in the fly out wizard.
+
+   ![Enable ME](assets/image64.png)
+
 ### Create a Custom Host environment
 
 The Custom Host environment acts as the storage and management plane for pipeline configuration, security, and run history. You can install multiple Custom Host environments to separately manage pipelines for different business orgs or geographic locations. One host for the entire tenant is also acceptable as long as all environments are in the same geographic location.
@@ -760,21 +769,3 @@ Let's pretend the last deployment contained a critical breaking change and it ne
 1. Disaster averted! Now the prior version is deployed to production and you have time to fix the (hypothetical) issue and deploy an updated version when ready.
 
 ---
-
-## 📎 Appendix
-
-### Steps to enable Managed Environments
-
-Enable Managed Environments for your **Dev** environment:
-
-1. Navigate to the [Power Platform Admin Center](https://aka.ms/ppac).
-
-1. In the Manage tab on the left hand side, click on **Environments**
-
-1. Select the **Dev** environment.
-
-1. In the ribbon, click **Enable Managed Environments**
-
-1. Click **Enable** in the fly out wizard
-
-   ![Enable ME](assets/image64.png)
