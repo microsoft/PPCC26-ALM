@@ -9,7 +9,7 @@ In this lab, you will go through the following tasks:
 1. Log on to your account
 2. Rename your environments
 3. Enable Copilot Studio 
-4. Create an Azure DevOps project and repository
+4. Verify an Azure DevOps project and repository are provisioned
 
 > Estimated time: 15-20 minutes
 
@@ -49,22 +49,20 @@ This step ensures your environments have meaningful names based on their intende
 
 In the real world, you might allow a smaller group of individuals to create agents depending on your organizational policies. 
 
-## Task 4: Create an Azure DevOps project and repository
-1.	Open a new tab within the same browser
-2.	Go to [Azure DevOps](https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/)
-3.	Under **Basic plan** select **Start free**
-![ADO Start free](assets/ADOstartFree.png)
-4.	On the next screen, select **Canada**, then **Continue**
-![ADO Get Started](assets/ADOgetStarted.png)
-5.	On the next screen, select **Canada**, solve the puzzle, and **Continue**
-6.	You will be redirected to your Azure DevOps organization in a moment.
-![ADO Almost done](assets/ADOalmostDone.png)
-7.	Enter **Power Platform** for the **Project name**
-![ADO Create project](assets/ADOcreateProject.png)
-8.	Select **Repos** in the left menu, then **Initialize**
-![ADO Initialize Repository](assets/ADOinitializeRepo.png)
+## Task 4: Verify an Azure DevOps project and repository are provisioned
+
+An Azure DevOps organization, project, and repository are pre-provisioned in each tenant.
+
+1. Open a new tab within the same browser.
+2. Go to [Azure DevOps](https://aex.dev.azure.com/).
+3. Confirm that your project is listed in the organization.
+
+![Azure DevOps organization with the provisioned project](https://github.com/user-attachments/assets/2f9e8234-3e0e-4ca2-83e4-6099b6a001f2)
+
+4. Select the project, select **Repos**, then initialize the Git repository.
+
+If your tenant doesn't have a pre-existing project and repository, get a new tenant at [PPCC Workshop Accounts](https://aka.ms/PPCCWorkshopAccounts).
 
 Now you have a source code repository! If you’re not familiar with source code, don’t worry. In Lab 2 you’ll learn how to use source control within the comfort of your Power Platform environment. 
 While this lab only requires one user, in the real world you’ll need to add other collaborators to the Azure DevOps organization and project with Basic access. 
-
 
