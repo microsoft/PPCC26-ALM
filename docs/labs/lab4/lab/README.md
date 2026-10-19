@@ -222,12 +222,15 @@ Workshop sites are expected to be **Private**, so select the Microsoft account t
 
     ![View Commit in Azure DevOps](images/view-commit-in-ado.png)
 
-1. Notice that there are 3 folders created in the repository:
+1. Notice that there are 3 folders created under `PP/PPCCALMDev` in the repository:
     1. **powerpagesites** - Contains the Power Pages site related files
     1. **solutions** - Contains the solution related files
     1. **publishers** - Contains the publisher information
 
-    ![Repository Structure](images/repo-structure.png)
+    ![Repository structure under PP/PPCCALMDev in the Power Platform repository](images/repo-structure.png)
+
+    _The image is an edited example using the organization name `ppcc2026-example`.
+    Your organization name will differ._
 
 ### 💻 Cloning the repository locally
 
