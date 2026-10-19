@@ -1,5 +1,7 @@
 # 🧪 Lab 2: Inner-loop ALM with Zava Quality Operations
 
+**Owner:** Marcel Ferreira · **Last updated:** 2026-10-19 · **Status:** Draft
+
 Build a policy-guidance agent and a Dataverse-backed code app, then save and publish their components with the **Zava Quality Operations** solution.
 
 ## ⏱️ Lab outline
@@ -10,16 +12,32 @@ Build a policy-guidance agent and a Dataverse-backed code app, then save and pub
 | Create the solution, table, and first Git commit | 10 minutes |
 | Create and test the agent | 8 minutes |
 | Inspect the agent in the solution | 2 minutes |
-| Vibe-code, connect, and run the code app | 14 minutes |
-| Find and save the code-app source | 2 minutes |
-| Publish the app into the solution | 4 minutes |
-| Compare the two ALM models | 2 minutes |
+| Create, connect, and test the local code app | 14 minutes |
+| Find and save developer source | 2 minutes |
+| Publish runtime assets into the solution | 4 minutes |
+| Compare the three representations | 2 minutes |
 | **Total** | **45 minutes** |
+
+## Three representations of ALM assets
+
+The solution is an abstraction for managing components together. It is not a universal source-code project. Use these terms throughout the workshop:
+
+| Term | What it represents | Where you see it |
+| --- | --- | --- |
+| **Solution package** | An exported `.zip` containing component metadata and runtime assets for deployment | Solution export/import and deployment pipelines |
+| **Solution source** | The file-based solution representation: component metadata and, where supported, runtime assets | Native solution Git integration or extracted solution files |
+| **Developer source** | The editable code project, including source files, dependencies, configuration, and tests where present | The local project and its own Git repository |
+
+**Metadata** describes components: table definitions, agent configuration, and app registration. **Runtime assets** are the built content that runs, such as bundled JavaScript, CSS, static assets, or a plug-in DLL. Not every runtime asset is a machine-code binary, and a `.zip` is a package format, not a synonym for compiled code.
+
+Native solution Git integration supports specific component types; it is not a mirror of every file in a solution package. Code apps do not currently support that integration. Keep their **developer source** in its own Git repository.
+
+The **solution in Dev** is the live container you view in the maker portal. It is not a solution package until you export it. In this lab, you create and update that container; exporting and promoting the solution package belongs to the next lab.
 
 ## 📋 Prerequisites
 
 - Workshop **Dev** environment with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin).
-- Copilot Studio's GitHub Copilot harness and uploaded-file knowledge available in **Dev**.
+- Copilot Studio's Microsoft Copilot harness and uploaded-file knowledge available in **Dev**.
 - **Environment Maker** and **Dataverse System Administrator** access.
 - Azure DevOps repository from Lab 1, in the same Microsoft Entra tenant as **Dev**, with Basic access and permission to contribute.
 - Workshop Microsoft account and a GitHub account with GitHub Copilot access.
@@ -28,6 +46,8 @@ Build a policy-guidance agent and a Dataverse-backed code app, then save and pub
 ---
 
 ## 📦 Task 1: Create the solution, table, and first Git commit
+
+**What you are doing:** Create the **solution in Dev**, the container for the lab's components. The maker portal provides a visual view of its contents. Then create table metadata and commit its **solution source**. You are not exporting a solution package yet.
 
 Use only the synthetic workshop data shown below.
 
@@ -123,11 +143,15 @@ If the commit reports an error, ask your workshop instructor for help before con
 
 The Zava Quality Guide explains approved inspection procedures from the supplied policy file. It does not look up or change incident records.
 
+**What you are doing:** Use Copilot Studio's **Microsoft Copilot harness** to author the agent, not a local code-app project. With Zava Quality Operations set as your preferred solution, the agent and its solution-aware components are created in that solution. You inspect that membership and commit the agent's **solution source** in Task 3.
+
+> **Naming transition:** The Microsoft Copilot harness was previously called the GitHub Copilot harness. Your UI, screenshots, or documentation might still show the previous name during the rollout. This is a name change, not a change in capabilities or lab steps. **GitHub Copilot CLI**, used for the code app in Task 4, is a separate tool; its name and commands are unchanged in this lab.
+
 ### Step 1: Create the agent
 
 1. Open [Microsoft Copilot Studio](https://copilotstudio.microsoft.com).
 1. Confirm that you are in the same **Dev** environment.
-1. Create an agent powered by the **GitHub Copilot harness**.
+1. Create an agent powered by the **Microsoft Copilot harness**.
 1. Set **Name** to `Zava Quality Guide`.
 1. Paste only the text in the [Zava Quality Guide prompt](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/assets/zava-quality/zava-quality-agent-prompt.md) box into **Instructions**.
 
@@ -169,6 +193,8 @@ The inspection guide does not define customer discounts. The agent should say th
 
 ## 🔍 Task 3: Inspect and save the agent in Git
 
+**What you are doing:** Inspect the agent in the **solution in Dev**, then save its **solution source** through native Git integration. This is separate from the local **developer source** repository you will create for the code app.
+
 1. Return to [Power Apps](https://make.powerapps.com).
 1. Open **Zava Quality Operations**.
 1. Refresh the solution and locate **Zava Quality Guide** in the solution objects.
@@ -186,9 +212,11 @@ The solution contains the agent configuration required for ALM. The Copilot Stud
 
 ---
 
-## 💻 Task 4: Vibe-code the Zava Quality Incident Tracker
+## 💻 Task 4: Create and test the code app locally
 
 The workshop uses GitHub Copilot CLI with the official Power Apps code apps plugin. Visual Studio Code remains available for viewing and editing the generated project.
+
+**What you are doing:** Create and edit the code app's **developer source** in a local folder. The app is not in the solution yet. Connecting to the existing Dataverse table and testing through Local Play does not add the app to the solution; first publish does that in Task 6.
 
 ### Enable code apps (admin)
 
@@ -310,9 +338,9 @@ If sign-in fails or **Dev** is not available, ask your workshop instructor for h
 
 ---
 
-## 🌿 Task 5: Find and save the code-app source
+## 🌿 Task 5: Find and save developer source
 
-The code-app project is separate from the solution files you committed through Power Apps in Task 3.
+**What you are doing:** Commit the code app's **developer source** in its own local Git repository. It is separate from the **solution source** committed through Power Apps in Task 3. The built app has not been published into the solution yet.
 
 1. Open the app folder in Visual Studio Code using **File** > **Open Folder**.
 1. In **Explorer**, locate:
@@ -334,7 +362,9 @@ For this lab, a local commit is enough. In a team, push this project to a shared
 
 ---
 
-## 🚀 Task 6: Publish the code app into the solution
+## 🚀 Task 6: Publish runtime assets into the solution
+
+**What you are doing:** Add the app's registration **metadata** and built **runtime assets** to the **solution in Dev**. You are not adding its original React/TypeScript project. Its **developer source** stays in the local Git repository, and publishing does not export a solution package.
 
 The app was already built in Task 4. You have not changed its code since then, so you can publish that build.
 
@@ -372,14 +402,16 @@ For `CodeAppOperationNotAllowedInEnvironment`, ask your instructor to follow the
 
 ---
 
-## 🧭 Task 7: Compare the source and deployment models
+## 🧭 Task 7: Compare the three representations
 
-The same code app now exists in two forms:
+**What you are doing:** Identify the **developer source**, the **solution source**, and the future **solution package**. Explain which content is editable and which content is deployed.
 
-| Location | What it contains | How to use it |
+| Representation | What it contains in this lab | How to use it |
 | --- | --- | --- |
-| Code-app Git repository | React or TypeScript source, tests, package manifests, lockfile, and build configuration | Edit, review, branch, merge, test, and rebuild |
-| Power Platform solution | App registration metadata and built runtime artifacts such as bundled JavaScript, CSS, and static assets | Export, import, deploy, and govern |
+| **Developer source** in the code-app Git repository | React/TypeScript project, generated data-source files, package manifests, lockfile, and build configuration | Edit, review, branch, merge, test, and rebuild |
+| **Solution source** in native solution Git | Table and column metadata, plus the agent's supported configuration and components | Review and version the supported solution components; not the code-app project |
+| **Solution in Dev** in the maker portal | Table schema, agent components, and the published code app's registration metadata and runtime assets | Inspect and manage components together |
+| **Solution package** after export in the next lab | Exported component metadata and runtime assets, not the authoritative code-app project or incident rows | Import and promote through controlled environments |
 
 The solution does not contain the authoritative original React or TypeScript project. Unpacking the solution cannot reliably restore the original modules, comments, tests, or project structure.
 
@@ -392,10 +424,10 @@ Power Apps code apps also do not currently support Power Platform Git Integratio
 | Component or artifact | Source of truth | Promotion path |
 | --- | --- | --- |
 | Zava Quality Guide | Copilot Studio authoring configuration | Power Platform solution |
-| Zava Quality Incident Tracker source | External Git repository | Build and publish into the development solution |
-| Code-app runtime payload | Generated from the tagged source revision | Power Platform solution |
+| Zava Quality Incident Tracker developer source | Its own Git repository | Build and publish runtime assets into the development solution |
+| Code-app runtime assets | Generated from a known developer-source revision | Power Platform solution |
 | Quality Incident table schema | Dataverse table and column definitions, saved through solution Git integration | Power Platform solution |
-| Zava Quality Operations release | Exported solution artifact | Power Platform Pipelines through Dev, Test, and Production |
+| Zava Quality Operations release | Exported solution package | Power Platform Pipelines through Dev, Test, and Production |
 
 The solution transports the table schema, not the incident rows. Test and Production need their own data; the synthetic Dev incident does not automatically travel with a solution import.
 
@@ -404,10 +436,10 @@ The complete flow is:
 ```text
 Copilot Studio authoring ───────────────────────────────┐
                                                        v
-Code-app Git source -> build -> compiled runtime -> Zava Quality Operations solution
+Developer source -> build -> runtime assets -> Zava Quality Operations solution in Dev
                                                        |
                                                        v
-                                            Test -> Production
+                                  Export solution package -> Test -> Production
 ```
 
 > **Expected outcome:** You created an agent and code app in one solution and can explain why their editable sources follow different ALM paths.
@@ -415,15 +447,17 @@ Code-app Git source -> build -> compiled runtime -> Zava Quality Operations solu
 ## ✅ Key takeaways
 
 - A solution is the shared deployment boundary, not a universal authoring format.
+- **Developer source** is edited and built; **solution source** versions supported solution components; a **solution package** is exported for deployment.
+- The maker portal visualizes the solution in Dev. The preferred solution routes newly created solution-aware components into that container, not arbitrary local files.
 - Agent configuration is authored in Copilot Studio and transported through the solution.
 - The agent explains inspection policy; the code app records and displays incidents. Both belong to the same solution.
-- Code-app source remains in Git; the solution contains its built runtime representation.
+- Code-app developer source remains in its own Git repository; the solution contains registration metadata and built runtime assets, not the original project.
 - Dataverse stores the app's incident rows. The solution transports their table schema, not the rows themselves.
 - Build from a known Git revision, publish to the development solution, and promote the resulting solution through controlled environments.
 
 ## 📚 References
 
-- [Agents powered by the GitHub Copilot harness](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview)
+- [Agents powered by the Microsoft Copilot harness](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview)
 - [Enable code apps in a Power Platform environment](https://learn.microsoft.com/power-apps/developer/code-apps/overview#enable-code-apps-on-a-power-platform-environment)
 - [Build a code app with GitHub Copilot](https://learn.microsoft.com/power-apps/developer/code-apps/how-to/quickstart-github-copilot)
 - [Create, run, and publish a code app with the Power Apps CLI](https://learn.microsoft.com/power-apps/developer/code-apps/how-to/create-an-app-from-scratch)
