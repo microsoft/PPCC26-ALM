@@ -410,16 +410,10 @@ Installing the plugin does not change the site you created in this lab.
     copilot
     ```
 
-1. Inside the Copilot CLI session, add the Microsoft Power Platform skills marketplace:
+1. Inside the Copilot CLI session, install the Power Pages plugin:
 
     ```text
-    /plugin marketplace add microsoft/power-platform-skills
-    ```
-
-1. Install the Power Pages plugin:
-
-    ```text
-    /plugin install power-pages@power-platform-skills
+    /plugin install power-pages@copilot-plugins
     ```
 
 1. Restart GitHub Copilot CLI to load the plugin's skills.
@@ -433,7 +427,6 @@ Installing the plugin does not change the site you created in this lab.
 ### References
 
 - [Get started with the Power Pages plugin for GitHub Copilot CLI and Claude Code](https://learn.microsoft.com/power-pages/configure/create-code-site-using-claude-code)
-- [Microsoft Power Platform skills marketplace and manual installation instructions](https://github.com/microsoft/power-platform-skills#manual-installation)
 
 ## Optional: Manage and deploy a single-page application
 
