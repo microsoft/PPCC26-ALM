@@ -125,18 +125,16 @@ If solution-scoped Git integration is already configured for the Lab 1 repositor
     _The image is an edited example using the organization name `ppcc2026-example`.
     Select your own organization and the project and repository created in Lab 1._
 
-1. Select **Connect** to save the initial Git connection.
+1. Click **Connect** to open the solution connection page.
 
-1. In **Solutions**, select the three dots next to **PPCCALMDev**, then select **Connect to Git**.
-   On the solution connection page, use these settings:
+1. On the solution connection page, use these settings:
 
     - **Solution**: PPCCALMDev
     - **Branch**: `main`
     - **Git folder**: `PP/PPCCALMDev`
 
-1. Select **Connect**.
-Wait for Git integration to finish processing the solution components before continuing.
-The commit button remains unavailable while processing is in progress.
+1. Click **Connect** and wait for the operation to complete before continuing.
+   The commit button remains unavailable while Git integration processes the solution components.
 
 ### 🚀 Configure Power Pipelines
 
