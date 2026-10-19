@@ -7,7 +7,7 @@ Welcome to PPCC25! In this first lab, you’ll setup the necessary prerequisites
 In this lab, you will go through the following tasks:
 
 1. Log on to your account
-2. Rename your environments
+2. Verify your environments
 3. Enable Copilot Studio 
 4. Create an Azure DevOps project and repository
 
@@ -23,21 +23,32 @@ In this lab, you will go through the following tasks:
 3.	Go to the [Power Platform Admin Center](https://aka.ms/ppac)
 
 
-## Task 2: Rename your environments
-This step ensures your environments have meaningful names based on their intended use, which avoids confusion later. Rename the following environments.
+## Task 2: Verify your environments
+Go to the [Power Platform Admin Center](https://aka.ms/ppac) and confirm that your tenant has the following environments. If any are missing, create them manually.
 
-| Original Environment Name | New Environment Name | Purpose |
+| Environment Name | Purpose |
 |---|---|---|
-| Power App User 1 | Dev | Development |
-| Power App User 2 | Hotfix | Secondary environment for hotfix development and multi-environment testing |
-| Power App User 3 | UAT | Testing your solution |
-| Power App User 4 | Production | Where your solutions are shared with end users |
+| Dev | Development |
+| Hotfix | Secondary environment for hotfix development and multi-environment testing |
+| UAT | Testing your solution |
+| Production | Where your solutions are shared with end users |
 
-![Rename the environment Dev](assets/EditEnvironment.png)
+### Enable Managed Environments
 
-1.	Select **Manage** then **Environments**. You should see 10 Production environments and one Default environment.
-2.	Rename the environments per the above table, select each environment, then click **Edit** in the **Details** section.
-3.	Enter a new **Name** and **Save**. After saving, you don’t need to wait for it to finish processing. 
+1. In the Power Platform Admin Center, select **Manage** > **Environments**.
+2. Select the **Dev** environment.
+3. In the ribbon, click **Enable Managed Environments**.
+4. Click **Enable** in the fly out wizard.
+
+   ![Enable ME](../lab3/assets/image64.png)
+
+### Turn on Auto-Conversion for the custom pipelines host
+
+1. In the Power Platform Admin Center, select **Deployments**.
+2. Select your custom pipelines host from the host selector on the **Overview** page.
+3. Click **Turn on Auto-Conversion**.
+
+This automatically enables target environments as Managed Environments when someone deploys to them.
 
 ## Task 3: Enable Copilot Studio authors
 1.	Go to the [Power Platform Admin Center](https://aka.ms/ppac)
@@ -66,5 +77,4 @@ In the real world, you might allow a smaller group of individuals to create agen
 
 Now you have a source code repository! If you’re not familiar with source code, don’t worry. In Lab 2 you’ll learn how to use source control within the comfort of your Power Platform environment. 
 While this lab only requires one user, in the real world you’ll need to add other collaborators to the Azure DevOps organization and project with Basic access. 
-
 
