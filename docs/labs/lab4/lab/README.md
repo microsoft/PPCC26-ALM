@@ -107,7 +107,7 @@ In this lab, configure solution-scoped Git integration and connect **PPCCALMDev*
 Use `PP` as the root Git folder for this lab.
 If solution-scoped Git integration is already configured for the Lab 1 repository, keep the existing connection and go directly to the **PPCCALMDev** solution binding below.
 
-1. In **Dev**, go to **Solutions** and select **Connect to Git**.
+1. In the **Dev** environment, go to **Solutions** and select **Connect to Git**.
 
     ![Connect to Git](images/connect-to-git.png)
 
