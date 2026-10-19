@@ -17,10 +17,8 @@ If you did not complete lab 2.1, import the [ContosoRealEstate_1_0_0_2.zip](asse
 - Types of Pipelines
 - Task 1 - Create a Platform Host pipeline
   - Deploy using Platform Host pipeline
-- Task 2 - Verify your environments
-  - Create any missing environments
+- Task 2 - Create a Custom Host pipeline
   - Create a Custom Host environment
-  - Enable Managed Environments and host auto-conversion
   - Configure environment records for the pipeline
   - Configure a basic pipeline
   - Deploy using a Custom Host pipeline
@@ -93,33 +91,13 @@ When the deployment completes, you can see the success message on the stage:
 
 ---
 
-## 🏗️ Task 2 - Verify your environments
-
-Go to the [Power Platform admin center](https://aka.ms/ppac) and confirm that your tenant has these environments:
-
-| Environment | Purpose |
-|---|---|
-| Dev | Development |
-| Hotfix | Secondary environment for hotfix development and multi-environment testing |
-| UAT | Testing your solution |
-| Production | Where your solutions are shared with end users |
-
-If any of these environments are missing from your tenant, create them manually and give them the names and purposes listed above.
-
-### Enable Managed Environments for Dev
-
-1. In the [Power Platform Admin Center](https://aka.ms/ppac), select **Manage** > **Environments**.
-1. Select the **Dev** environment.
-1. In the ribbon, click **Enable Managed Environments**.
-1. Click **Enable** in the fly out wizard.
-
-   ![Enable ME](assets/image64.png)
+## 🏗️ Task 2 - Create a Custom Host Pipeline
 
 ### Create a Custom Host environment
 
-The Custom Host environment acts as the storage and management plane for pipeline configuration, security, and run history. You can install multiple Custom Host environments to separately manage pipelines for different business orgs or geographic locations. One host for the entire tenant is also acceptable as long as all environments are in the same geographic location.
+Let's begin by creating a new Custom Host Environment. This special-purpose environment acts as the storage and management plane for all pipeline configuration, security, and run history. You can install multiple Custom Host environments to separately manage pipelines for different business orgs or geographic locations. One host for the entire tenant is also acceptable as long as all environments are in the same geographic location.
 
-1. In the Power Platform Admin Center (https://aka.ms/ppac), select **Deployments** from the left-hand navigation panel
+1. In the Power Platform Admin Center (https://admin.preview.powerplatform.microsoft.com/) select **Deployments** from the left-hand navigation panel
 1. Make sure you are on the **Overview** tab
 1. Click **+ New custom host** button to kick off a new environment creation with Power Platform Pipelines modules pre-installed.
    ![Deployment Notes](assets/image6.png)
@@ -138,12 +116,6 @@ The Custom Host environment acts as the storage and management plane for pipelin
 ![Deployment Success](assets/image8.png)
 
 Now that the Custom Host Environment is created, we can begin configuring the custom host pipeline.
-
-To automatically enable target environments as Managed Environments when someone deploys to them, enable auto-conversion for this host:
-
-1. In the Power Platform Admin Center, select **Deployments**.
-1. Select your custom pipelines host from the host selector.
-1. On the **Overview** page, select **Turn on Auto-Conversion**.
 
 We will be using the same Dev and UAT environments for the Custom Host pipeline we build in this lab. Make sure you have the EnvironmentIds for both environments handy.
 
@@ -769,3 +741,21 @@ Let's pretend the last deployment contained a critical breaking change and it ne
 1. Disaster averted! Now the prior version is deployed to production and you have time to fix the (hypothetical) issue and deploy an updated version when ready.
 
 ---
+
+## 📎 Appendix
+
+### Steps to enable Managed Environments
+
+1. Navigate to Power Platform Admin Center (PPAC) at https://admin.powerplatform.microsoft.com/manage/environments
+
+1. In the Manage tab on the left hand side, click on **Environments**
+
+1. Select the environment where you want to enable Managed Environments
+
+1. In the ribbon, click **Enable Managed Environments**
+
+1. Click **Enable** in the fly out wizard
+
+   ![Enable ME](assets/image64.png)
+
+1. Repeat for any other environments where you need to enable Managed Environments.
