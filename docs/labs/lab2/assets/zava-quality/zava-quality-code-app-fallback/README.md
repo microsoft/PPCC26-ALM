@@ -1,31 +1,40 @@
-# Zava Quality Incident Tracker fallback
+# Zava Quality Incident Tracker prepared project
 
-**Last updated:** October 16, 2026
+**Owner:** Marcel Ferreira · **Last updated:** 2026-10-19 · **Status:** Draft
 
-Use this UI starter when AI-assisted generation takes more than five minutes.
+This is the default project for the four-task lab. The folder keeps its legacy `fallback` name so existing links remain valid; AI-generated UI is no longer required.
 
-The project has the same small scope as the prompt: one incident list, one status filter, and a three-field add-incident form. It has no sample rows or in-memory persistence. It is not yet connected to your environment: the data functions explicitly report that Dataverse must be connected, and saving stays disabled.
+## Scope
 
-Task 4 uses the Dataverse skill to generate your table's models and service, implement `loadIncidents` and `createIncident` in `src/data.ts`, and build the project. This environment-specific step is required; this starter is not a preconnected app.
+- One incident list and one required **Issue** text input, limited to 100 characters.
+- Only one business field. Dataverse still supplies the row ID and other system columns.
+- No Batch ID, Product, incident-status column, or status filter.
+- No sample rows, localStorage, or in-memory persistence in the application.
+- Explicit connection-required errors and disabled saving until Dataverse is connected.
 
-## Prepare the project
+`src/data.ts` deliberately throws until **Task 3** wires `loadIncidents` and `createIncident` to your generated Dataverse service. This is not a preconnected app. One bounded Copilot request performs that environment-specific binding; no AI is needed to generate the UI, create the table, commit Git changes, or publish.
 
-1. In File Explorer, copy this entire folder from the downloaded workshop repository to **Documents**. Name the copy `zava-quality-fallback`.
-1. Right-click the copy and select **Open in Terminal**.
-1. Install the project's dependencies:
+## Prepare the local project
 
-   ```powershell
-   npm ci
-   ```
+1. Copy this entire folder from the downloaded workshop repository into **Documents** as `zava-quality-incident-tracker`.
+1. Open a terminal in the copy and run `npm ci`.
+1. Continue with [Task 3: Create a code app locally](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#task-3-create-a-code-app-locally).
 
-## Return to the lab
+Initialize in Dev, connect the existing table, and map `{ id, issue }` to the actual generated primary-ID and primary-name columns. The display name **Issue** does not guarantee a logical name of `zava_issue`. Do not create additional columns to fit an older version of the app.
 
-Continue at [Task 4, Step 3: Connect to Dataverse](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#step-3-connect-to-dataverse). Initialize in **Dev**, then follow the lab's `/code-apps-preview:add-dataverse` request with the logical name of the table you created in Task 1.
+After the connection and build succeed, use the CLI's Local Play URL to create an issue, reload, and independently confirm its row in Dev. Commit developer source locally. **Task 4** publishes runtime assets to the solution, then exports and imports a managed solution package into UAT.
 
-After Copilot connects the table and prepares the build, continue to Step 4 to run through the Power Apps CLI and open **Local Play**. Add an incident, refresh, and verify that it remains in Dataverse. Then complete Tasks 5 and 6 to save the source and publish into **Zava Quality Operations**.
+## Validation
 
-This project includes the workshop-tested Power Apps CLI 1.3.0 and requires Node.js 22 or later. It intentionally does not include `power.config.json`; initialization creates it for your environment.
+```powershell
+npm run lint
+npm run build
+```
+
+The unconnected starter should build but display a connection error, never a fake empty-data or save-success state. A successful build alone does not prove Dataverse or UAT runtime behavior.
+
+This project pins the workshop-tested Power Apps CLI 1.3.0 and requires Node.js 22 or later. Initialization creates your `power.config.json`; no environment or credentials are shipped.
 
 ## Questions
 
-Ask your workshop instructor if installation, the build, or sign-in fails. Do not switch to the default environment.
+Ask your workshop instructor if installation, binding, build, or sign-in fails. Do not switch environments or replace Dataverse with mock data.
