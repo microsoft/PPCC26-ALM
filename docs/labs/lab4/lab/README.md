@@ -103,9 +103,8 @@ You will deploy the solution to **Production**, edit the site through the reposi
 ### 🔗 Connect the solution to the repository
 
 Lab 1 created and initialized the **Power Platform** Azure DevOps project and repository.
-Lab 2 uses **Zava Quality Operations** and does not configure Power Platform Git integration.
 In this lab, configure solution-scoped Git integration and connect **PPCCALMDev** to the Lab 1 repository before committing it.
-Use `PP` as the root Git folder for this lab; it is a folder setting introduced here, not a prerequisite from Lab 2.
+Use `PP` as the root Git folder for this lab.
 If solution-scoped Git integration is already configured for the Lab 1 repository, keep the existing connection and go directly to the **PPCCALMDev** solution binding below.
 
 1. In **Dev**, go to **Solutions** and select **Connect to Git**.
