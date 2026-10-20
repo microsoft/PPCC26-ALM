@@ -33,7 +33,7 @@ In this lab, native solution Git tracks the table, agent, and skill configuratio
 
 - **Dev** and **UAT** from Lab 1, with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin) in both. Use UAT for the test deployment.
 - **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked UAT dependencies and that no conflicting unmanaged Zava copy exists.
-- Copilot Studio's **Microsoft Copilot harness** and **Skills > Create from blank** available in Dev. Preview or channel publishing also requires the relevant runtime capacity and permissions.
+- Copilot Studio licensing and access checked for your workshop account and Dev environment, with **Microsoft Copilot harness** and **Skills > Create from blank** available. Preview or channel publishing also requires the relevant runtime capacity and permissions.
 - Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Dev, with Basic access and contribution permission.
 - Workshop VM with Node.js 22 or later, Git with an author identity configured, GitHub Copilot CLI, and the Power Apps code apps plugin installed.
 - A downloaded local workshop repository and the workshop Microsoft and GitHub identities. Use only the synthetic records below.
@@ -149,71 +149,35 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 
    [![Copilot Studio Build tab from Microsoft Learn, with instructions and the components panel](images/copilot-harness-build.png)](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview)
 
+   Select **Save** and wait for it to finish before adding the skill.
+
 1. In **Build** > **Skills**, select **Create from blank**. Set **Name** to `zava-quality-triage`. Paste this **Description**:
 
    ```text
-   Classify ZavaCore inspection issues and recommend approved containment and escalation. Use when someone asks about inspection severity, missing traceability, quality holds, required incident information, or incident closure.
+   Classify ZavaCore inspection issues and suggest the next action. Use for questions about defects, missing traceability, quality holds, or safety concerns.
    ```
 
-   Paste the following into **Instructions**:
+   Click inside **Instructions** and press **Ctrl+A** to select the starter text. Replace it with the complete Markdown block below:
 
    ```markdown
    # Zava quality triage
 
-   These synthetic rules are for the PPCC ALM workshop.
+   Use these synthetic rules for the workshop:
 
-   ## Workflow
+   - **Severity 1 - Observation:** Minor cosmetic defect; performance, safety, and traceability unaffected. Record it and assign an owner before the shift ends.
+   - **Severity 2 - Quality hold:** Missing batch or traceability record, out-of-range measurement, or misleading label. Label and isolate the batch. Notify the quality lead within four business hours. Keep it on hold until the quality lead records a disposition.
+   - **Severity 3 - Critical:** Safety failure, suspected contamination, overheating, or lost traceability after leaving the controlled area. Stop work, keep people away, and notify the quality lead and site safety contact immediately.
 
-   1. Use the approved rules below to answer ZavaCore inspection questions.
-   2. For an incident description, choose the highest applicable severity. Ask a short clarifying question when a missing fact would change the classification.
-   3. Respond in no more than five practical bullets. Include the severity, required containment, who to notify, the deadline, and any release restriction that applies.
-   4. Describe actions for the user to take. You cannot retrieve or change incident records, approve a release, or provide final safety clearance.
-   5. If these rules do not cover the question, say so and refer the user to the quality lead or responsible business owner. Keep personal, customer, and confidential data out of the response.
+   Choose the highest applicable severity. Ask a short question if a key detail is missing.
 
-   ## Approved inspection rules
+   Reply in up to five bullets: severity, action, who to notify, deadline, and release restriction.
 
-   ### Severity 1: Observation
-
-   Use for cosmetic issues or minor packaging or labeling defects that remain readable and traceable. Performance and safety must be unaffected.
-
-   - Record the observation.
-   - Continue inspection.
-   - Assign an owner before the end of the shift.
-
-   ### Severity 2: Quality hold
-
-   Use when a required measurement is outside its approved target; a batch record or traceability record is missing; packaging or labeling could cause selection of the wrong product or batch; or performance could be affected without an immediate safety indication.
-
-   - Stop movement of the affected batch.
-   - Label and isolate the batch.
-   - Record the batch ID and evidence.
-   - Notify the quality lead within four business hours.
-   - Keep the batch on hold until the quality lead records a disposition.
-
-   ### Severity 3: Critical
-
-   Use when a safety check fails; contamination is suspected; a sensor or powered component shows overheating, exposed conductors, smoke, or unexpected energy discharge; or product identity or traceability cannot be established for material that has already left the controlled area.
-
-   - Stop work immediately.
-   - Keep people away from the affected product or equipment.
-   - Isolate the batch without handling a suspected electrical or contamination hazard.
-   - Notify the quality lead and site safety contact immediately.
-   - Follow site emergency procedures when there is an active hazard.
-
-   ### Required incident information
-
-   Record batch ID, ZavaCore product, date and time observed, a short issue description, severity, current status, and assigned owner. Exclude personal data, credentials, and secrets.
-
-   ### Closing an incident
-
-   Only the assigned quality owner can mark an incident Closed. The record must include the investigation summary, disposition, corrective action when required, approval date, and approver.
-
-   ### Questions outside these rules
-
-   These rules do not define customer discounts or refunds, warranty terms, regulatory conclusions, legal advice, product-design changes, or final safety clearance. Refer those questions to the quality lead or responsible business owner.
+   Only the assigned quality owner can close an incident. Refer questions outside these rules to the quality lead.
    ```
 
    Select **Create**. In **Knowledge**, remove **Search all websites** if listed, then save pending changes.
+
+   If saving reports **access denied**, keep the editor open and ask your instructor to check Copilot Studio licensing and permissions for your account and environment. Use **Retry save** after the issue is resolved.
 
 1. Return to Power Apps > **Zava Quality Operations**, refresh, and browse **Zava Quality Guide** and its related components. The preferred solution routes these solution-aware components into this container.
 1. If missing, use **Add existing** > **Agent** > **Agent**, select it, and include required objects. Ask your instructor if the agent is unavailable in the list.
