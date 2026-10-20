@@ -27,13 +27,13 @@ Before each task, your instructor shows a **task / estimated time** slide follow
 
 The maker portal shows the live **solution in Dev**. **Metadata** describes components such as table columns and agent configuration. **Runtime assets** are built content such as JavaScript, CSS, and static files. Exporting the solution creates a **solution package** (`.zip`).
 
-In this lab, native solution Git tracks the table and supported agent configuration. Keep the code app's **developer source** in its own Git repository.
+In this lab, native solution Git tracks the table, agent, and skill configuration. Keep the code app's **developer source** in its own Git repository.
 
 ## Prerequisites
 
 - **Dev** and **UAT** from Lab 1, with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin) in both. Use UAT for the test deployment.
 - **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked UAT dependencies and that no conflicting unmanaged Zava copy exists.
-- Copilot Studio's **Microsoft Copilot harness** and uploaded-file knowledge available in Dev. Preview or channel publishing also requires the relevant runtime capacity and permissions.
+- Copilot Studio's **Microsoft Copilot harness** and **Skills > Create from blank** available in Dev. Preview or channel publishing also requires the relevant runtime capacity and permissions.
 - Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Dev, with Basic access and contribution permission.
 - Workshop VM with Node.js 22 or later, Git with an author identity configured, GitHub Copilot CLI, and the Power Apps code apps plugin installed.
 - A downloaded local workshop repository and the workshop Microsoft and GitHub identities. Use only the synthetic records below.
@@ -120,7 +120,8 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 **Expected outcome**
 
 - Zava Quality Guide is created with the **Microsoft Copilot harness**.
-- You can browse its components in the preferred solution and save its supported solution source.
+- Its `zava-quality-triage` skill contains the inspection rules and response workflow.
+- You can browse the agent and skill in the solution and commit their solution source.
 - You can explain **creating/saving an agent** versus **publishing it to a channel**.
 
 ### Author and inspect the agent
@@ -135,11 +136,11 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
    ```text
    You are Zava Quality Guide, an assistant for Zava's quality operations team.
 
-   Use only the uploaded ZavaCore Quality Inspection Guide to explain approved inspection procedures.
+   Use the zava-quality-triage skill to classify ZavaCore inspection issues and explain approved containment, escalation, and incident-closure procedures. Base policy answers on the rules in that skill.
 
    - Give short, practical answers using no more than five bullets.
-   - State the severity level when the guide provides one. Include the required containment, escalation steps, and deadlines.
-   - If the guide does not contain the answer, say so and direct the user to the quality lead. Never invent inspection limits, customer remedies, warranty terms, safety approvals, or legal guidance.
+   - State the severity level when the skill's rules provide one. Include the required containment, escalation steps, and deadlines.
+   - If the skill does not cover the question, say so and direct the user to the quality lead. Never invent inspection limits, customer remedies, warranty terms, safety approvals, or legal guidance.
    - You cannot look up incident records or perform actions. Do not claim to have created, updated, closed, or deleted a record, or approved a batch release.
    - Do not include confidential, personal, or customer data.
 
@@ -148,10 +149,76 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 
    [![Copilot Studio Build tab from Microsoft Learn, with instructions and the components panel](images/copilot-harness-build.png)](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview)
 
-1. Open **Knowledge** and remove **Search all websites** if listed. Upload `docs/labs/lab2/assets/zava-quality/zava-quality-inspection-guide.md` from your downloaded workshop repository. This guide provides the severity rules, containment steps, and escalation deadlines the agent uses to answer inspection questions. Wait for **Ready**, then save pending changes.
+1. In **Build** > **Skills**, select **Create from blank**. Set **Name** to `zava-quality-triage`. Paste this **Description**:
+
+   ```text
+   Classify ZavaCore inspection issues and recommend approved containment and escalation. Use when someone asks about inspection severity, missing traceability, quality holds, required incident information, or incident closure.
+   ```
+
+   Paste the following into **Instructions**:
+
+   ```markdown
+   # Zava quality triage
+
+   These synthetic rules are for the PPCC ALM workshop.
+
+   ## Workflow
+
+   1. Use the approved rules below to answer ZavaCore inspection questions.
+   2. For an incident description, choose the highest applicable severity. Ask a short clarifying question when a missing fact would change the classification.
+   3. Respond in no more than five practical bullets. Include the severity, required containment, who to notify, the deadline, and any release restriction that applies.
+   4. Describe actions for the user to take. You cannot retrieve or change incident records, approve a release, or provide final safety clearance.
+   5. If these rules do not cover the question, say so and refer the user to the quality lead or responsible business owner. Keep personal, customer, and confidential data out of the response.
+
+   ## Approved inspection rules
+
+   ### Severity 1: Observation
+
+   Use for cosmetic issues or minor packaging or labeling defects that remain readable and traceable. Performance and safety must be unaffected.
+
+   - Record the observation.
+   - Continue inspection.
+   - Assign an owner before the end of the shift.
+
+   ### Severity 2: Quality hold
+
+   Use when a required measurement is outside its approved target; a batch record or traceability record is missing; packaging or labeling could cause selection of the wrong product or batch; or performance could be affected without an immediate safety indication.
+
+   - Stop movement of the affected batch.
+   - Label and isolate the batch.
+   - Record the batch ID and evidence.
+   - Notify the quality lead within four business hours.
+   - Keep the batch on hold until the quality lead records a disposition.
+
+   ### Severity 3: Critical
+
+   Use when a safety check fails; contamination is suspected; a sensor or powered component shows overheating, exposed conductors, smoke, or unexpected energy discharge; or product identity or traceability cannot be established for material that has already left the controlled area.
+
+   - Stop work immediately.
+   - Keep people away from the affected product or equipment.
+   - Isolate the batch without handling a suspected electrical or contamination hazard.
+   - Notify the quality lead and site safety contact immediately.
+   - Follow site emergency procedures when there is an active hazard.
+
+   ### Required incident information
+
+   Record batch ID, ZavaCore product, date and time observed, a short issue description, severity, current status, and assigned owner. Exclude personal data, credentials, and secrets.
+
+   ### Closing an incident
+
+   Only the assigned quality owner can mark an incident Closed. The record must include the investigation summary, disposition, corrective action when required, approval date, and approver.
+
+   ### Questions outside these rules
+
+   These rules do not define customer discounts or refunds, warranty terms, regulatory conclusions, legal advice, product-design changes, or final safety clearance. Refer those questions to the quality lead or responsible business owner.
+   ```
+
+   Select **Create**. In **Knowledge**, remove **Search all websites** if listed, then save pending changes.
+
 1. Return to Power Apps > **Zava Quality Operations**, refresh, and browse **Zava Quality Guide** and its related components. The preferred solution routes these solution-aware components into this container.
 1. If missing, use **Add existing** > **Agent** > **Agent**, select it, and include required objects. Ask your instructor if the agent is unavailable in the list.
-1. Open **Source control**, review and commit with message `Add Zava Quality Guide`. Inspect the supported configuration in Azure DevOps.
+1. Under **Objects** > **Agents**, open the agent's **More commands** > **Advanced** > **Add required objects**, then select **OK**. Open **Agent components** and confirm `zava-quality-triage` is included. The current maker portal may label its type **Topic**.
+1. Open **Source control**, review the agent and skill changes, and **Commit** with message `Add Zava Quality Guide and triage skill`. Inspect their configuration in Azure DevOps.
 
 If runtime capacity is available, open **Preview** and paste this question:
 
@@ -159,7 +226,7 @@ If runtime capacity is available, open **Preview** and paste this question:
 A ZavaCore Field batch is missing its traceability record. What should I do?
 ```
 
-The answer should follow the uploaded policy. If capacity is unavailable, record the Preview test as **not run**.
+The answer should identify **Severity 2: Quality hold**, the containment steps, notification to the quality lead **within four business hours**, and the release restriction. If capacity is unavailable, record the Preview test as **not run**.
 
 ### Creating and publishing an agent
 
@@ -169,7 +236,7 @@ The answer should follow the uploaded policy. If capacity is unavailable, record
 | Preview | Tests the draft in the authoring experience; requires runtime capacity | Run when available |
 | Publish agent | Makes a published version available to configured channels, subject to access, licensing, and channel setup | Explain; not required here |
 
-The agent answers questions from the inspection guide. The code app handles incident records.
+The skill packages the inspection rules and triage workflow as agent configuration. The code app handles incident records.
 
 ## Task 3: Create a code app locally
 
@@ -279,7 +346,7 @@ If publishing fails with `CodeAppOperationNotAllowedInEnvironment`, follow the a
 1. Switch Power Apps to **UAT**. Confirm the environment label before importing.
 1. Select **Solutions** > **Import solution**, browse to that same managed `.zip`, and continue.
 1. If prompted for connection references or environment variables, select the **UAT** connections and values. Ask your instructor about any missing dependencies.
-1. Select **Import** and wait for completion. Open the imported managed solution and locate the table, agent components, and code app.
+1. Select **Import** and wait for completion. Open the imported managed solution and locate the table, agent components, and code app. Confirm `zava-quality-triage` is included, then open **Zava Quality Guide** in UAT and check its **Skills** list.
 1. Play the **UAT** code app. A fresh UAT table should be empty: neither Dev test issue should have traveled. If rows already exist, verify that the two Dev markers are absent.
 1. Create `ZAVA-UAT-01: UAT persistence check`, reload, and verify it in the **UAT** maker table. Confirm it does not appear in Dev. If the app shows Dev rows or the new UAT row appears in Dev, stop: the target connection is wrong.
 1. Return the maker portal to **Dev** for the next lab.
@@ -297,6 +364,7 @@ If already on, leave it unchanged. If locked or overridden, ask the instructor t
 ## References
 
 - [Microsoft Copilot harness agents](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview)
+- [Create a skill from blank](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/skills-create#create-a-skill-from-blank)
 - [Code app ALM and solution targeting](https://learn.microsoft.com/power-apps/developer/code-apps/how-to/alm)
 - [Code apps architecture](https://learn.microsoft.com/power-apps/developer/code-apps/architecture)
 - [Export solutions](https://learn.microsoft.com/power-apps/maker/data-platform/export-solutions)
