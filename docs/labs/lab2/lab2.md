@@ -147,8 +147,6 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
    Use a professional, calm, and maker-friendly tone.
    ```
 
-   [![Copilot Studio Build tab from Microsoft Learn, with instructions and the components panel](images/copilot-harness-build.png)](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview)
-
    Select **Save** and wait for it to finish before adding the skill.
 
 1. In **Build** > **Skills**, select **Create from blank**. Set **Name** to `zava-quality-triage`. Paste this **Description**:
@@ -178,6 +176,8 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
    Select **Create**. In **Knowledge**, remove **Search all websites** if listed, then save pending changes.
 
    If saving reports **access denied**, keep the editor open and ask your instructor to check Copilot Studio licensing and permissions for your account and environment. Use **Retry save** after the issue is resolved.
+
+   ![Zava Quality Guide Build tab showing the zava-quality-triage skill and an arrow pointing to Save](images/copilot-harness-build.png)
 
 1. Return to Power Apps > **Zava Quality Operations**, refresh, and browse **Zava Quality Guide** and its related components. The preferred solution routes these solution-aware components into this container.
 1. If missing, use **Add existing** > **Agent** > **Agent**, select it, and include required objects. Ask your instructor if the agent is unavailable in the list.
