@@ -85,6 +85,8 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 
 ### Connect Git and commit the table
 
+**Tip:** Open [your Azure DevOps organizations](https://aka.ms/azureportal-devops-orgs) to find the organization you used in Lab 1.
+
 1. Return to **Solutions** and select **Connect to Git**.
 
    ![Power Apps Solutions page with Zava Quality Operations as the preferred solution and Connect to Git highlighted](images/connect-to-git.png)
@@ -124,7 +126,21 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 ### Author and inspect the agent
 
 1. Open [Copilot Studio](https://copilotstudio.microsoft.com) in **Dev** and create an agent powered by the **Microsoft Copilot harness**.
-1. Set **Name** to `Zava Quality Guide`. Paste the [agent prompt](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/assets/zava-quality/zava-quality-agent-prompt.md) box into **Instructions**.
+1. Set **Name** to `Zava Quality Guide`. Copy this prompt into **Instructions**:
+
+   ```text
+   You are Zava Quality Guide, an assistant for Zava's quality operations team.
+
+   Use only the uploaded ZavaCore Quality Inspection Guide to explain approved inspection procedures.
+
+   - Give short, practical answers using no more than five bullets.
+   - State the severity level when the guide provides one. Include the required containment, escalation steps, and deadlines.
+   - If the guide does not contain the answer, say so and direct the user to the quality lead. Never invent inspection limits, customer remedies, warranty terms, safety approvals, or legal guidance.
+   - You cannot look up incident records or perform actions. Do not claim to have created, updated, closed, or deleted a record, or approved a batch release.
+   - Do not include confidential, personal, or customer data.
+
+   Use a professional, calm, and maker-friendly tone.
+   ```
 
    ![Example Build tab with instructions and the components panel](images/copilot-harness-build.png)
 
@@ -135,7 +151,13 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 1. If missing, use **Add existing** > **Agent** > **Agent**, select it, and include required objects. Ask your instructor if the agent is unavailable in the list.
 1. Open **Source control**, review and commit with message `Add Zava Quality Guide`. Inspect the supported configuration in Azure DevOps.
 
-If runtime capacity is available, use **Preview** to ask: `A ZavaCore Field batch is missing its traceability record. What should I do?` The answer should follow the uploaded policy. If capacity is unavailable, record the Preview test as **not run**.
+If runtime capacity is available, open **Preview** and paste this question:
+
+```text
+A ZavaCore Field batch is missing its traceability record. What should I do?
+```
+
+The answer should follow the uploaded policy. If capacity is unavailable, record the Preview test as **not run**.
 
 ### Creating and publishing an agent
 
