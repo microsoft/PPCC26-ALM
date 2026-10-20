@@ -181,11 +181,15 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 
 1. Select **Commit** and use the message `Add Zava Quality Guide and triage skill`.
 
+Return to **Copilot Studio** and open **Zava Quality Guide**.
+
 If runtime capacity is available, open **Preview** and paste this question:
 
 ```text
 A ZavaCore Field batch is missing its traceability record. What should I do?
 ```
+
+![Zava Quality Guide Preview with the missing-traceability question and an arrow pointing to the Preview tab](images/agent-preview.png)
 
 The answer should identify **Severity 2: Quality hold**, the containment steps, notification to the quality lead **within four business hours**, and the release restriction. If capacity is unavailable, record the Preview test as **not run**.
 
