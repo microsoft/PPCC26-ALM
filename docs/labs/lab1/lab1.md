@@ -33,6 +33,8 @@ Go to the [Power Platform Admin Center](https://aka.ms/ppac) and confirm that yo
 | UAT | Testing your solution |
 | Production | Where your solutions are shared with end users |
 
+![Required environments in the Power Platform admin center](https://github.com/user-attachments/assets/93bd49eb-316a-44d7-bdb7-0a47b0069577)
+
 ### Enable Managed Environments
 
 1. In the Power Platform Admin Center, select **Manage** > **Environments**.
@@ -42,6 +44,9 @@ Go to the [Power Platform Admin Center](https://aka.ms/ppac) and confirm that yo
 
    ![Enable ME](../lab3/assets/image64.png)
 
+![Managed Environment setup](https://github.com/user-attachments/assets/bd62a57e-e634-46c3-91fe-17ab5d119446)
+![Managed Environment confirmation](https://github.com/user-attachments/assets/bb19f121-9848-49bf-bddc-477b2af068a7)
+
 ### Turn on Auto-Conversion for the custom pipelines host
 
 1. In the Power Platform Admin Center, select **Deployments**.
@@ -49,6 +54,9 @@ Go to the [Power Platform Admin Center](https://aka.ms/ppac) and confirm that yo
 3. Click **Turn on Auto-Conversion**.
 
 This automatically enables target environments as Managed Environments when someone deploys to them.
+
+![Select the custom pipelines host](https://github.com/user-attachments/assets/820ec784-eaeb-4401-9fc0-c66192f65cdc)
+![Turn on Auto-Conversion](https://github.com/user-attachments/assets/9c886844-7241-4d40-86f6-aea0c0da86a6)
 
 ## Task 3: Enable Copilot Studio authors
 1.	Go to the [Power Platform Admin Center](https://aka.ms/ppac)
@@ -77,4 +85,3 @@ In the real world, you might allow a smaller group of individuals to create agen
 
 Now you have a source code repository! If you’re not familiar with source code, don’t worry. In Lab 2 you’ll learn how to use source control within the comfort of your Power Platform environment. 
 While this lab only requires one user, in the real world you’ll need to add other collaborators to the Azure DevOps organization and project with Basic access. 
-
