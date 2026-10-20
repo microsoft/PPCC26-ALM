@@ -2,17 +2,16 @@
 
 **Owner:** Marcel Ferreira · **Last updated:** 2026-10-19 · **Status:** Draft
 
-This is the default project for the four-task lab. The folder keeps its legacy `fallback` name so existing links remain valid; AI-generated UI is no longer required.
+Use this prepared project in Task 3 of Lab 2.
 
 ## Scope
 
 - One incident list and one required **Issue** text input, limited to 100 characters.
 - Only one business field. Dataverse still supplies the row ID and other system columns.
-- No Batch ID, Product, incident-status column, or status filter.
-- No sample rows, localStorage, or in-memory persistence in the application.
+- Real Dataverse rows after the connection is configured.
 - Explicit connection-required errors and disabled saving until Dataverse is connected.
 
-`src/data.ts` deliberately throws until **Task 3** wires `loadIncidents` and `createIncident` to your generated Dataverse service. This is not a preconnected app. One bounded Copilot request performs that environment-specific binding; no AI is needed to generate the UI, create the table, commit Git changes, or publish.
+In **Task 3**, Copilot connects `loadIncidents` and `createIncident` in `src/data.ts` to your generated Dataverse service. Until then, those functions report a connection-required error.
 
 ## Prepare the local project
 
@@ -20,7 +19,7 @@ This is the default project for the four-task lab. The folder keeps its legacy `
 1. Open a terminal in the copy and run `npm ci`.
 1. Continue with [Task 3: Create a code app locally](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#task-3-create-a-code-app-locally).
 
-Initialize in Dev, connect the existing table, and map `{ id, issue }` to the actual generated primary-ID and primary-name columns. The display name **Issue** does not guarantee a logical name of `zava_issue`. Do not create additional columns to fit an older version of the app.
+Initialize in Dev and use the lab's binding request. Copilot finds the existing **Quality Incident** table by querying Dataverse metadata, resolves its logical name, and maps `{ id, issue }` to the actual generated primary-ID and primary-name columns. If several tables match, select the one you created in **Zava Quality Operations**.
 
 After the connection and build succeed, use the CLI's Local Play URL to create an issue, reload, and independently confirm its row in Dev. Commit developer source locally. **Task 4** publishes runtime assets to the solution, then exports and imports a managed solution package into UAT.
 
@@ -31,10 +30,10 @@ npm run lint
 npm run build
 ```
 
-The unconnected starter should build but display a connection error, never a fake empty-data or save-success state. A successful build alone does not prove Dataverse or UAT runtime behavior.
+The prepared project builds and shows a connection-required error until Task 3 is complete. After connecting it, follow the lab's Local Play and UAT data checks.
 
 This project pins the workshop-tested Power Apps CLI 1.3.0 and requires Node.js 22 or later. Initialization creates your `power.config.json`; no environment or credentials are shipped.
 
 ## Questions
 
-Ask your workshop instructor if installation, binding, build, or sign-in fails. Do not switch environments or replace Dataverse with mock data.
+Ask your workshop instructor if installation, table discovery, binding, build, or sign-in fails.
