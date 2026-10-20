@@ -146,11 +146,9 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
    Use a professional, calm, and maker-friendly tone.
    ```
 
-   ![Example Build tab with instructions and the components panel](images/copilot-harness-build.png)
+   [![Copilot Studio Build tab from Microsoft Learn, with instructions and the components panel](images/copilot-harness-build.png)](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview)
 
-   This attributed [Microsoft Learn example](https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview) may show the previous name, **GitHub Copilot harness**. The change is naming only. **GitHub Copilot CLI** in Task 3 is a separate tool.
-
-1. Remove **Search all websites** if listed. Download the [inspection guide](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/assets/zava-quality/zava-quality-inspection-guide.md) with **Download raw file**, upload it under **Knowledge**, and wait for **Ready**. Save pending changes.
+1. Open **Knowledge** and remove **Search all websites** if listed. Upload `docs/labs/lab2/assets/zava-quality/zava-quality-inspection-guide.md` from your downloaded workshop repository. This guide provides the severity rules, containment steps, and escalation deadlines the agent uses to answer inspection questions. Wait for **Ready**, then save pending changes.
 1. Return to Power Apps > **Zava Quality Operations**, refresh, and browse **Zava Quality Guide** and its related components. The preferred solution routes these solution-aware components into this container.
 1. If missing, use **Add existing** > **Agent** > **Agent**, select it, and include required objects. Ask your instructor if the agent is unavailable in the list.
 1. Open **Source control**, review and commit with message `Add Zava Quality Guide`. Inspect the supported configuration in Azure DevOps.
