@@ -35,8 +35,8 @@ In this lab, native solution Git tracks the table, agent, and skill configuratio
 - **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked UAT dependencies and that no conflicting unmanaged Zava copy exists.
 - Copilot Studio licensing and access checked for your workshop account and Dev environment, with **Microsoft Copilot harness** and **Skills > Create from blank** available. Preview or channel publishing also requires the relevant runtime capacity and permissions.
 - Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Dev, with Basic access and contribution permission.
-- Workshop VM with Visual Studio Code, Node.js 22 or later, npm, Git with an author identity configured, and GitHub Copilot CLI installed. Copilot Chat and the Power Apps code apps plugin are enabled in VS Code.
-- Workshop Microsoft and GitHub Copilot identities. You will clone the public workshop repository in Task 3. Use only the synthetic records below.
+- Your own Windows machine or the optional workshop VM, with Visual Studio Code, Node.js 22 or later, npm, and Git with an author identity configured. Copilot Chat and the Power Apps code apps plugin are enabled in VS Code.
+- Workshop Microsoft and GitHub Copilot identities, with access to GitHub and npm. Task 3 downloads the prepared app; no workshop code needs to be on the machine beforehand. Use only the synthetic records below.
 
 Use the prepared app in Task 3. Copilot connects it to Dataverse; you use CLI and Git commands for the remaining steps.
 
@@ -209,14 +209,14 @@ The skill packages the inspection rules and triage workflow as agent configurati
 
 **Expected outcome**
 
-- Developer source is in a separate app folder on the VM and committed in its own local Git repository.
+- Developer source is in a local app folder and committed in its own Git repository.
 - The app lists incidents and creates one using only **Issue**, backed by real Dataverse rows.
 - The app runs locally, with developer source in Git and incident records in Dataverse. You'll add the app to the solution in Task 4.
 
-### Clone the workshop repository
+### Download the prepared app
 
-1. Open **Visual Studio Code** on the workshop VM. Select **Terminal** > **New Terminal** and use **PowerShell**.
-1. Check the preinstalled tools:
+1. Open **Visual Studio Code** on your machine or the workshop VM. Select **Terminal** > **New Terminal** and use **PowerShell**.
+1. Check the required tools:
 
    ```powershell
    node --version
@@ -226,27 +226,16 @@ The skill packages the inspection rules and triage workflow as agent configurati
 
    Node.js must be **22 or later**. If a tool is missing or a command fails, share the error with your instructor before continuing.
 
-1. Create a workshop folder under **Documents** and clone the repository:
+1. Create a workshop folder under **Documents** and download the prepared app:
 
    ```powershell
    $workspace = Join-Path $HOME "Documents\PPCC26-ALM"
    New-Item -ItemType Directory -Path $workspace -Force | Out-Null
    Set-Location $workspace
-   git clone https://github.com/microsoft/PPCC26-ALM.git workshop-repo
+   npx --yes degit "microsoft/PPCC26-ALM/docs/labs/lab2/assets/zava-quality/zava-quality-code-app-fallback#lab2/dataverse-workflow" zava-quality-incident-tracker
    ```
 
-   Wait for the clone to finish successfully. If `workshop-repo` already exists, ask your instructor for a fresh folder.
-
-1. Copy the prepared app into its own folder beside the clone:
-
-   ```powershell
-   if (Test-Path ".\zava-quality-incident-tracker") {
-       throw "The app folder already exists. Ask your instructor for a fresh folder."
-   }
-   Copy-Item -LiteralPath ".\workshop-repo\docs\labs\lab2\assets\zava-quality\zava-quality-code-app-fallback" -Destination ".\zava-quality-incident-tracker" -Recurse
-   ```
-
-   Your workshop folder now contains `workshop-repo` and `zava-quality-incident-tracker`. Work in the app copy; it will have its own Git repository.
+   `degit` retrieves the app folder without the workshop's Git history. Wait for success before continuing. If the app folder already contains files or the download fails, share the error with your instructor; do not overwrite your work.
 
 ### Open and initialize the app in VS Code
 
@@ -273,32 +262,30 @@ The skill packages the inspection rules and triage workflow as agent configurati
 
 If browser sign-in stalls, press **Ctrl+C**, run `npx --no-install pa auth login --device-code --non-interactive`, complete sign-in, and retry initialization in Dev.
 
-![Prepared code app with one Issue field and an explicit connection-required state](images/zava-code-app.png)
-
-The prepared app shows this screen until its Dataverse connection is configured.
-
 ### Connect with Copilot Chat in VS Code
 
 1. Open **Chat** with **Ctrl+Alt+I**. If prompted, sign in with your workshop GitHub Copilot identity.
 1. Select **Agent** in the Chat mode picker. Keep the app folder open as the workspace.
-1. Type `/`, find the **add-dataverse** skill from the code-apps plugin, and select it. If the skill is missing, ask your instructor to check the VM's plugin setup.
+1. Type `/`, find the **add-dataverse** skill from the code-apps plugin, and select it. If the skill is missing, ask your instructor to check your plugin setup.
 1. Paste this request after the selected skill and send it:
 
    ```text
-   Connect this prepared code app to the existing Quality Incident table in the Zava Quality Operations solution in this project's initialized Dev environment. Discover the table's actual logical name from Dataverse metadata, then pass it to the Power Apps CLI to generate its models and service. If more than one table matches, ask me which one to use. If discovery fails or no table matches, stop and report the error. Reuse the existing table and keep its schema unchanged.
+   Connect this app to the existing Quality Incident table in the Zava Quality Operations solution in Dev. Discover its logical name from metadata; ask me if several tables match, and stop with the error if discovery fails. Keep the table unchanged.
 
-   Implement loadIncidents and createIncident in src/data.ts using that generated service. The app contract is Incident { id: string, issue: string } and NewIncident { issue: string }. Read the generated schema to map id to the actual primary ID and issue to the primary-name column displayed as Issue. Keep the existing one-field UI.
+   Use native Dataverse (--connector dataverse), not shared_commondataserviceforapps. Generate typed models and services, then connect loadIncidents and createIncident in src/data.ts. Map id to the primary ID and issue to the Issue primary-name column. Keep the existing UI and error handling.
 
-   Use generated services for application data access. Read and create real rows, handle service errors explicitly, and report save success only after Dataverse confirms it. Retain loading, empty, saving, and error states. Do not use mock data, localStorage, or direct fetch/axios calls in the app. Run npm run build, then stop. Do not start a server, publish, or change Git history.
+   Read and save real rows through the generated services; confirm writes before reporting success. No mock data, localStorage, or direct fetch/axios calls. Build and stop. Do not publish, start a server, or change Git history.
    ```
 
 1. Review the requested file edits and terminal commands before approving them. Wait for Copilot to finish and confirm `npm run build` succeeded. If table discovery, connection, or build fails, share the error with your instructor.
 1. Review the changed files in VS Code, including `src/data.ts` and the generated models and service.
 
+Native Dataverse generates a typed service for each table and uses the app's environment. See the [Dataverse code-app guide](https://learn.microsoft.com/power-apps/developer/code-apps/how-to/connect-to-dataverse) and the official [native-versus-connector comparison](https://github.com/microsoft/PowerAppsCodeApps/tree/main/samples/DataverseConnector).
+
 ### Prove local data persistence
 
 1. In the app's integrated terminal, run `npx --no-install pa app run` and open its **Local Play** URL, not bare localhost. Use the workshop browser profile; allow local network access if asked.
-1. Confirm an empty list without a data error. Enter **Issue** `ZAVA-DEV-01: Missing traceability record` and select **Create incident**.
+1. Confirm the list loads without a data error; a new table should be empty. Enter **Issue** `ZAVA-DEV-01: Missing traceability record` and select **Create incident**.
 1. Reload. Confirm the same issue remains.
 1. In the maker portal, open **Quality Incident** data in **Dev** and independently confirm that row.
 1. In the solution's **Apps**, confirm the code app is not listed yet. Connecting to Dataverse and running locally are not publishing.
