@@ -125,7 +125,11 @@ Quality Incident has **Issue** as its primary column. Dataverse supplies the row
 
 ### Author and inspect the agent
 
-1. Open [Copilot Studio](https://copilotstudio.microsoft.com) in **Dev** and create an agent powered by the **Microsoft Copilot harness**.
+1. Open [Copilot Studio](https://copilotstudio.microsoft.com).
+1. Open the environment picker in the lower-left corner and select **Dev**, the same environment where you created **Zava Quality Operations** in Task 1. Then, on **Home**, select the **Agent** card to create an agent powered by the **Microsoft Copilot harness**.
+
+   ![Copilot Studio Home with arrows pointing to the environment picker in the lower-left corner and the Agent card](images/copilot-studio-environment-agent.png)
+
 1. Set **Name** to `Zava Quality Guide`. Copy this prompt into **Instructions**:
 
    ```text
