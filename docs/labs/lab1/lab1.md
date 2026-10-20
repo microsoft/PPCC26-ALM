@@ -28,29 +28,31 @@ Go to the [Power Platform Admin Center](https://aka.ms/ppac) and confirm that yo
 
 | Environment Name | Purpose |
 |---|---|---|
-| Dev | Development |
-| Hotfix | Secondary environment for hotfix development and multi-environment testing |
-| UAT | Testing your solution |
+| Development 1 | Primary development environment |
+| Development 2 | Secondary development environment |
+| Pipelines Host | Stores and manages custom pipelines |
 | Production | Where your solutions are shared with end users |
+| Test | Testing your solution |
 
 ![Required environments in the Power Platform admin center](https://github.com/user-attachments/assets/93bd49eb-316a-44d7-bdb7-0a47b0069577)
 
 ### Enable Managed Environments
 
 1. In the Power Platform Admin Center, select **Manage** > **Environments**.
-2. Select the **Dev** environment.
+2. Select the **Development 1** environment.
 3. In the ribbon, click **Enable Managed Environments**.
 4. Click **Enable** in the fly out wizard.
+5. Repeat these steps for **Development 2**.
 
    ![Enable ME](../lab3/assets/image64.png)
 
 ![Managed Environment setup](https://github.com/user-attachments/assets/bd62a57e-e634-46c3-91fe-17ab5d119446)
 ![Managed Environment confirmation](https://github.com/user-attachments/assets/bb19f121-9848-49bf-bddc-477b2af068a7)
 
-### Turn on Auto-Conversion for the custom pipelines host
+### Turn on Auto-Conversion for Pipelines Host
 
 1. In the Power Platform Admin Center, select **Deployments**.
-2. Select your custom pipelines host from the host selector on the **Overview** page.
+2. Select **Pipelines Host** from the host selector on the **Overview** page.
 3. Click **Turn on Auto-Conversion**.
 
 This automatically enables target environments as Managed Environments when someone deploys to them.
