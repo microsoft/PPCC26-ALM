@@ -81,7 +81,7 @@ Use the prepared app in Task 3. Copilot connects it to Dataverse; you use CLI an
 1. Select the **Primary column** tab at the top of the pane. Change its **Display name** to `Issue`. Keep the other settings at their defaults.
 1. Select **Save**. Wait for the table to be created, then return to the solution's **Tables** list.
 
-Quality Incident has **Issue** as its primary column. Dataverse supplies the row ID and other system columns. You'll add the first incident through the app in Task 3.
+Quality Incident has **Issue** as its primary column. With the `zava` publisher prefix, its logical name is `zava_qualityincident`; you'll use that name in Task 3. Dataverse supplies the row ID and other system columns. You'll add the first incident through the app in Task 3.
 
 ### Connect Git and commit the table
 
@@ -305,17 +305,17 @@ Continue with the Chat steps below. **The plugin and skill are required; do not 
 1. Open **Chat** with **Ctrl+Alt+I** and start a new Chat session. If prompted, sign in with your workshop GitHub Copilot identity.
 1. Select **Agent** in the Chat mode picker. Keep the app folder open as the workspace.
 1. Type `/add-dataverse` in the **Chat input**, then select the **add-dataverse** skill from the suggestions. Confirm it is selected before continuing. These are Chat instructions, not PowerShell commands.
-1. Paste this request after the selected skill and send it:
+1. Paste this request after the selected skill and send it. It connects **Quality Incident** (`zava_qualityincident`), the table you created in Task 1:
 
    ```text
-   Connect this app to the existing Quality Incident table in the Zava Quality Operations solution in Dev. Discover its logical name from metadata; ask me if several tables match, and stop with the error if discovery fails. Keep the table unchanged.
+   Connect this app to the existing Quality Incident table (logical name: zava_qualityincident) in Dev using native Dataverse (--connector dataverse). Do not create or change tables.
 
-   Use native Dataverse (--connector dataverse), not shared_commondataserviceforapps. Generate typed models and services, then connect loadIncidents and createIncident in src/data.ts. Map id to the primary ID and issue to the Issue primary-name column. Keep the existing UI and error handling.
+   Implement loadIncidents and createIncident in src/data.ts with the generated service. Map id to the primary ID and issue to the Issue column. Keep the UI and error handling; use real Dataverse data, not mock data or localStorage.
 
-   Read and save real rows through the generated services; confirm writes before reporting success. No mock data, localStorage, or direct fetch/axios calls. Build and stop. Do not publish, start a server, or change Git history.
+   Run npm run lint and npm run build, then stop. Do not publish or start a server.
    ```
 
-1. Review the requested file edits and terminal commands before approving them. Wait for Copilot to finish and confirm `npm run build` succeeded. If table discovery, connection, or build fails, share the error with your instructor.
+1. Review and approve Copilot's file edits and terminal commands. Confirm lint and build pass. If the table is missing, the connection fails, or a check fails, stop and share the error with your instructor.
 1. Review the changed files in VS Code, including `src/data.ts` and the generated models and service.
 
 Native Dataverse generates a typed service for each table and uses the app's environment. See the [Dataverse code-app guide](https://learn.microsoft.com/power-apps/developer/code-apps/how-to/connect-to-dataverse) and the official [native-versus-connector comparison](https://github.com/microsoft/PowerAppsCodeApps/tree/main/samples/DataverseConnector).
