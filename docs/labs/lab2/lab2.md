@@ -35,7 +35,7 @@ In this lab, native solution Git tracks the table, agent, and skill configuratio
 - **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked UAT dependencies and that no conflicting unmanaged Zava copy exists.
 - Copilot Studio licensing and access checked for your workshop account and Dev environment, with **Microsoft Copilot harness** and **Skills > Create from blank** available. Preview or channel publishing also requires the relevant runtime capacity and permissions.
 - Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Dev, with Basic access and contribution permission.
-- Your own Windows machine or the optional workshop VM, with Visual Studio Code, Node.js 22 or later, npm, and Git with an author identity configured. Copilot Chat and the Power Apps code apps plugin are enabled in VS Code.
+- Your own Windows machine or the optional workshop VM, with a current version of Visual Studio Code, access to GitHub Copilot Chat, Node.js 22 or later, npm, and Git with an author identity configured. Task 3 includes installation of the Power Apps code apps plugin in VS Code.
 - Workshop Microsoft and GitHub Copilot identities, with access to GitHub and npm. Task 3 downloads the prepared app; no workshop code needs to be on the machine beforehand. Use only the synthetic records below.
 
 Use the prepared app in Task 3. Copilot connects it to Dataverse; you use CLI and Git commands for the remaining steps.
@@ -271,16 +271,41 @@ The skill packages the inspection rules and triage workflow as agent configurati
    npx --no-install pa app init
    ```
 
-1. Sign in with the workshop Microsoft identity, choose **Dev**, and enter `Zava Quality Incident Tracker`. Initialization records your Dev environment in `power.config.json`.
+   When prompted for the **environment ID**, open [Power Apps](https://make.powerapps.com), select **Dev** in the environment picker, and open **Solutions**. In the browser address bar, copy only the ID between `/environments/` and the next `/` in `https://make.powerapps.com/environments/<environment-id>/solutions`. Paste that ID into the terminal. Use your own Dev environment ID, not the example in the screenshot.
+
+   ![Power Apps Solutions page with the Dev environment ID highlighted in the browser address bar](images/dev-environment-id.png)
+
+1. Complete sign-in with the workshop Microsoft identity when prompted and enter `Zava Quality Incident Tracker` as the app name. Initialization records your Dev environment in `power.config.json`.
 1. Open `power.config.json` in the Explorer and confirm its `environmentId` matches Dev in the maker portal URL.
 
 If browser sign-in stalls, press **Ctrl+C**, run `npx --no-install pa auth login --device-code --non-interactive`, complete sign-in, and retry initialization in Dev.
+
+### Install the code apps plugin in VS Code
+
+`npm ci` installs the app's dependencies and CLI, not Copilot skills. Install the [Microsoft Power Platform plugin](https://github.com/microsoft/power-platform-skills) in the VS Code window you will use for the lab. GitHub Copilot CLI is not required for these steps.
+
+1. In VS Code, open **Chat** with **Ctrl+Alt+I** and sign in with your workshop GitHub Copilot identity if prompted.
+1. Press **Ctrl+Shift+P** and run **Preferences: Open User Settings (JSON)**. Add the following settings inside the existing outer braces. If either setting already exists, update it rather than adding a duplicate; keep any existing marketplace entries.
+
+   ```json
+   "chat.plugins.enabled": true,
+   "chat.plugins.marketplaces": [
+     "microsoft/power-platform-skills"
+   ]
+   ```
+
+   Save the settings. These are VS Code user settings, not files to add to the app project.
+
+1. Open **Extensions** with **Ctrl+Shift+X** and enter `@agentPlugins` in the search box. Find **code-apps-preview** from the **power-platform-skills** marketplace and select **Install**. Review the Microsoft repository source before accepting any marketplace trust prompt. If already installed, confirm it is enabled for this workspace.
+1. If VS Code requests a reload, reload the window. Open a new Chat session, select **Agent**, and type `/` to confirm **add-dataverse** is available before continuing.
+
+If the plugin or skill is missing, press **Ctrl+Shift+P**, run **Developer: Reload Window**, and check again. If plugin settings or installation are unavailable or blocked by your organization, stop and ask your instructor to check your VS Code version and organization policy. See the [VS Code agent plugin installation guide](https://code.visualstudio.com/docs/agent-customization/agent-plugins).
 
 ### Connect with Copilot Chat in VS Code
 
 1. Open **Chat** with **Ctrl+Alt+I**. If prompted, sign in with your workshop GitHub Copilot identity.
 1. Select **Agent** in the Chat mode picker. Keep the app folder open as the workspace.
-1. Type `/`, find the **add-dataverse** skill from the code-apps plugin, and select it. If the skill is missing, ask your instructor to check your plugin setup.
+1. Type `/`, find the **add-dataverse** skill from the code-apps plugin, and select it. If the skill is missing, complete [Install the code apps plugin in VS Code](#install-the-code-apps-plugin-in-vs-code) before continuing.
 1. Paste this request after the selected skill and send it:
 
    ```text
