@@ -282,10 +282,9 @@ If browser sign-in stalls, press **Ctrl+C**, run `npx --no-install pa auth login
 
 ### Install the code apps plugin in VS Code
 
-`npm ci` installs the app's dependencies and CLI, not Copilot skills. Install the [Microsoft Power Platform plugin](https://github.com/microsoft/power-platform-skills) in the VS Code window you will use for the lab. GitHub Copilot CLI is not required for these steps.
+Install this plugin in VS Code before sending the connection prompt. `npm ci` does not install it.
 
-1. In VS Code, open **Chat** with **Ctrl+Alt+I** and sign in with your workshop GitHub Copilot identity if prompted.
-1. Press **Ctrl+Shift+P** and run **Preferences: Open User Settings (JSON)**. Add the following settings inside the existing outer braces. If either setting already exists, update it rather than adding a duplicate; keep any existing marketplace entries.
+1. In VS Code, press **Ctrl+Shift+P** and run **Preferences: Open User Settings (JSON)**. Add these entries inside the existing outer braces, separating them from other settings with a comma. If either setting already exists, update it without duplicating it; keep existing marketplace entries.
 
    ```json
    "chat.plugins.enabled": true,
@@ -294,18 +293,18 @@ If browser sign-in stalls, press **Ctrl+C**, run `npx --no-install pa auth login
    ]
    ```
 
-   Save the settings. These are VS Code user settings, not files to add to the app project.
+   Press **Ctrl+S** to save.
 
-1. Open **Extensions** with **Ctrl+Shift+X** and enter `@agentPlugins` in the search box. Find **code-apps-preview** from the **power-platform-skills** marketplace and select **Install**. Review the Microsoft repository source before accepting any marketplace trust prompt. If already installed, confirm it is enabled for this workspace.
-1. If VS Code requests a reload, reload the window. Open a new Chat session, select **Agent**, and type `/` to confirm **add-dataverse** is available before continuing.
+1. Press **Ctrl+Shift+X**, search `@agentPlugins`, and select **code-apps-preview** from **power-platform-skills**. Select **Install** and confirm the trust prompt for Microsoft's `microsoft/power-platform-skills` repository. Keep the plugin enabled for this workspace.
+1. Press **Ctrl+Shift+P** and run **Developer: Reload Window**.
 
-If the plugin or skill is missing, press **Ctrl+Shift+P**, run **Developer: Reload Window**, and check again. If plugin settings or installation are unavailable or blocked by your organization, stop and ask your instructor to check your VS Code version and organization policy. See the [VS Code agent plugin installation guide](https://code.visualstudio.com/docs/agent-customization/agent-plugins).
+Continue with the Chat steps below. **The plugin and skill are required; do not send the prompt without selecting the skill.** If installation is blocked or the skill is missing, stop and ask your instructor.
 
 ### Connect with Copilot Chat in VS Code
 
-1. Open **Chat** with **Ctrl+Alt+I**. If prompted, sign in with your workshop GitHub Copilot identity.
+1. Open **Chat** with **Ctrl+Alt+I** and start a new Chat session. If prompted, sign in with your workshop GitHub Copilot identity.
 1. Select **Agent** in the Chat mode picker. Keep the app folder open as the workspace.
-1. Type `/`, find the **add-dataverse** skill from the code-apps plugin, and select it. If the skill is missing, complete [Install the code apps plugin in VS Code](#install-the-code-apps-plugin-in-vs-code) before continuing.
+1. Type `/add-dataverse` in the **Chat input**, then select the **add-dataverse** skill from the suggestions. Confirm it is selected before continuing. These are Chat instructions, not PowerShell commands.
 1. Paste this request after the selected skill and send it:
 
    ```text
