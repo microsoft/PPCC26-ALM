@@ -1,7 +1,5 @@
 # Create a fork of the workshop repository
 
-**Owner:** Workshop instructors · **Last updated:** 2026-10-21 · **Status:** Optional reference
-
 A fork is a copy of an existing repository. Forking a repository allows you to freely experiment with changes without affecting the original project.
 
 Forking is optional for [Lab 2](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#download-the-prepared-app), which downloads the prepared app directly.

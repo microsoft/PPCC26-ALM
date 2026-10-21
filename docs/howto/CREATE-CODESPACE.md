@@ -1,7 +1,5 @@
 # Create a GitHub Codespace
 
-**Owner:** Workshop instructors · **Last updated:** 2026-10-21 · **Status:** Optional reference
-
 A codespace is a cloud-hosted development environment with Visual Studio Code, a terminal, and a debugger.
 
 This is optional reference material. [Lab 2](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#prerequisites) uses local VS Code on your Windows machine or the workshop VM; follow its setup instructions for the lab.

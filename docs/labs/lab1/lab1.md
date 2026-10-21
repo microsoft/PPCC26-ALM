@@ -1,7 +1,5 @@
 # 🚀 Lab 1: Setup and Configure
 
-**Owner:** Workshop instructors · **Last updated:** 2026-10-21 · **Status:** Workshop guide
-
 Welcome to PPCC26! In this first lab, you’ll setup the necessary prerequisites to complete subsequent labs. In the real world, your organization might have less sophisticated or more sophisticated DevOps requirements. This workshop covers the most adopted tools for enterprise scale DevOps with the least amount of effort and complexity.
 
 ✅ Lab 1 tasks
