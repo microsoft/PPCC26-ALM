@@ -18,6 +18,7 @@
   1. [Updating Environment Variables](#️-updating-environment-variables)
   1. [Deploy the updated solution to Production](#️-deploy-the-updated-solution-to-production)
   1. [Verify changes](#-verify-changes)
+  1. [Optional: Install the Power Pages AI plugin for GitHub Copilot CLI](#optional-install-the-power-pages-ai-plugin-for-github-copilot-cli)
   1. [Optional: Manage and deploy a single-page application](#-optional-manage-and-deploy-a-single-page-application)
   1. [Optional: Use Power Platform Tools and the PAC MCP server](#optional-use-power-platform-tools-and-the-pac-mcp-server)
 
@@ -222,14 +223,22 @@ Workshop sites are expected to be **Private**, so select the Microsoft account t
 
     ![View Commit in Azure DevOps](images/view-commit-in-ado.png)
 
-1. Notice that there are 3 folders created in the repository:
+1. Notice that there are 3 folders created under `PP/PPCCALMDev` in the repository:
     1. **powerpagesites** - Contains the Power Pages site related files
     1. **solutions** - Contains the solution related files
     1. **publishers** - Contains the publisher information
 
-    ![Repository Structure](images/repo-structure.png)
+    ![Repository structure under PP/PPCCALMDev in the Power Platform repository](images/repo-structure.png)
+
+    _The image is an edited example using the organization name `ppcc2026-example`.
+    Your organization name will differ._
 
 ### 💻 Cloning the repository locally
+
+The Azure DevOps and VS Code screenshots in this section and the editing section below are edited examples using the **Power Platform** repository and the `PP/PPCCALMDev` solution folder.
+Azure DevOps screenshots use `ppcc2026-example` as the organization name.
+Use your own organization and local clone location.
+VS Code may display `PP/PPCCALMDev` as a compact folder path.
 
 1. Click on **Files** from the left menu in Azure DevOps to go to the repository view.
 
@@ -375,13 +384,62 @@ If prompted, select the Microsoft account that you use for the workshop to acces
 
     ![Local Login Disabled](images/local-login-disabled.png)
 
-### Optional: Manage and deploy a single-page application
+## Optional: Install the Power Pages AI plugin for GitHub Copilot CLI
+
+The Power Pages plugin adds AI-assisted skills for creating and deploying websites through GitHub Copilot CLI.
+This is separate from the Power Platform Tools extension and the PAC MCP server described later.
+Installing the plugin does not change the site you created in this lab.
+
+### Prerequisites
+
+1. Install the latest [GitHub Copilot CLI](https://github.com/features/copilot/cli/) and sign in with a GitHub account that has access to Copilot.
+1. Install [Node.js](https://nodejs.org/) 22 LTS, the [Power Platform CLI](https://learn.microsoft.com/power-platform/developer/cli/introduction), and the latest [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli).
+   PAC CLI 2.6.3 or later is required if you use the plugin's server logic features.
+1. Before using skills that connect to Power Platform, authenticate PAC CLI to **Dev** and Azure CLI to the same tenant:
+
+    ```text
+    pac auth create --environment <Dev environment URL>
+    az login --allow-no-subscriptions
+    pac auth list
+    ```
+
+    Replace `<Dev environment URL>` with your environment's instance URL.
+    You can find it in Power Pages home under **Settings** > **Session details**.
+    Verify that the selected PAC authentication profile points to **Dev**.
+
+### Install the plugin
+
+1. Open a terminal in your local working folder and start GitHub Copilot CLI:
+
+    ```text
+    copilot
+    ```
+
+1. Inside the Copilot CLI session, install the Power Pages plugin:
+
+    ```text
+    /plugin install power-pages@copilot-plugins
+    ```
+
+1. Restart GitHub Copilot CLI to load the plugin's skills.
+1. Run `/plugin` and confirm that the Power Pages plugin is installed.
+   Its skills include `/create-site` and `/deploy-site`.
+
+> **Important:** Review generated code and proposed actions before approving them.
+> Creating or deploying a site changes your Power Platform environment.
+> For SPA exercises, use only environments the facilitator has confirmed are ready for JavaScript files; do not change tenant security settings during the lab.
+
+### References
+
+- [Get started with the Power Pages plugin for GitHub Copilot CLI and Claude Code](https://learn.microsoft.com/power-pages/configure/create-code-site-using-claude-code)
+
+## Optional: Manage and deploy a single-page application
 
 This optional exercise requires JavaScript file support to be preconfigured by the workshop administrator.
 Do not change blocked attachment or other tenant security settings during the lab.
 Skip this section unless the facilitator confirms that **Dev** and **Production** are ready for the exercise.
 
-#### Deploy Single Page Application site to Power Pages
+### Deploy Single Page Application site to Power Pages
 
 1. Open a terminal and run `git clone https://github.com/microsoft/power-pages-samples.git` command to clone the [Power Pages samples repo](https://aka.ms/powerpages-samples) locally.
 

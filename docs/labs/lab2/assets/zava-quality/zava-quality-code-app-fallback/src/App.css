@@ -76,61 +76,6 @@ main {
   text-align: left;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-left: 6px solid var(--navy);
-  border-radius: 8px;
-  background: var(--surface);
-}
-
-.card-open {
-  border-left-color: #1d4ed8;
-}
-
-.card-on-hold {
-  border-left-color: #b45309;
-}
-
-.card-critical {
-  border-left-color: #b91c1c;
-}
-
-.card-closed {
-  border-left-color: #15803d;
-}
-
-.card-label {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.card-value {
-  color: var(--text);
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: flex-end;
-  margin: 20px 0 12px;
-  padding: 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
-}
-
 .field {
   display: flex;
   flex: 1 1 160px;
@@ -150,8 +95,7 @@ label {
 }
 
 input,
-select,
-textarea {
+select {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid #6b7a8c;
@@ -162,8 +106,7 @@ textarea {
 }
 
 input[aria-invalid='true'],
-select[aria-invalid='true'],
-textarea[aria-invalid='true'] {
+select[aria-invalid='true'] {
   border-color: #b91c1c;
 }
 
@@ -203,8 +146,11 @@ textarea[aria-invalid='true'] {
   background: #0b5f58;
 }
 
-.topbar .button.primary {
-  border-color: #fff;
+button:disabled,
+input:disabled,
+select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .layout {
@@ -259,68 +205,6 @@ th {
   white-space: nowrap;
 }
 
-tr.selected td {
-  background: #e6f4f2;
-}
-
-.link {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #1d4ed8;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.badge {
-  display: inline-block;
-  padding: 2px 10px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.severity-low {
-  background: #e5e7eb;
-  color: #1f2937;
-}
-
-.severity-medium,
-.status-on-hold {
-  background: #fef3c7;
-  color: #78350f;
-}
-
-.severity-high {
-  background: #ffedd5;
-  color: #7c2d12;
-}
-
-.severity-critical {
-  border-color: #b91c1c;
-  background: #fee2e2;
-  color: #7f1d1d;
-}
-
-.status-open {
-  background: #dbeafe;
-  color: #1e3a8a;
-}
-
-.status-under-observation {
-  background: #ede9fe;
-  color: #4c1d95;
-}
-
-.status-closed {
-  background: #dcfce7;
-  color: #14532d;
-}
-
 .panel {
   align-self: start;
   padding: 16px 20px;
@@ -332,31 +216,6 @@ tr.selected td {
 .panel h2 {
   margin-top: 0;
   color: var(--navy);
-}
-
-.lead {
-  font-weight: 600;
-}
-
-dl {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 8px 12px;
-}
-
-dt {
-  color: var(--muted);
-  font-weight: 600;
-}
-
-dd {
-  margin: 0;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
 }
 
 @media (max-width: 720px) {
