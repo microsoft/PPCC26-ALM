@@ -1,6 +1,6 @@
 # 🚀 Lab 1: Setup and Configure
 
-Welcome to PPCC25! In this first lab, you’ll setup the necessary prerequisites to complete subsequent labs. In the real world, your organization might have less sophisticated or more sophisticated DevOps requirements. This workshop covers the most adopted tools for enterprise scale DevOps with the least amount of effort and complexity. 
+Welcome to PPCC26! In this first lab, you’ll setup the necessary prerequisites to complete subsequent labs. In the real world, your organization might have less sophisticated or more sophisticated DevOps requirements. This workshop covers the most adopted tools for enterprise scale DevOps with the least amount of effort and complexity.
 
 ✅ Lab 1 tasks
 
@@ -66,3 +66,6 @@ If your tenant doesn't have a pre-existing project and repository, get a new ten
 Now you have a source code repository! If you’re not familiar with source code, don’t worry. In Lab 2 you’ll learn how to use source control within the comfort of your Power Platform environment. 
 While this lab only requires one user, in the real world you’ll need to add other collaborators to the Azure DevOps organization and project with Basic access. 
 
+## Questions
+
+Ask your workshop instructor if setup or account access fails.
