@@ -27,6 +27,7 @@
 1. Complete Labs 1 through 3.
 1. Confirm that the environments are named **Dev**, **Hotfix**, **UAT**, and **Production**, as specified in Lab 1.
 1. Confirm that the Azure DevOps Power Platform project repository from Lab 1 is initialized and that you can access it.
+   Complete [Connect Git and commit the table in Lab 2](../../lab2/lab2.md#connect-git-and-commit-the-table) so that **Dev** uses solution-scoped Git integration with root Git folder `PP`.
 1. Confirm that **Dev** and **Production** are Managed Environments.
    Git integration requires **Dev** to be managed, and the deployment target must also be managed.
    Refer to the Managed Environments steps in Lab 3 and the [Git integration prerequisites](https://learn.microsoft.com/power-platform/alm/git-integration/connecting-to-azure-devops#prerequisites).
@@ -103,30 +104,10 @@ You will deploy the solution to **Production**, edit the site through the reposi
 
 ### 🔗 Connect the solution to the repository
 
-Lab 1 created and initialized the **Power Platform** Azure DevOps project and repository.
-In this lab, configure solution-scoped Git integration and connect **PPCCALMDev** to the Lab 1 repository before committing it.
-Use `PP` as the root Git folder for this lab.
-If solution-scoped Git integration is already configured for the Lab 1 repository, keep the existing connection and go directly to the **PPCCALMDev** solution binding below.
+Reuse the solution-scoped Git connection configured in Lab 2 for the **Power Platform** Azure DevOps repository and root Git folder `PP`.
+Connect the new **PPCCALMDev** solution to that existing connection before committing it.
 
-1. In the **Dev** environment, go to **Solutions** and select **Connect to Git**.
-
-    ![Connect to Git](images/connect-to-git.png)
-
-1. Configure the connection using these settings:
-
-    - **Connection type**: Solution
-    - **Organization**: Your Azure DevOps organization from Lab 1
-    - **Project**: Power Platform
-    - **Repository**: Power Platform
-    - **Branch**: `main`
-    - **Root Git folder**: `PP`
-
-    ![Example solution-scoped Git connection using PP as the root folder](images/connect-to-git-repo.png)
-
-    _The image is an edited example using the organization name `ppcc2026-example`.
-    Select your own organization and the project and repository created in Lab 1._
-
-1. Click **Connect** to open the solution connection page.
+1. In the **Dev** environment, go to **Solutions**, select the three dots next to **PPCCALMDev**, and select **Connect to Git**.
 
 1. On the solution connection page, use these settings:
 
