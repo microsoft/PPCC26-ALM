@@ -215,7 +215,8 @@ The skill packages the inspection rules and triage workflow as agent configurati
 
 ### Download the prepared app
 
-1. Open **Visual Studio Code** on your machine or the workshop VM. Select **Terminal** > **New Terminal** and use **PowerShell**.
+1. In **File Explorer** on your machine or the workshop VM, create `C:\repo\ppcc26-alm` (create `C:\repo` first if needed). Use an empty workspace folder, not an existing Git repository. If that path is already in use, choose a different workspace folder.
+1. Open **Visual Studio Code**, select **File** > **Open Folder**, and open your workspace folder. Select **Terminal** > **New Terminal** and use **PowerShell**.
 1. Check the required tools:
 
    ```powershell
@@ -226,20 +227,17 @@ The skill packages the inspection rules and triage workflow as agent configurati
 
    Node.js must be **22 or later**. If a tool is missing or a command fails, share the error with your instructor before continuing.
 
-1. Create a workshop folder under **Documents** and download the prepared app:
+1. In the workspace terminal, download the prepared app from the public workshop repository's **main** branch:
 
    ```powershell
-   $workspace = Join-Path $HOME "Documents\PPCC26-ALM"
-   New-Item -ItemType Directory -Path $workspace -Force | Out-Null
-   Set-Location $workspace
-   npx --yes degit "microsoft/PPCC26-ALM/docs/labs/lab2/assets/zava-quality/zava-quality-code-app-fallback#lab2/dataverse-workflow" zava-quality-incident-tracker
+   npx --yes degit "microsoft/PPCC26-ALM/docs/labs/lab2/assets/zava-quality/zava-quality-code-app-fallback#main" zava-quality-incident-tracker
    ```
 
    `degit` retrieves the app folder without the workshop's Git history. Wait for success before continuing. If the app folder already contains files or the download fails, share the error with your instructor; do not overwrite your work.
 
 ### Open and initialize the app in VS Code
 
-1. Select **File** > **Open Folder**. Browse to **Documents** > **PPCC26-ALM** > **zava-quality-incident-tracker** and select that folder. Confirm the Explorer shows `package.json` and `src`.
+1. Select **File** > **Open Folder**. Open `zava-quality-incident-tracker` inside your workspace folder (by default, `C:\repo\ppcc26-alm\zava-quality-incident-tracker`). Confirm the Explorer shows `package.json` and `src`.
 1. Open **Terminal** > **New Terminal**. Confirm the terminal is in `zava-quality-incident-tracker`, then run:
 
    ```powershell

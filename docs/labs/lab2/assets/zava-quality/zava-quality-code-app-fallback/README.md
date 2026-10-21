@@ -17,8 +17,9 @@ In **Task 3**, Copilot connects `loadIncidents` and `createIncident` in `src/dat
 
 Follow [Task 3: Create a code app locally](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#task-3-create-a-code-app-locally) for the copyable commands.
 
-1. On your own Windows machine or the optional workshop VM, open VS Code and an integrated PowerShell terminal. Check Node.js 22 or later, npm, and Git. Enable Copilot Chat and the Power Apps code apps plugin.
-1. Create `$HOME\Documents\PPCC26-ALM` and use the lab's `degit` command to retrieve this prepared app as `zava-quality-incident-tracker`. No prior workshop clone or preloaded code is required. Use a fresh destination.
+1. In File Explorer on your own Windows machine or the optional workshop VM, create `C:\repo\ppcc26-alm` (create `C:\repo` first if needed). Use an empty workspace folder, not an existing Git repository; choose a different workspace folder if that path is already in use.
+1. Open the workspace folder in VS Code and open an integrated PowerShell terminal. Check Node.js 22 or later, npm, and Git. Enable Copilot Chat and the Power Apps code apps plugin.
+1. Use the lab's `degit` command to retrieve this prepared app from the public workshop repository's **main** branch as `zava-quality-incident-tracker`. No prior workshop clone or preloaded code is required. Use a fresh destination.
 1. Use **File** > **Open Folder** to open `zava-quality-incident-tracker` in VS Code.
 1. Open a new integrated terminal, run `npm ci`, then check `npx --no-install pa --version`. The project pins Power Apps CLI **1.3.0**; no global installation is needed.
 1. Run `npx --no-install pa app init`, sign in with the workshop Microsoft identity, and initialize in **Dev**. Check `environmentId` in `power.config.json`.
