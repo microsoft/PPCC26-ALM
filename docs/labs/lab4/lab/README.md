@@ -235,6 +235,11 @@ Workshop sites are expected to be **Private**, so select the Microsoft account t
 
 ### 💻 Cloning the repository locally
 
+The Azure DevOps and VS Code screenshots in this section and the editing section below are edited examples using the **Power Platform** repository and the `PP/PPCCALMDev` solution folder.
+Azure DevOps screenshots use `ppcc2026-example` as the organization name.
+Use your own organization and local clone location.
+VS Code may display `PP/PPCCALMDev` as a compact folder path.
+
 1. Click on **Files** from the left menu in Azure DevOps to go to the repository view.
 
     ![Repository View](images/repo-view.png)
@@ -388,7 +393,7 @@ Installing the plugin does not change the site you created in this lab.
 ### Prerequisites
 
 1. Install the latest [GitHub Copilot CLI](https://github.com/features/copilot/cli/) and sign in with a GitHub account that has access to Copilot.
-1. Install [Node.js](https://nodejs.org/) 18 or later, the [Power Platform CLI](https://learn.microsoft.com/power-platform/developer/cli/introduction), and the latest [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli).
+1. Install [Node.js](https://nodejs.org/) 22 LTS, the [Power Platform CLI](https://learn.microsoft.com/power-platform/developer/cli/introduction), and the latest [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli).
    PAC CLI 2.6.3 or later is required if you use the plugin's server logic features.
 1. Before using skills that connect to Power Platform, authenticate PAC CLI to **Dev** and Azure CLI to the same tenant:
 
