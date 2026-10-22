@@ -1,6 +1,6 @@
 # 🧪 Lab 2: Inner-loop ALM with Zava Quality Operations
 
-**Owner:** Marcel Ferreira · **Last updated:** 2026-10-22 · **Status:** Draft
+**Last updated:** 2026-10-22 · **Status:** Draft
 
 Create a solution, author an agent, work with a local code app, then publish the app and deploy a solution package to **Test**.
 
