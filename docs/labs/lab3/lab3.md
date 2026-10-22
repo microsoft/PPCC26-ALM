@@ -1,6 +1,6 @@
 # 🚀 Lab 3: Deploy
 
-A key facet of healthy ALM is separating changes in development from those in testing and in production. Pipelines in Power Platform deploys the latest version of your solution across these environments, with the ability to add secure approvals and review changes before they're deployed. Note: in this lab you'll only deploy from development to production, but in the real world it's recommended to add an additional test stage. Other stages may also be added.
+A key facet of healthy ALM is separating changes in development from those in testing and in production. Pipelines in Power Platform deploys the latest version of your solution across these environments, with the ability to add secure approvals and review changes before they're deployed. In this lab, you'll deploy from **Development 1** to **Test**. Production stages may be added in a real-world pipeline.
 
 ---
 
@@ -8,7 +8,7 @@ A key facet of healthy ALM is separating changes in development from those in te
 
 Complete lab 2.1
 
-If you did not complete lab 2.1, import the [ContosoRealEstate_1_0_0_2.zip](assets/ContosoRealEstate_1_0_0_2.zip) unmanaged solution in your development environment. This solution is available in your lab materials folder.
+If you did not complete lab 2.1, import the [ContosoRealEstate_1_0_0_2.zip](assets/ContosoRealEstate_1_0_0_2.zip) unmanaged solution in **Development 1**. This solution is available in your lab materials folder.
 
 ---
 
@@ -18,7 +18,7 @@ If you did not complete lab 2.1, import the [ContosoRealEstate_1_0_0_2.zip](asse
 - Task 1 - Create a Platform Host pipeline
   - Deploy using Platform Host pipeline
 - Task 2 - Create a Custom Host pipeline
-  - Create a Custom Host environment
+  - Verify the Pipelines Host environment
   - Configure environment records for the pipeline
   - Configure a basic pipeline
   - Deploy using a Custom Host pipeline
@@ -49,7 +49,7 @@ There are two ways to configure Power Pipelines—
 
 ## 🎯 Task 1 - Create a Platform Host Personal Pipeline
 
-1. **Navigate to your Dev environment**. On the Maker Portal (https://make.preview.powerapps.com), make sure the Dev env is selected on the top right environment drop down
+1. **Navigate to Development 1**. On the Maker Portal (https://make.preview.powerapps.com), make sure **Development 1** is selected in the top right environment drop down
 1. Click on **Solutions** tab in the left-hand navigation blade
 1. Once in the Solutions page, open the **Contoso Real Estate** solution
 1. On the left-hand navigation panel, click on the rocket icon for **Power Pipelines** page
@@ -57,11 +57,11 @@ There are two ways to configure Power Pipelines—
 1. In the Create pipeline pop out wizard, provide the following details:
    - **Name**: <Your Name > Platform Host Pipeline
    - **Description**: Include description of which environments this pipeline will deploy to
-   - **Target environment**: select your UAT environment
+   - **Target environment**: select **Test**
    - Click **Save**   
 ![Pipelines Page](assets/image1.png)
 
-1. The completed pipeline should now have two stages—Development and UAT.
+1. The completed pipeline should now show **Development 1** as the source and **Test** as the target.
 
    ![Create Pipeline](assets/image2.png)
 
@@ -69,9 +69,9 @@ You're now ready to use this Pipeline to deploy your solutions! In the real worl
 
 ### Deploy using a Platform Host pipeline
 
-Now, let's do a quick deployment to the UAT env to test our pipeline.
+Now, let's do a quick deployment to **Test** to verify our pipeline.
 
-1. On the UAT stage, click **Deploy here** to initiate the solution deployment to production.
+1. On the **Test** stage, click **Deploy here** to initiate the solution deployment to **Test**.
 1. You can schedule deployments by selecting **Later** in the Deployment Schedule section to set a time and date for your scheduled deployment.
 1. Click **Next**
 1. In the summary section, review the AI-generated note in the Deployment Notes section. It contains a summary of your solution's capabilities. 
@@ -79,7 +79,7 @@ Now, let's do a quick deployment to the UAT env to test our pipeline.
 
 ![Pipeline Stages](assets/image3.png)
 
-Your UAT stage will update with the progress of the deployment:
+Your Test stage will update with the progress of the deployment:
 
 ![Deploy Here](assets/image4.png)
 
@@ -93,43 +93,20 @@ When the deployment completes, you can see the success message on the stage:
 
 ## 🏗️ Task 2 - Create a Custom Host Pipeline
 
-### Create a Custom Host environment
+### Verify the Pipelines Host environment
 
-Let's begin by creating a new Custom Host Environment. This special-purpose environment acts as the storage and management plane for all pipeline configuration, security, and run history. You can install multiple Custom Host environments to separately manage pipelines for different business orgs or geographic locations. One host for the entire tenant is also acceptable as long as all environments are in the same geographic location.
+Use the existing **Pipelines Host** environment verified in Lab 1; do not create or rename an environment. This special-purpose environment stores custom pipeline configuration, security, and run history.
 
-1. In the Power Platform Admin Center (https://admin.preview.powerplatform.microsoft.com/) select **Deployments** from the left-hand navigation panel
-1. Make sure you are on the **Overview** tab
-1. Click **+ New custom host** button to kick off a new environment creation with Power Platform Pipelines modules pre-installed.
-   ![Deployment Notes](assets/image6.png)
-1. Configure the New Environment creation:
-   - **Name**: "Custom Host Environment"
-   - **Make this a Managed Environment**: Yes
-   - **Region**: Canada
-   - **Get new features early**: Yes
-   - **Type**: Developer
-   - Click **Next**
-   - (Optional) Under **Security Group**, click **+ Select**, select **None**
-      > Note: In a real-world setting, using a Security Group is recommended to allow only authorized users access to this environment.
-   - Click **Save**
+1. In the [Power Platform admin center](https://admin.powerplatform.microsoft.com/), select **Manage** > **Environments** and confirm that **Pipelines Host** exists.
+1. Open [Power Apps](https://make.powerapps.com/), select **Pipelines Host**, then **Apps**. Confirm that **Deployment Pipeline Configuration** is available.
+1. If the environment or app is missing, ask your instructor to complete the custom host setup before continuing.
 
-![Deployment Progress](assets/image7.png)
-![Deployment Success](assets/image8.png)
-
-Now that the Custom Host Environment is created, we can begin configuring the custom host pipeline.
-
-We will be using the same Dev and UAT environments for the Custom Host pipeline we build in this lab. Make sure you have the EnvironmentIds for both environments handy.
-
-| Original Environment Name | New Environment Name | EnvironmentId | Purpose |
-|---|---|---|---|
-| Power App User 1 | Dev | | Development |
-| Power App User 2 | Hotfix | | Secondary environment for hotfix development and multi-environment testing |
-| Power App User 3 | UAT | | Testing your solution |
-| Power App User 4 | Production | | Where your solutions are shared with end users |
+We will use **Development 1** as the source and **Test** as the target for this custom host pipeline. Keep the environment IDs for those two environments handy.
 
 ### Configure environment records for the pipeline
 
 1. Navigate back to PowerApps maker portal at https://make.preview.powerapps.com/
-1. In the top right hand corner in the Environment selection dropdown, select the **Custom Host Environment** which you just created
+1. In the top right hand corner in the Environment selection dropdown, select **Pipelines Host**
 1. Click on the **Apps** tab
 1. Click on the play icon on the **Deployment Pipeline Configuration** app to play it
 
@@ -139,14 +116,14 @@ We will be using the same Dev and UAT environments for the Custom Host pipeline 
 
    ![New Custom Host](assets/image10.png)
 
-1. Let's create the development (source) environment record. We will use the Dev environment for this. Select **New** in the ribbon to create a new environment record
-   - **Name**: Dev Environment
+1. Let's create the development (source) environment record for **Development 1**. Select **New** in the ribbon to create a new environment record
+   - **Name**: Development 1
    - **Environment Type**: Select **Development Environment** for your source environment
-   - **Environment Id**: < Environment ID of the Dev env >
+   - **Environment Id**: < Environment ID of Development 1 >
    - Click **Save**
    - Wait for one minute, and click **refresh** in the ribbon to check the **Validation Status**
 
-   Since we already used this Dev environment in our Platform Host Pipeline, the validation will fail.
+   Since we already used Development 1 in our Platform Host Pipeline, the validation will fail.
 
    ![Environment Configuration](assets/image11.png)
 
@@ -158,10 +135,10 @@ We will be using the same Dev and UAT environments for the Custom Host pipeline 
 
    ![Deployment Pipeline Configuration](assets/image13.png)
 
-1. Let's create the UAT (target) environment record. Select **New** in the ribbon to create a new environment record
-   - **Name**: UAT Environment
+1. Let's create the **Test** (target) environment record. Select **New** in the ribbon to create a new environment record
+   - **Name**: Test
    - **Environment Type**: Target Environment
-   - **Environment Id**: <Environment ID of the UAT env>
+   - **Environment Id**: <Environment ID of Test>
    - Click **Save**
    - If Validation fails, repeat the steps to **Force Link** this environment to the Custom Host Pipeline
    - Once complete, verify **Validation Status** equals **Success**
@@ -174,7 +151,7 @@ We will be using the same Dev and UAT environments for the Custom Host pipeline 
 
 1. Select **Pipelines** in the left navigation pane
 
-   ![Dev Environment](assets/image15.png)
+   ![Pipeline configuration navigation](assets/image15.png)
 
 1. Select **New** in the ribbon to create a new deployment pipeline record
    - **Name**: Custom Host Pipeline
@@ -188,17 +165,17 @@ We will be using the same Dev and UAT environments for the Custom Host pipeline 
 
 1. Scroll down to the **Linked Development Environments** grid
    - Click on the three vertical dots on the top right corner of the grid to open additional grid options
-   - Select **Add Existing Deployment Environment**, then select **Dev environment** you configured earlier in this lab, then click **Add**
+   - Select **Add Existing Deployment Environment**, then select **Development 1** you configured earlier in this lab, then click **Add**
 
    ![Force Link](assets/image17.png)
 
 1. In the **Deployment Stages (Deployment pipeline)** grid, select **New Deployment Stage**
 
 1. Complete the form:
-   - **Name**: UAT Environment
+   - **Name**: Test
    - **Description**: optional, add a description of the environment you are deploying to
    - **Previous Deployment Stage**: Leave blank as this will be our first deployment stage
-   - **Target Deployment Environment ID**: UAT Environment
+   - **Target Deployment Environment ID**: Test
    - Click **Save and Close**
 
       ![Validation Success](assets/image18.png)
@@ -207,13 +184,13 @@ We will be using the same Dev and UAT environments for the Custom Host pipeline 
 
 1. This pattern can be repeated to add up to 7 deployment stages in your pipeline.
 
-**Congratulations!** You have created a basic Custom Host Pipeline. Go to your development (source) environment, and open any unmanaged solution. Then, click on the Pipelines tab (rocket icon) to open the Pipelines pane. Here, you will see your newly created pipeline:
+**Congratulations!** You have created a basic Custom Host Pipeline. Go to **Development 1**, and open any unmanaged solution. Then, click on the Pipelines tab (rocket icon) to open the Pipelines pane. Here, you will see your newly created pipeline:
 
-   ![UAT Environment](assets/image19.png)
+   ![Custom host pipeline showing the deployment target](assets/image19.png)
 
 ### Deploy Using a Custom Host pipeline
 
-1. Click **Deploy here** button in the UAT Environment stage
+1. Click **Deploy here** button in the **Test** stage
 
 1. You will get a popup which asks you to enable Managed Environments (ME) on the target env. Remember, Pipelines are a ME only feature. Your Target environments must be enabled for ME to perform a deployment. Only Power Platform and D365 Admins will see this prompt, so in the real world, admins should enable ME on every environment they expect to be used in a pipeline. Steps to enable ME can be found [in the documentation](https://learn.microsoft.com/en-us/power-platform/admin/managed-environment-enable). Click **Enable managed environment**
 
@@ -323,11 +300,11 @@ While we are still on the Azure portal, let's create our security group.
 
    ### Create application user in Dataverse
 
-   Add Application User to each environment of our pipeline, including the Custom Host Environment
+   Add Application User to each environment of our pipeline, including **Pipelines Host**
 
 1. Navigate to PPAC at admin.powerplatform.microsoft.com
 
-1. In the Environments tab, select your **Custom Host environment**
+1. In the Environments tab, select **Pipelines Host**
 
 1. In the Access section, under **S2S apps**, click **See all**
 
@@ -349,17 +326,17 @@ While we are still on the Azure portal, let's create our security group.
 
    ![App User Created](assets/image32.png)
 
-1. Repeat this process for your **Dev** and **UAT** environments
+1. Repeat this process for **Development 1** and **Test**
 
 ### Create an approval + SPN delegated deployment flow
 
-**Pathway 1** - For the purposes of this lab, we have provided a complete version of this flow in your lab materials folder. If you are running low on time but would still like to complete this section of the lab, manually import the "[Lab 3 Approval Delegation Flow.zip](assets/Lab3ApprovalDelegationFlow_1_0_0_1.zip)" solution folder in your Custom Host Environment. After import, jump to **Update Flow after solution import** section.
+**Pathway 1** - For the purposes of this lab, we have provided a complete version of this flow in your lab materials folder. If you are running low on time but would still like to complete this section of the lab, manually import the "[Lab 3 Approval Delegation Flow.zip](assets/Lab3ApprovalDelegationFlow_1_0_0_1.zip)" solution folder in **Pipelines Host**. After import, jump to **Update Flow after solution import** section.
 
 **Pathway 2** - If you would like to create the flow manually, follow the steps below.
 
 > **NOTE**: In the instructions below, we have provided the written expression for the dynamic values. You may choose to copy/paste the expressions from the instructions below, or use the lightning bolt icon to add the dynamic values to your flow manually.
 
-1. Navigate back to https://make.preview.powerapps.com/ and select your **Custom Host Environment** from the environment picker dropdown
+1. Navigate back to https://make.preview.powerapps.com/ and select **Pipelines Host** from the environment picker dropdown
 
 1. Click **Flows** from the left-hand navigation blade
 
@@ -499,7 +476,7 @@ While we are still on the Azure portal, let's create our security group.
 
    The flow we just created in the previous section will not trigger until we enable the **Is Delegated Deployment** gated extension in the pipeline configuration. Now, let's configure our pipeline to initiate the flow.
 
-1. Return to the **Pipeline Host environment**, and launch the **Deployment Pipeline Configuration** app
+1. Return to **Pipelines Host**, and launch the **Deployment Pipeline Configuration** app
 
 1. Click on the **Pipelines** tab
 
@@ -527,7 +504,7 @@ As you might know by now, there are two types of delegation offered in Power Pip
 
 Let's configure our pipeline to use Stage Owner delegation.
 
-1. Return to the **Pipeline Host environment**, and launch the **Deployment Pipeline Configuration** app
+1. Return to **Pipelines Host**, and launch the **Deployment Pipeline Configuration** app
 
 1. Click on the **Pipelines** tab
 
@@ -547,7 +524,7 @@ Let's configure our pipeline to use Stage Owner delegation.
 
 Let's update our Contoso Real Estate solution with an additional component. We will create a security role to include as a part of the solution in our next deployment. We will also use this security role to grant access to users in the target environment after deployment is complete.
 
-1. In the developer environment, click on the **Solutions** tab, then drill into the **Contoso Real Estate** solution
+1. In **Development 1**, click on the **Solutions** tab, then drill into the **Contoso Real Estate** solution
 
 1. Click **Objects** > **+New** > then **Security** > and finally, **Security Role**
 
@@ -636,11 +613,11 @@ Now, let's bind the Model Driven app with the new Security Role. This will allow
 
 ### Run SPN delegated pipeline
 
-Finally, let's test the new approvals and SPN delegation steps we just added. Go to your development environment, where you just created the security role, and start a deployment using the Custom Host Pipeline. After the usual validation, you will see an additional step called **Share** which we didn't see when deploying before. This step will allow us to share objects within the Target environment directly from your Pipeline deployment. Since we also added a cloud flow with two connections, we will also see a new **Connections** step when deploying.
+Finally, let's test the new approvals and SPN delegation steps we just added. Go to **Development 1**, where you just created the security role, and start a deployment using the Custom Host Pipeline. After the usual validation, you will see an additional step called **Share** which we didn't see when deploying before. This step will allow us to share objects within the Target environment directly from your Pipeline deployment. Since we also added a cloud flow with two connections, we will also see a new **Connections** step when deploying.
 
-In your Dev environment, go to the Solutions page. There, in your Contoso Real Estate solution, click on the pipelines icon, and click **Deploy Here** on the UAT stage.
+In **Development 1**, go to the Solutions page. There, in your Contoso Real Estate solution, click on the pipelines icon, and click **Deploy Here** on the **Test** stage.
 
-After the **Select deployment target** step, we see the **Connections** step. Make sure you leave "Share connections with the service principal" checked as this is a requirement to associate new connections with the connection references in the UAT env
+After the **Select deployment target** step, we see the **Connections** step. Make sure you leave "Share connections with the service principal" checked as this is a requirement to associate new connections with the connection references in **Test**
 
    ![Connections Step](assets/image56.png)
 
@@ -666,9 +643,9 @@ After clicking Next, we see the **Share** step:
 
 Now that our pipeline is configured, let's test it by kicking off a deployment.
 
-1. In your Dev environment, go to the Solutions page. There, in your Contoso Real Estate solution, click on the pipelines icon, and click **Deploy Here** on the UAT stage.
+1. In **Development 1**, go to the Solutions page. There, in your Contoso Real Estate solution, click on the pipelines icon, and click **Deploy Here** on the **Test** stage.
 
-1. After the **Select deployment target** step, we see the **Connections** step. Note: connections will only be set correctly on the connection reference in the UAT environment when the Stage Owner is also initiating the deployment. If this was being done by a user who the pipeline has been shared with, the connections they configure here will be nil in the target environment. 
+1. After the **Select deployment target** step, we see the **Connections** step. Note: connections will only be set correctly on the connection reference in **Test** when the Stage Owner is also initiating the deployment. If this was being done by a user who the pipeline has been shared with, the connections they configure here will be nil in the target environment.
 
 1. Click **Next**
 
@@ -716,7 +693,7 @@ While delegated deployments and approvals reduce the chances of breaking applica
 
 Let's pretend the last deployment contained a critical breaking change and it needs to be rolled back. In this task, you'll re-deploy the last known good version of your solution.
 
-1. Open the maker portal (https://make.preview.powerapps.com/) and make sure you are in your **development environment**
+1. Open the maker portal (https://make.preview.powerapps.com/) and make sure you are in **Development 1**
 
 1. Open **Solutions** from the left hand navigation blade
 
@@ -738,7 +715,7 @@ Let's pretend the last deployment contained a critical breaking change and it ne
 
 1. Deployment is now in-progress. Wait until it finishes. You may need to refresh the pipelines page.
 
-1. Disaster averted! Now the prior version is deployed to production and you have time to fix the (hypothetical) issue and deploy an updated version when ready.
+1. Disaster averted! Now the prior version is deployed to **Test** and you have time to fix the (hypothetical) issue and deploy an updated version when ready.
 
 ---
 

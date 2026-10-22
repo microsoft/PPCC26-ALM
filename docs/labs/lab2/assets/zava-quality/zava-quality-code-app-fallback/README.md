@@ -1,6 +1,6 @@
 # Zava Quality Incident Tracker prepared project
 
-**Owner:** Marcel Ferreira · **Last updated:** 2026-10-20 · **Status:** Draft
+**Owner:** Marcel Ferreira · **Last updated:** 2026-10-22 · **Status:** Draft
 
 Use this prepared project in Task 3 of Lab 2.
 
@@ -22,13 +22,13 @@ Follow [Task 3: Create a code app locally](https://github.com/microsoft/PPCC26-A
 1. Use the lab's `degit` command to retrieve this prepared app from the public workshop repository's **main** branch as `zava-quality-incident-tracker`. No prior workshop clone or preloaded code is required. Use a fresh destination.
 1. Run `cd zava-quality-incident-tracker`, then `code .` to open the app folder in VS Code. If `code` is not recognized, open VS Code from Start and use **File** > **Open Folder** to open the app folder.
 1. Open a new integrated terminal, run `npm ci`, then check `npx --no-install pa --version`. The project pins Power Apps CLI **1.3.0**; no global installation is needed.
-1. Run `npx --no-install pa app init`, sign in with the workshop Microsoft identity, and initialize in **Dev**. Check `environmentId` in `power.config.json`.
+1. Run `npx --no-install pa app init`, sign in with the workshop Microsoft identity, and initialize in **Development 1**. Check `environmentId` in `power.config.json`.
 1. Complete [Install the code apps plugin in VS Code](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#install-the-code-apps-plugin-in-vs-code): add the supplied VS Code user settings, install **code-apps-preview** from the `@agentPlugins` view, then run **Developer: Reload Window**. `npm ci` does not install these skills.
 1. Open a new Copilot Chat session in **Agent** mode. Type `/add-dataverse` in Chat, select the skill from the suggestions, and append the lab's binding request. Use your workshop GitHub Copilot identity for Chat. The plugin and skill are required: if the skill is missing, stop and ask your instructor rather than sending the prompt alone.
 
 The binding request names the existing **Quality Incident** table explicitly: `zava_qualityincident`, created in Task 1 with the `zava` publisher prefix. Copilot uses **native Dataverse** (`--connector dataverse`) and the generated service to connect `{ id, issue }` to the primary ID and **Issue** column. Review requested edits and commands, and confirm lint and build pass before continuing. Do not create a replacement table if binding fails.
 
-After the connection and build succeed, use the CLI's Local Play URL to create an issue, reload, and independently confirm its row in Dev. Commit developer source locally. **Task 4** publishes runtime assets to the solution, then exports and imports a managed solution package into UAT.
+After the connection and build succeed, use the CLI's Local Play URL to create an issue, reload, and independently confirm its row in Development 1. Commit developer source locally. **Task 4** publishes runtime assets to the solution, then exports and imports a managed solution package into Test.
 
 ## Validation
 
@@ -37,7 +37,7 @@ npm run lint
 npm run build
 ```
 
-The prepared project builds and shows a connection-required error until Task 3 is complete. After connecting it, follow the lab's Local Play and UAT data checks.
+The prepared project builds and shows a connection-required error until Task 3 is complete. After connecting it, follow the lab's Local Play and Test data checks.
 
 This project pins the workshop-tested Power Apps CLI 1.3.0 and requires Node.js 22 or later. Initialization creates your `power.config.json`; no environment or credentials are shipped.
 

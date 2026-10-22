@@ -1,8 +1,8 @@
 # 🧪 Lab 2: Inner-loop ALM with Zava Quality Operations
 
-**Owner:** Marcel Ferreira · **Last updated:** 2026-10-20 · **Status:** Draft
+**Owner:** Marcel Ferreira · **Last updated:** 2026-10-22 · **Status:** Draft
 
-Create a solution, author an agent, work with a local code app, then publish the app and deploy a solution package to **UAT**.
+Create a solution, author an agent, work with a local code app, then publish the app and deploy a solution package to **Test**.
 
 ## Lab outline
 
@@ -25,16 +25,16 @@ Before each task, your instructor shows a **task / estimated time** slide follow
 | **Solution source** | File-based solution representation for supported components | Native solution Git integration or extracted solution files |
 | **Developer source** | Editable code project, dependencies, configuration, and tests where present | Local project and its own Git repository |
 
-The maker portal shows the live **solution in Dev**. **Metadata** describes components such as table columns and agent configuration. **Runtime assets** are built content such as JavaScript, CSS, and static files. Exporting the solution creates a **solution package** (`.zip`).
+The maker portal shows the live **solution in Development 1**. **Metadata** describes components such as table columns and agent configuration. **Runtime assets** are built content such as JavaScript, CSS, and static files. Exporting the solution creates a **solution package** (`.zip`).
 
 In this lab, native solution Git tracks the table, agent, and skill configuration. Keep the code app's **developer source** in its own Git repository.
 
 ## Prerequisites
 
-- **Dev** and **UAT** from Lab 1, with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin) in both. Use UAT for the test deployment.
-- **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked UAT dependencies and that no conflicting unmanaged Zava copy exists.
-- Copilot Studio licensing and access checked for your workshop account and Dev environment, with **Microsoft Copilot harness** and **Skills > Create from blank** available. Preview or channel publishing also requires the relevant runtime capacity and permissions.
-- Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Dev, with Basic access and contribution permission.
+- **Development 1** and **Test** from Lab 1, with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin) in both. Use Test for the test deployment.
+- **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked Test dependencies and that no conflicting unmanaged Zava copy exists.
+- Copilot Studio licensing and access checked for your workshop account and Development 1 environment, with **Microsoft Copilot harness** and **Skills > Create from blank** available. Preview or channel publishing also requires the relevant runtime capacity and permissions.
+- Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Development 1, with Basic access and contribution permission.
 - Your own Windows machine or the optional workshop VM, with a current version of Visual Studio Code, access to GitHub Copilot Chat, Node.js 22 or later, npm, and Git with an author identity configured. Task 3 includes installation of the Power Apps code apps plugin in VS Code.
 - Workshop Microsoft and GitHub Copilot identities, with access to GitHub and npm. Task 3 downloads the prepared app; no workshop code needs to be on the machine beforehand. Use only the synthetic records below.
 
@@ -46,16 +46,16 @@ Use the prepared app in Task 3. Copilot connects it to Dataverse; you use CLI an
 
 **Expected outcome**
 
-- The Zava publisher and preferred solution exist in Dev.
+- The Zava publisher and preferred solution exist in Development 1.
 - The maker portal visualizes the solution's components.
 - An empty table has **one business field: Issue**.
 - Native solution Git is connected and the table schema is committed to the repository.
 
 ### Create the solution and publisher
 
-1. Open [Power Apps](https://make.powerapps.com), select **Dev**, then **Solutions**.
+1. Open [Power Apps](https://make.powerapps.com), select **Development 1**, then **Solutions**.
 
-   ![Power Apps environment picker with Dev selected](images/environment-list.png)
+   ![Power Apps environment picker showing an earlier development environment name; select Development 1](images/environment-list.png)
 
    ![Solutions in the Power Apps left navigation](images/solutions-menu.png)
 
@@ -127,7 +127,7 @@ Quality Incident has **Issue** as its primary column. With the `zava` publisher 
 ### Author and inspect the agent
 
 1. Open [Copilot Studio](https://copilotstudio.microsoft.com).
-1. Open the environment picker in the lower-left corner and select **Dev**, the same environment where you created **Zava Quality Operations** in Task 1. Then, on **Home**, select the **Agent** card to create an agent powered by the **Microsoft Copilot harness**.
+1. Open the environment picker in the lower-left corner and select **Development 1**, the same environment where you created **Zava Quality Operations** in Task 1. Then, on **Home**, select the **Agent** card to create an agent powered by the **Microsoft Copilot harness**.
 
    ![Copilot Studio Home with arrows pointing to the environment picker in the lower-left corner and the Agent card](images/copilot-studio-environment-agent.png)
 
@@ -271,14 +271,14 @@ The skill packages the inspection rules and triage workflow as agent configurati
    npx --no-install pa app init
    ```
 
-   When prompted for the **environment ID**, open [Power Apps](https://make.powerapps.com), select **Dev** in the environment picker, and open **Solutions**. In the browser address bar, copy only the ID between `/environments/` and the next `/` in `https://make.powerapps.com/environments/<environment-id>/solutions`. Paste that ID into the terminal. Use your own Dev environment ID, not the example in the screenshot.
+   When prompted for the **environment ID**, open [Power Apps](https://make.powerapps.com), select **Development 1** in the environment picker, and open **Solutions**. In the browser address bar, copy only the ID between `/environments/` and the next `/` in `https://make.powerapps.com/environments/<environment-id>/solutions`. Paste that ID into the terminal. Use your own Development 1 environment ID, not the example in the screenshot.
 
-   ![Power Apps Solutions page with the Dev environment ID highlighted in the browser address bar](images/dev-environment-id.png)
+   ![Power Apps Solutions page with an example environment ID highlighted; copy the ID for your Development 1 environment](images/dev-environment-id.png)
 
-1. Complete sign-in with the workshop Microsoft identity when prompted and enter `Zava Quality Incident Tracker` as the app name. Initialization records your Dev environment in `power.config.json`.
-1. Open `power.config.json` in the Explorer and confirm its `environmentId` matches Dev in the maker portal URL.
+1. Complete sign-in with the workshop Microsoft identity when prompted and enter `Zava Quality Incident Tracker` as the app name. Initialization records your Development 1 environment in `power.config.json`.
+1. Open `power.config.json` in the Explorer and confirm its `environmentId` matches Development 1 in the maker portal URL.
 
-If browser sign-in stalls, press **Ctrl+C**, run `npx --no-install pa auth login --device-code --non-interactive`, complete sign-in, and retry initialization in Dev.
+If browser sign-in stalls, press **Ctrl+C**, run `npx --no-install pa auth login --device-code --non-interactive`, complete sign-in, and retry initialization in Development 1.
 
 ### Install the code apps plugin in VS Code
 
@@ -308,7 +308,7 @@ Continue with the Chat steps below. **The plugin and skill are required; do not 
 1. Paste this request after the selected skill and send it. It connects **Quality Incident** (`zava_qualityincident`), the table you created in Task 1:
 
    ```text
-   Connect this app to the existing Quality Incident table (logical name: zava_qualityincident) in Dev using native Dataverse (--connector dataverse). Do not create or change tables.
+   Connect this app to the existing Quality Incident table (logical name: zava_qualityincident) in Development 1 using native Dataverse (--connector dataverse). Do not create or change tables.
 
    Implement loadIncidents and createIncident in src/data.ts with the generated service. Map id to the primary ID and issue to the Issue column. Keep the UI and error handling; use real Dataverse data, not mock data or localStorage.
 
@@ -325,7 +325,7 @@ Native Dataverse generates a typed service for each table and uses the app's env
 1. In the app's integrated terminal, run `npx --no-install pa app run` and open its **Local Play** URL, not bare localhost. Use the workshop browser profile; allow local network access if asked.
 1. Confirm the list loads without a data error; a new table should be empty. Enter **Issue** `ZAVA-DEV-01: Missing traceability record` and select **Create incident**.
 1. Reload. Confirm the same issue remains.
-1. In the maker portal, open **Quality Incident** data in **Dev** and independently confirm that row.
+1. In the maker portal, open **Quality Incident** data in **Development 1** and independently confirm that row.
 1. In the solution's **Apps**, confirm the code app is not listed yet. Connecting to Dataverse and running locally are not publishing.
 1. Stop the local server with **Ctrl+C**.
 
@@ -342,7 +342,7 @@ git commit -m "Create Zava Quality Incident Tracker"
 
 Review the staged files before committing. Keep required generated models/services/schemas; exclude dependencies, `dist`, caches, and secrets. A local commit is enough; no remote setup is required.
 
-**Checkpoint:** Your local Git repository contains the developer project, and the Dev table contains the incident you created.
+**Checkpoint:** Your local Git repository contains the developer project, and the Development 1 table contains the incident you created.
 
 ## Task 4: Add the app and deploy the solution
 
@@ -350,14 +350,14 @@ Review the staged files before committing. Keep required generated models/servic
 
 **Expected outcome**
 
-- The Dev solution contains the code app's **registration metadata + runtime assets**.
+- The Development 1 solution contains the code app's **registration metadata + runtime assets**.
 - The original developer project remains in Git.
-- A managed **solution package** is exported from Dev and imported into **UAT**.
-- The UAT app saves and reloads its own incident records, separately from Dev.
+- A managed **solution package** is exported from Development 1 and imported into **Test**.
+- The Test app saves and reloads its own incident records, separately from Development 1.
 
-### Publish the app into Dev
+### Publish the app into Development 1
 
-1. Confirm **Zava Quality Operations** is still the preferred solution in **Dev**. The local server should remain stopped.
+1. Confirm **Zava Quality Operations** is still the preferred solution in **Development 1**. The local server should remain stopped.
 1. In VS Code's integrated terminal, still in `zava-quality-incident-tracker`, run:
 
    ```powershell
@@ -374,30 +374,30 @@ Review the staged files before committing. Keep required generated models/servic
    git commit -m "Save published app registration"
    ```
 
-Publishing adds the app's registration metadata and built JavaScript, CSS, and static assets to the Dev solution. Keep the original React/TypeScript project in Git; the solution package cannot reliably restore it. Make future code changes in the project, then rebuild and publish.
+Publishing adds the app's registration metadata and built JavaScript, CSS, and static assets to the Development 1 solution. Keep the original React/TypeScript project in Git; the solution package cannot reliably restore it. Make future code changes in the project, then rebuild and publish.
 
 If publishing fails with `CodeAppOperationNotAllowedInEnvironment`, follow the admin setting below. If hosted Play is blank or shows a data error, ask your instructor to investigate before exporting.
 
-### Export a solution package and deploy to UAT
+### Export a solution package and deploy to Test
 
-1. In **Dev**, select **Zava Quality Operations** > **Export**.
+1. In **Development 1**, select **Zava Quality Operations** > **Export**.
 1. Select **Publish all changes**, then **Next**. Resolve reported missing required components with the instructor before continuing.
 1. Confirm version `1.0.0.0`, choose **Managed**, and **Export**. Download the resulting solution `.zip`.
-1. Switch Power Apps to **UAT**. Confirm the environment label before importing.
+1. Switch Power Apps to **Test**. Confirm the environment label before importing.
 1. Select **Solutions** > **Import solution**, browse to that same managed `.zip`, and continue.
-1. If prompted for connection references or environment variables, select the **UAT** connections and values. Ask your instructor about any missing dependencies.
-1. Select **Import** and wait for completion. Open the imported managed solution and locate the table, agent components, and code app. Confirm `zava-quality-triage` is included, then open **Zava Quality Guide** in UAT and check its **Skills** list.
-1. Play the **UAT** code app. A fresh UAT table should be empty: neither Dev test issue should have traveled. If rows already exist, verify that the two Dev markers are absent.
-1. Create `ZAVA-UAT-01: UAT persistence check`, reload, and verify it in the **UAT** maker table. Confirm it does not appear in Dev. If the app shows Dev rows or the new UAT row appears in Dev, stop: the target connection is wrong.
-1. Return the maker portal to **Dev** for the next lab.
+1. If prompted for connection references or environment variables, select the **Test** connections and values. Ask your instructor about any missing dependencies.
+1. Select **Import** and wait for completion. Open the imported managed solution and locate the table, agent components, and code app. Confirm `zava-quality-triage` is included, then open **Zava Quality Guide** in Test and check its **Skills** list.
+1. Play the **Test** code app. A fresh Test table should be empty: neither Development 1 test issue should have traveled. If rows already exist, verify that the two Development 1 markers are absent.
+1. Create `ZAVA-TEST-01: Test persistence check`, reload, and verify it in the **Test** maker table. Confirm it does not appear in Development 1. If the app shows Development 1 rows or the new Test row appears in Development 1, stop: the target connection is wrong.
+1. Return the maker portal to **Development 1** for the next lab.
 
 **Publish all changes** prepares solution customizations for export. Channel setup and agent publication are handled separately in Copilot Studio.
 
-**Checkpoint:** The managed solution is imported into UAT, and the UAT app can create and reload its own records. Resolve any import, dependency, or connection errors before continuing. You'll configure automated pipelines in the deployment lab.
+**Checkpoint:** The managed solution is imported into Test, and the Test app can create and reload its own records. Resolve any import, dependency, or connection errors before continuing. You'll configure automated pipelines in the deployment lab.
 
 ## Enable code apps (admin)
 
-Before the lab, an environment or Power Platform admin must check **Dev and UAT** in the [Power Platform admin center](https://admin.powerplatform.microsoft.com): **Manage** > **Environments** > environment > **Settings** > **Product** > **Features** > **Power Apps code apps** > **Enable code apps** > **Save**.
+Before the lab, an environment or Power Platform admin must check **Development 1 and Test** in the [Power Platform admin center](https://admin.powerplatform.microsoft.com): **Manage** > **Environments** > environment > **Settings** > **Product** > **Features** > **Power Apps code apps** > **Enable code apps** > **Save**.
 
 If already on, leave it unchanged. If locked or overridden, ask the instructor to check the environment-group rule.
 

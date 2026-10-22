@@ -7,7 +7,7 @@ Welcome to PPCC26! In this first lab, you’ll setup the necessary prerequisites
 In this lab, you will go through the following tasks:
 
 1. Log on to your account
-2. Rename your environments
+2. Verify your environments
 3. Enable Copilot Studio 
 4. Verify an Azure DevOps project and repository are provisioned
 
@@ -23,21 +23,23 @@ In this lab, you will go through the following tasks:
 3.	Go to the [Power Platform Admin Center](https://aka.ms/ppac)
 
 
-## Task 2: Rename your environments
-This step ensures your environments have meaningful names based on their intended use, which avoids confusion later. Rename the following environments.
+## Task 2: Verify your environments
 
-| Original Environment Name | New Environment Name | Purpose |
-|---|---|---|
-| Power App User 1 | Dev | Development |
-| Power App User 2 | Hotfix | Secondary environment for hotfix development and multi-environment testing |
-| Power App User 3 | UAT | Testing your solution |
-| Power App User 4 | Production | Where your solutions are shared with end users |
+The workshop environments are already provisioned. Keep their existing names; do not rename them.
 
-![Rename the environment Dev](assets/EditEnvironment.png)
+| Environment name | Purpose |
+|---|---|
+| Development 1 | Primary development environment used in Labs 2-4 |
+| Development 2 | Secondary development environment |
+| Test | Testing solution deployments in Labs 2 and 3 |
+| Production | Deployment target for the Power Pages site in Lab 4 |
+| Pipelines Host | Custom pipeline configuration and run history in Lab 3 |
 
-1.	Select **Manage** then **Environments**. You should see 10 Production environments and one Default environment.
-2.	Rename the environments per the above table, select each environment, then click **Edit** in the **Details** section.
-3.	Enter a new **Name** and **Save**. After saving, you don’t need to wait for it to finish processing. 
+1. Select **Manage**, then **Environments**.
+2. Confirm that the environments above are listed. Other provisioned environments, such as **PowerApp01** through **PowerApp04** and the default environment, can remain unchanged.
+3. If an environment is missing or its name differs, ask your workshop instructor before continuing.
+
+> **Screenshot names:** Some screenshots in these labs show earlier environment names. Follow the written instructions: use **Development 1** where a screenshot shows Dev, **Development 2** for Hotfix, **Test** for UAT, and **Pipelines Host** for Custom Host Environment or Pipeline Host. **Production** is unchanged.
 
 ## Task 3: Enable Copilot Studio authors
 1.	Go to the [Power Platform Admin Center](https://aka.ms/ppac)
