@@ -1,7 +1,5 @@
 # Zava Quality Incident Tracker prepared project
 
-**Last updated:** 2026-10-22 · **Status:** Draft
-
 Use this prepared project in Task 3 of Lab 2.
 
 ## Scope
