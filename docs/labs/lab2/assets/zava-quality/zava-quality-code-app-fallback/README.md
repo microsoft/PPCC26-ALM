@@ -26,7 +26,7 @@ Follow [Task 3: Create a code app locally](https://github.com/microsoft/PPCC26-A
 
 The binding request names the existing **Quality Incident** table explicitly: `zava_qualityincident`, created in Task 1 with the `zava` publisher prefix. Copilot uses **native Dataverse** (`--connector dataverse`) and the generated service to connect `{ id, issue }` to the primary ID and **Issue** column. Review requested edits and commands, and confirm lint and build pass before continuing. Do not create a replacement table if binding fails.
 
-After the connection and build succeed, use the CLI's Local Play URL to create an issue, reload, and independently confirm its row in Development 1. Commit developer source locally. **Task 4** publishes runtime assets to the solution, then exports and imports a managed solution package into Test.
+After the connection and build succeed, use the CLI's Local Play URL to create an issue, reload, and independently confirm its row in Development 1. Commit developer source locally. **Task 4** publishes runtime assets to the solution in Development 1, then exports and imports a managed solution package into Development 2. Run the deployed app there and compare it with the editable project in your developer Git branch: the solution carries registration metadata and built runtime assets, not the original React/TypeScript source project.
 
 ## Validation
 
@@ -35,7 +35,7 @@ npm run lint
 npm run build
 ```
 
-The prepared project builds and shows a connection-required error until Task 3 is complete. After connecting it, follow the lab's Local Play and Test data checks.
+The prepared project builds and shows a connection-required error until Task 3 is complete. After connecting it, follow the lab's Local Play and Development 2 data checks.
 
 This project pins the workshop-tested Power Apps CLI 1.3.0 and requires Node.js 22 or later. Initialization creates your `power.config.json`; no environment or credentials are shipped.
 

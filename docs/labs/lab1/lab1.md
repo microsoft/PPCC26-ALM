@@ -30,8 +30,8 @@ The workshop environments are already provisioned. Keep their existing names; do
 | Environment name | Purpose |
 |---|---|
 | Development 1 | Primary development environment used in Labs 2-4 |
-| Development 2 | Secondary development environment |
-| Test | Testing solution deployments in Labs 2 and 3 |
+| Development 2 | Managed solution deployment target in Lab 2 |
+| Test | Pipeline deployment target in Lab 3 |
 | Production | Deployment target for the Power Pages site in Lab 4 |
 | Pipelines Host | Custom pipeline configuration and run history in Lab 3 |
 
@@ -39,7 +39,7 @@ The workshop environments are already provisioned. Keep their existing names; do
 2. Confirm that the environments above are listed. Other provisioned environments, such as **PowerApp01** through **PowerApp04** and the default environment, can remain unchanged.
 3. If an environment is missing or its name differs, ask your workshop instructor before continuing.
 
-> **Screenshot names:** Some screenshots in these labs show earlier environment names. Follow the written instructions: use **Development 1** where a screenshot shows Dev, **Development 2** for Hotfix, **Test** for UAT, and **Pipelines Host** for Custom Host Environment or Pipeline Host. **Production** is unchanged.
+> **Screenshot names:** Some screenshots in these labs show earlier environment names. Always select the environment named in the written step, not the name shown in the screenshot.
 
 ## Task 3: Enable Copilot Studio authors
 1.	Go to the [Power Platform Admin Center](https://aka.ms/ppac)

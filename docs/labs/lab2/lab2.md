@@ -1,6 +1,6 @@
 # 🧪 Lab 2: Inner-loop ALM with Zava Quality Operations
 
-Create a solution, author an agent, work with a local code app, then publish the app and deploy a solution package to **Test**.
+Create a solution, author an agent, work with a local code app, then publish the app and deploy a solution package to **Development 2**.
 
 ## Lab outline
 
@@ -29,8 +29,8 @@ In this lab, native solution Git tracks the table, agent, and skill configuratio
 
 ## Prerequisites
 
-- **Development 1** and **Test** from Lab 1, with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin) in both. Use Test for the test deployment.
-- **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked Test dependencies and that no conflicting unmanaged Zava copy exists.
+- **Development 1** and **Development 2** from Lab 1, with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin) in both. Use Development 2 for the managed solution deployment.
+- **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked Development 2 dependencies and that no conflicting unmanaged Zava copy exists.
 - Copilot Studio licensing and access checked for your workshop account and Development 1 environment, with **Microsoft Copilot harness** and **Skills > Create from blank** available. Preview or channel publishing also requires the relevant runtime capacity and permissions.
 - Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Development 1, with Basic access and contribution permission.
 - Your own Windows machine or the optional workshop VM, with a current version of Visual Studio Code, access to GitHub Copilot Chat, Node.js 22 or later, npm, and Git with an author identity configured. Task 3 includes installation of the Power Apps code apps plugin in VS Code.
@@ -350,8 +350,9 @@ Review the staged files before committing. Keep required generated models/servic
 
 - The Development 1 solution contains the code app's **registration metadata + runtime assets**.
 - The original developer project remains in Git.
-- A managed **solution package** is exported from Development 1 and imported into **Test**.
-- The Test app saves and reloads its own incident records, separately from Development 1.
+- A managed **solution package** is exported from Development 1 and imported into **Development 2**.
+- The Development 2 app saves and reloads its own incident records, separately from Development 1.
+- You can distinguish the deployed code app from its editable developer source, which stays in the developer's Git branch.
 
 ### Publish the app into Development 1
 
@@ -376,26 +377,39 @@ Publishing adds the app's registration metadata and built JavaScript, CSS, and s
 
 If publishing fails with `CodeAppOperationNotAllowedInEnvironment`, follow the admin setting below. If hosted Play is blank or shows a data error, ask your instructor to investigate before exporting.
 
-### Export a solution package and deploy to Test
+### Export a solution package and deploy to Development 2
 
 1. In **Development 1**, select **Zava Quality Operations** > **Export**.
 1. Select **Publish all changes**, then **Next**. Resolve reported missing required components with the instructor before continuing.
 1. Confirm version `1.0.0.0`, choose **Managed**, and **Export**. Download the resulting solution `.zip`.
-1. Switch Power Apps to **Test**. Confirm the environment label before importing.
+1. Switch Power Apps to **Development 2**. Confirm the environment label before importing.
 1. Select **Solutions** > **Import solution**, browse to that same managed `.zip`, and continue.
-1. If prompted for connection references or environment variables, select the **Test** connections and values. Ask your instructor about any missing dependencies.
-1. Select **Import** and wait for completion. Open the imported managed solution and locate the table, agent components, and code app. Confirm `zava-quality-triage` is included, then open **Zava Quality Guide** in Test and check its **Skills** list.
-1. Play the **Test** code app. A fresh Test table should be empty: neither Development 1 test issue should have traveled. If rows already exist, verify that the two Development 1 markers are absent.
-1. Create `ZAVA-TEST-01: Test persistence check`, reload, and verify it in the **Test** maker table. Confirm it does not appear in Development 1. If the app shows Development 1 rows or the new Test row appears in Development 1, stop: the target connection is wrong.
+1. If prompted for connection references or environment variables, select the **Development 2** connections and values. Ask your instructor about any missing dependencies.
+1. Select **Import** and wait for completion. Open the imported managed solution and locate the table, agent components, and code app. Confirm `zava-quality-triage` is included, then open **Zava Quality Guide** in Development 2 and check its **Skills** list.
+1. Play the **Development 2** code app. A fresh Development 2 table should be empty: neither Development 1 test issue should have traveled. If rows already exist, verify that the two Development 1 markers are absent.
+1. Create `ZAVA-DEV2-01: Development 2 persistence check`, reload, and verify it in the **Development 2** maker table. Confirm it does not appear in Development 1. If the app shows Development 1 rows or the new Development 2 row appears in Development 1, stop: the target connection is wrong.
+
+### Compare the deployed app with developer source
+
+1. In **Development 2**, return to **Zava Quality Operations** > **Apps** and inspect the imported code app. You can play and use this deployed app, but the solution does not provide the original editable React/TypeScript project. It carries the app's registration metadata and built runtime assets, not the developer's source project.
+1. In VS Code, return to your local `zava-quality-incident-tracker` folder. In the integrated terminal, show the developer branch and its tracked source files:
+
+   ```powershell
+   git branch --show-current
+   git ls-files src package.json package-lock.json
+   ```
+
+   Open `src/App.tsx` and `src/data.ts`. These are the editable files committed in Task 3. They remain in this Git branch, not in the imported solution. To change the app, edit the developer project, commit, rebuild, publish, and deploy an updated solution package.
+
 1. Return the maker portal to **Development 1** for the next lab.
 
 **Publish all changes** prepares solution customizations for export. Channel setup and agent publication are handled separately in Copilot Studio.
 
-**Checkpoint:** The managed solution is imported into Test, and the Test app can create and reload its own records. Resolve any import, dependency, or connection errors before continuing. You'll configure automated pipelines in the deployment lab.
+**Checkpoint:** The managed solution is imported into Development 2, and the Development 2 app can create and reload its own records without the original developer project being present there. That source remains in the developer's Git branch. Resolve any import, dependency, or connection errors before continuing. You'll configure automated pipelines in the deployment lab.
 
 ## Enable code apps (admin)
 
-Before the lab, an environment or Power Platform admin must check **Development 1 and Test** in the [Power Platform admin center](https://admin.powerplatform.microsoft.com): **Manage** > **Environments** > environment > **Settings** > **Product** > **Features** > **Power Apps code apps** > **Enable code apps** > **Save**.
+Before the lab, an environment or Power Platform admin must check **Development 1 and Development 2** in the [Power Platform admin center](https://admin.powerplatform.microsoft.com): **Manage** > **Environments** > environment > **Settings** > **Product** > **Features** > **Power Apps code apps** > **Enable code apps** > **Save**.
 
 If already on, leave it unchanged. If locked or overridden, ask the instructor to check the environment-group rule.
 
