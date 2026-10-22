@@ -1,6 +1,6 @@
 # Zava Quality Incident Tracker prompt
 
-**Owner:** Marcel Ferreira · **Last updated:** 2026-10-19 · **Status:** Optional
+**Last updated:** 2026-10-19 · **Status:** Optional
 
 The main lab uses the prepared project, not AI-generated UI. Use this optional prompt only for an instructor demonstration outside the core task timing. Copy the box into GitHub Copilot after invoking `/code-apps-preview:create-app`.
 
