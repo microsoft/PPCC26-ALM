@@ -1,7 +1,5 @@
 # Zava Quality Guide prompt
 
-**Last updated:** October 19, 2026
-
 Set the agent's **Name** to **Zava Quality Guide**. Paste only the text in the box into **Instructions**.
 
 ```text
