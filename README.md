@@ -11,26 +11,22 @@ As AI agents take center stage in what you build and how you build it, the need 
 - Lifecycle management for Copilot Studio agents, Power Apps code apps, Power Pages, Managed Apps, and Managed Agents
 - Security posture and deployment guidance for operating solutions and agents at scale
 
-## 📅 Draft agenda
+## 📅 Agenda
 
-| Time | Topic | Owner |
+| Lab | Time | Topic |
 | --- | --- | --- |
-| 9:00 AM | Introduction | Casey |
-| 9:30 AM | [Lab 1: Setup and configure](docs/labs/lab1/lab1.md) | Casey |
-| 9:45 AM | [Fusion and Code-first development](docs/labs/lab2/lab2.md) | Marcel |
-| 10:00 AM | **Coffee break** |  |
-| 10:15 AM | [Fusion and Code-first development](docs/labs/lab2/lab2.md), continued | Marcel |
-| 10:45 AM | [Deploy](docs/labs/lab3/lab3.md) | Yash |
-| 11:45 AM | **Lunch** |  |
-| 12:45 PM | [Deploy](docs/labs/lab3/lab3.md), continued | Yash |
-| 1:15 PM | Prescriptive guidance for deploying agents, etc at scale<br>↳ Environment groups and routing | TBD |
-| 1:45 PM | [Power Pages topics](docs/labs/lab4/README.md)<br>↳ New agent tooling | Ashish and Neeraj |
-| 2:30 PM | TBD - Automated testing, simple optional module | Casey and Prabhat |
-| 2:45 PM | Managed Apps and Agents ALM | TBD |
-| 3:15 PM | AMA | All and guests |
-| 4:00 PM | **Workshop ends** |  |
-
-> **Planning status:** This agenda mirrors the current workshop outline. Topics and times remain subject to change while planning continues.
+| Presentation | 9:00 AM | Solutions and DevOps fundamentals |
+| [Lab 1](docs/labs/lab1/lab1.md) | 9:30 AM | Setup and configure |
+| [Lab 2](docs/labs/lab2/lab2.md) | 9:45 AM | Fusion and Code-first development |
+| **Coffee** | **10:00 AM** | **Coffee break** |
+| [Lab 2 (cont)](docs/labs/lab2/lab2.md) | 10:15 AM | Fusion and Code-first development |
+| [Lab 3](docs/labs/lab3/lab3.md) | 10:45 AM | Deploy |
+| **Lunch** | **11:45 AM** | **Lunch** |
+| [Lab 3](docs/labs/lab3/lab3.md) | 12:45 PM | Deploy |
+| [Lab 4](docs/labs/lab4/README.md) | 1:30 PM | Lifecycle Mastery in Power Pages |
+| Presentation | 2:30 PM | Copilot Managed Runtime ALM |
+| Presentation | 3:00 PM | Best practices & Q&A |
+| **End** | **4:00 PM** |  |
 
 ## 🚀 Getting Started
 
