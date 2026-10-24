@@ -216,10 +216,8 @@ The skill packages the inspection rules and triage workflow as agent configurati
 
 - Zava Quality Guide is created with the **Microsoft Copilot harness**.
 - Its `zava-quality-triage` skill contains the inspection rules and response workflow.
-- Both Preview scenarios are checked against the skill rules, or explicitly recorded as **not run** if runtime capacity is unavailable.
-- The agent is published before its solution source is committed.
+- Both Preview scenarios are checked against the skill rules.
 - You can browse the committed agent and skill metadata in Azure DevOps.
-- You can distinguish **creating/saving**, **Preview**, **publishing an agent**, and **configuring a channel**.
 
 ## Task 3: Create a code app locally
 
