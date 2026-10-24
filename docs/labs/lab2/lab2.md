@@ -96,7 +96,11 @@ Quality Incident has **Issue** as its primary column. With the `zava` publisher 
 
    ![Successful commit confirmation in Power Apps](images/commit-successful.png)
 
-1. In Azure DevOps, browse `PP/ZavaQualityOperations`. Find the table and primary-column definitions.
+1. In the solution's **Source control**, select **Git connection** in the command bar. In the pane, select the **Microsoft Azure DevOps** link to open the connected repository.
+
+   ![Git connection pane with an arrow pointing to the Microsoft Azure DevOps link that opens the connected repository](images/git-connection-open-devops.png)
+
+1. In Azure DevOps, open **Repos** > **Files**, select the `main` branch, and browse `PP/ZavaQualityOperations`. Explore the folders and open the Quality Incident table and **Issue** primary-column definitions. This is **solution source**: the file-based representation of the solution's **metadata**, such as table and column definitions. It is not the code app's **developer source** or the incident records stored in Dataverse.
 
 **Checkpoint:** The table definition is committed under `PP/ZavaQualityOperations`. Incident records are stored in Dataverse. If the Git connection or commit fails, ask your instructor for help.
 
