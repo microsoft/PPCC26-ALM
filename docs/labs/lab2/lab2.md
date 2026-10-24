@@ -29,14 +29,10 @@ In this lab, native solution Git tracks the table, agent, and skill configuratio
 
 ## Prerequisites
 
-- **Development 1** and **Development 2** from Lab 1, with Dataverse, Managed Environments, and [code apps enabled](#enable-code-apps-admin) in both. Use Development 2 for the managed solution deployment.
-- **Environment Maker** and **Dataverse System Administrator** access in both environments; the instructor has checked Development 2 dependencies and that no conflicting unmanaged Zava copy exists.
-- Copilot Studio licensing and access checked for your workshop account and Development 1 environment, with **Microsoft Copilot harness** and **Skills > Create from blank** available. Preview or channel publishing also requires the relevant runtime capacity and permissions.
-- Lab 1's Azure DevOps repository, in the same Microsoft Entra tenant as Development 1, with Basic access and contribution permission.
-- Your own Windows machine or the optional workshop VM, with a current version of Visual Studio Code, access to GitHub Copilot Chat, Node.js 22 or later, npm, and Git with an author identity configured. Task 3 includes installation of the Power Apps code apps plugin in VS Code.
-- Workshop Microsoft and GitHub Copilot identities, with access to GitHub and npm. Task 3 downloads the prepared app; no workshop code needs to be on the machine beforehand. Use only the synthetic records below.
-
-Use the prepared app in Task 3. Copilot connects it to Dataverse; you use CLI and Git commands for the remaining steps.
+- Complete Lab 1.
+- Access to environments with Dataverse (**Development 1** and **Development 2**).
+- Access to Copilot Studio.
+- Visual Studio Code with access to GitHub (the provided lab VM).
 
 ## Task 1: Create a solution
 
