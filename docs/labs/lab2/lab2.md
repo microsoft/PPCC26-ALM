@@ -364,6 +364,18 @@ Keep the app folder open in VS Code. Inspect `src`, the package manifests, `powe
 
 ```powershell
 git init
+```
+
+Before your first commit, set your Git author identity for this repository. Replace the example name and email with your own:
+
+```powershell
+git config user.name "Your Name"
+git config user.email "you@example.com"
+```
+
+These settings apply only to this app's local repository and prevent the **Author identity unknown** error. Then stage and commit:
+
+```powershell
 git add .
 git diff --cached --stat
 git commit -m "Create Zava Quality Incident Tracker"
