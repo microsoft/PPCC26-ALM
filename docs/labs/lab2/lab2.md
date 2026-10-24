@@ -268,6 +268,25 @@ The skill packages the inspection rules and triage workflow as agent configurati
 
    ```powershell
    npm ci
+   ```
+
+   **This may take several minutes.** Leave the terminal running. While dependencies install, enable code apps in the browser using the steps below.
+
+1. Open the [Power Platform admin center](https://aka.ms/ppac) in a new browser tab and sign in with your workshop Microsoft account.
+1. In the left navigation, select **Manage** > **Environments**.
+1. Select **Development 1**, then select **Settings**.
+1. Expand **Product** and select **Features**.
+1. Scroll to **Power Apps Code Apps**. Set **Enable code apps** to **On**, then select **Save**. If already on, leave it unchanged. Do not change other feature settings.
+
+   ![Power Platform admin center Features page with Power Apps Code Apps highlighted, Enable code apps set to On, and the Save button visible](images/enable-code-apps.png)
+
+   Changing this setting requires an environment or Power Platform admin. If you cannot access it, or it is locked or overridden, ask your instructor to enable it and check any environment-group rule.
+
+1. Return to **Manage** > **Environments** and repeat the same setting check for **Development 2**, where you will run the deployed app in Task 4.
+1. Return to the VS Code terminal. Wait until `npm ci` completes successfully and the PowerShell prompt returns before running another command. If installation fails, share the error with your instructor before continuing.
+1. Check the installed CLI version:
+
+   ```powershell
    npx --no-install pa --version
    ```
 
@@ -427,9 +446,7 @@ If publishing fails with `CodeAppOperationNotAllowedInEnvironment`, follow the a
 
 ## Enable code apps (admin)
 
-Before the lab, an environment or Power Platform admin must check **Development 1 and Development 2** in the [Power Platform admin center](https://admin.powerplatform.microsoft.com): **Manage** > **Environments** > environment > **Settings** > **Product** > **Features** > **Power Apps code apps** > **Enable code apps** > **Save**.
-
-If already on, leave it unchanged. If locked or overridden, ask the instructor to check the environment-group rule.
+An environment or Power Platform admin must enable code apps in **Development 1 and Development 2**. Follow the full steps and screenshot in [Open and initialize the app in VS Code](#open-and-initialize-the-app-in-vs-code) during Task 3. If already on, leave it unchanged. If locked or overridden, ask the instructor to check the environment-group rule.
 
 ## References
 
