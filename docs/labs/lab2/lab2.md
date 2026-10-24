@@ -166,15 +166,9 @@ Quality Incident has **Issue** as its primary column. With the `zava` publisher 
 
    ![Zava Quality Guide Build tab showing the zava-quality-triage skill and an arrow pointing to Save](images/copilot-harness-build.png)
 
-1. Return to the **Zava Quality Operations** solution explorer in Power Apps. Open **Source control** and select **Refresh**. You should see **Zava Quality Guide** and `zava-quality-triage` in the list of new objects, with Git operation **Create**.
+### Test the agent in Preview
 
-   ![Zava Quality Operations Source control showing the new agent and triage skill, with arrows pointing to Source control and Refresh](images/agent-source-control.png)
-
-1. Select **Commit** and use the message `Add Zava Quality Guide and triage skill`.
-
-Return to **Copilot Studio** and open **Zava Quality Guide**.
-
-If runtime capacity is available, open **Preview** and paste this question:
+If runtime capacity is available, open **Preview** in **Zava Quality Guide** and paste this question:
 
 ```text
 A ZavaCore Field batch is missing its traceability record. What should I do?
@@ -182,24 +176,50 @@ A ZavaCore Field batch is missing its traceability record. What should I do?
 
 ![Zava Quality Guide Preview with the missing-traceability question and an arrow pointing to the Preview tab](images/agent-preview.png)
 
-The answer should identify **Severity 2: Quality hold**, the containment steps, notification to the quality lead **within four business hours**, and the release restriction. If capacity is unavailable, record the Preview test as **not run**.
+The answer should identify **Severity 2: Quality hold**, the containment steps, notification to the quality lead **within four business hours**, and the release restriction.
 
-### Creating and publishing an agent
+Select **New chat** in Preview and test a second scenario:
+
+```text
+A ZavaCore unit has a minor cosmetic scratch. Performance, safety, and traceability are unaffected. What should I do?
+```
+
+The answer should identify **Severity 1: Observation** and say to record the issue and assign an owner **before the shift ends**. It should not apply the Severity 2 quality-hold procedure.
+
+If capacity is unavailable, record both Preview tests as **not run** and notify your instructor. Do not treat an unrun test as passed.
+
+### Publish the agent
+
+1. Save any pending changes in **Zava Quality Guide**.
+1. Select **Publish**. In the **Publish** pane, select **Publish agent** and wait for publication to complete. If publishing is blocked or fails, stop and ask your instructor before committing.
+
+Publishing creates a published version of the agent; it does not by itself give people a conversation channel. Adding a channel or configuring triggers is outside this task.
 
 | Action | What it does | This task |
 | --- | --- | --- |
 | Create / save | Stores authoring configuration and solution components | Required |
 | Preview | Tests the draft in the authoring experience; requires runtime capacity | Run when available |
-| Publish agent | Makes a published version available to configured channels, subject to access, licensing, and channel setup | Explain; not required here |
+| Publish agent | Creates a published version; access through channels or triggers requires separate configuration | Required before the solution-source commit |
 
 The skill packages the inspection rules and triage workflow as agent configuration. The code app handles incident records.
+
+### Commit the solution source
+
+1. After publication succeeds, return to the **Zava Quality Operations** solution explorer in Power Apps. Open **Source control** and select **Refresh**. You should see **Zava Quality Guide** and `zava-quality-triage` in the list of new objects, with Git operation **Create**.
+
+   ![Zava Quality Operations Source control showing the new agent and triage skill, with arrows pointing to Source control and Refresh](images/agent-source-control.png)
+
+1. Review the pending changes, select **Commit**, and use the message `Add Zava Quality Guide and triage skill`.
+1. In Azure DevOps, browse `PP/ZavaQualityOperations` on `main` and inspect the agent and skill files. This is **solution source** representing their **metadata**, not incident records.
 
 **Expected outcome**
 
 - Zava Quality Guide is created with the **Microsoft Copilot harness**.
 - Its `zava-quality-triage` skill contains the inspection rules and response workflow.
-- You can browse the agent and skill in the solution and commit their solution source.
-- You can explain **creating/saving an agent** versus **publishing it to a channel**.
+- Both Preview scenarios are checked against the skill rules, or explicitly recorded as **not run** if runtime capacity is unavailable.
+- The agent is published before its solution source is committed.
+- You can browse the committed agent and skill metadata in Azure DevOps.
+- You can distinguish **creating/saving**, **Preview**, **publishing an agent**, and **configuring a channel**.
 
 ## Task 3: Create a code app locally
 
