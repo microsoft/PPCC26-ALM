@@ -38,13 +38,6 @@ In this lab, native solution Git tracks the table, agent, and skill configuratio
 
 **Estimated time:** 10 minutes
 
-**Expected outcome**
-
-- The Zava publisher and preferred solution exist in Development 1.
-- The maker portal visualizes the solution's components.
-- An empty table has **one business field: Issue**.
-- Native solution Git is connected and the table schema is committed to the repository.
-
 ### Create the solution and publisher
 
 1. Open [Power Apps](https://make.powerapps.com), select **Development 1**, then **Solutions**.
@@ -107,16 +100,16 @@ Quality Incident has **Issue** as its primary column. With the `zava` publisher 
 
 **Checkpoint:** The table definition is committed under `PP/ZavaQualityOperations`. Incident records are stored in Dataverse. If the Git connection or commit fails, ask your instructor for help.
 
+**Expected outcome**
+
+- The Zava publisher and preferred solution exist in Development 1.
+- The maker portal visualizes the solution's components.
+- An empty table has **one business field: Issue**.
+- Native solution Git is connected and the table schema is committed to the repository.
+
 ## Task 2: Create an agent
 
 **Estimated time:** 8 minutes
-
-**Expected outcome**
-
-- Zava Quality Guide is created with the **Microsoft Copilot harness**.
-- Its `zava-quality-triage` skill contains the inspection rules and response workflow.
-- You can browse the agent and skill in the solution and commit their solution source.
-- You can explain **creating/saving an agent** versus **publishing it to a channel**.
 
 ### Author and inspect the agent
 
@@ -197,15 +190,16 @@ The answer should identify **Severity 2: Quality hold**, the containment steps, 
 
 The skill packages the inspection rules and triage workflow as agent configuration. The code app handles incident records.
 
+**Expected outcome**
+
+- Zava Quality Guide is created with the **Microsoft Copilot harness**.
+- Its `zava-quality-triage` skill contains the inspection rules and response workflow.
+- You can browse the agent and skill in the solution and commit their solution source.
+- You can explain **creating/saving an agent** versus **publishing it to a channel**.
+
 ## Task 3: Create a code app locally
 
 **Estimated time:** 14 minutes
-
-**Expected outcome**
-
-- Developer source is in a local app folder and committed in its own Git repository.
-- The app lists incidents and creates one using only **Issue**, backed by real Dataverse rows.
-- The app runs locally, with developer source in Git and incident records in Dataverse. You'll add the app to the solution in Task 4.
 
 ### Download the prepared app
 
@@ -338,17 +332,15 @@ Review the staged files before committing. Keep required generated models/servic
 
 **Checkpoint:** Your local Git repository contains the developer project, and the Development 1 table contains the incident you created.
 
+**Expected outcome**
+
+- Developer source is in a local app folder and committed in its own Git repository.
+- The app lists incidents and creates one using only **Issue**, backed by real Dataverse rows.
+- The app runs locally, with developer source in Git and incident records in Dataverse. You'll add the app to the solution in Task 4.
+
 ## Task 4: Add the app and deploy the solution
 
 **Estimated time:** 10 minutes
-
-**Expected outcome**
-
-- The Development 1 solution contains the code app's **registration metadata + runtime assets**.
-- The original developer project remains in Git.
-- A managed **solution package** is exported from Development 1 and imported into **Development 2**.
-- The Development 2 app saves and reloads its own incident records, separately from Development 1.
-- You can distinguish the deployed code app from its editable developer source, which stays in the developer's Git branch.
 
 ### Publish the app into Development 1
 
@@ -402,6 +394,14 @@ If publishing fails with `CodeAppOperationNotAllowedInEnvironment`, follow the a
 **Publish all changes** prepares solution customizations for export. Channel setup and agent publication are handled separately in Copilot Studio.
 
 **Checkpoint:** The managed solution is imported into Development 2, and the Development 2 app can create and reload its own records without the original developer project being present there. That source remains in the developer's Git branch. Resolve any import, dependency, or connection errors before continuing. You'll configure automated pipelines in the deployment lab.
+
+**Expected outcome**
+
+- The Development 1 solution contains the code app's **registration metadata + runtime assets**.
+- The original developer project remains in Git.
+- A managed **solution package** is exported from Development 1 and imported into **Development 2**.
+- The Development 2 app saves and reloads its own incident records, separately from Development 1.
+- You can distinguish the deployed code app from its editable developer source, which stays in the developer's Git branch.
 
 ## Enable code apps (admin)
 
