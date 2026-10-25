@@ -32,8 +32,12 @@ As AI agents take center stage in what you build and how you build it, the need 
 
 > **💡 Tip:** For a browser-friendly visualization, visit <https://microsoft.github.io/PPCC26-ALM>
 
-1. Start with [Lab 1: Setup](labs/lab1/lab1.md)
-1. Follow the labs in sequence
+Choose either format to follow the labs:
+
+- **Interactive lab guide:** Open the [workshop app](https://microsoft.github.io/PPCC26-ALM/labs/Lab%20Guide/PPCC26%20ALM%20Workshop%20-%20Lab%20Guide.html#/home), choose a lab, and follow its steps.
+- **Written lab guides:** Start with [Lab 1: Setup](labs/lab1/lab1.md), then follow the labs in sequence using the links in the agenda.
+
+Both are options for following the workshop; you do not need to complete the labs twice. If the formats differ, follow the written lab guide's current instructions and environment names. In Lab 2, build in **Development 1** and deploy to **Development 2**, even if the app shows an older target name.
 
 
 ---
