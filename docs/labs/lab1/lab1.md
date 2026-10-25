@@ -35,11 +35,35 @@ The workshop environments are already provisioned. Keep their existing names; do
 | Production | Deployment target for the Power Pages site in Lab 4 |
 | Pipelines Host | Custom pipeline configuration and run history in Lab 3 |
 
-1. Select **Manage**, then **Environments**.
-2. Confirm that the environments above are listed. Other provisioned environments, such as **PowerApp01** through **PowerApp04** and the default environment, can remain unchanged.
-3. If an environment is missing or its name differs, ask your workshop instructor before continuing.
+1. In the [Power Platform admin center](https://aka.ms/ppac), select **Manage**, then **Environments**.
+1. Confirm that the environments above are listed. Other provisioned environments, such as **PowerApp01** through **PowerApp04** and the default environment, can remain unchanged.
+1. If an environment is missing, create it manually using the exact name above. If you don't have permission to create it, ask your workshop instructor for help.
 
 > **Screenshot names:** Some screenshots in these labs show earlier environment names. Always select the environment named in the written step, not the name shown in the screenshot.
+
+![Required environments in the Power Platform admin center](https://github.com/user-attachments/assets/93bd49eb-316a-44d7-bdb7-0a47b0069577)
+
+### Enable Managed Environments
+
+1. Select **Development 1**.
+1. In the ribbon, click **Enable Managed Environments**, then click **Enable** in the fly out wizard.
+1. Repeat these steps for **Development 2**.
+
+   ![Enable Managed Environments](../lab3/assets/enable-managed-environments-pane.png)
+
+![Managed Environment setup](https://github.com/user-attachments/assets/bd62a57e-e634-46c3-91fe-17ab5d119446)
+![Managed Environment confirmation](https://github.com/user-attachments/assets/bb19f121-9848-49bf-bddc-477b2af068a7)
+
+### Turn on Auto-Conversion for Pipelines Host
+
+1. In the Power Platform admin center, select **Deployment** > **Overview**.
+1. Select **Pipelines Host** from the custom host selector.
+1. Click **Turn on Auto-Conversion**.
+
+This automatically enables target environments as Managed Environments when someone deploys to them.
+
+![Select the custom pipelines host](https://github.com/user-attachments/assets/820ec784-eaeb-4401-9fc0-c66192f65cdc)
+![Turn on Auto-Conversion](https://github.com/user-attachments/assets/9c886844-7241-4d40-86f6-aea0c0da86a6)
 
 ## Task 3: Enable Copilot Studio authors
 1.	Go to the [Power Platform Admin Center](https://aka.ms/ppac)
@@ -67,7 +91,6 @@ If your tenant doesn't have a pre-existing project and repository, get a new ten
 
 Now you have a source code repository! If you’re not familiar with source code, don’t worry. In Lab 2 you’ll learn how to use source control within the comfort of your Power Platform environment. 
 While this lab only requires one user, in the real world you’ll need to add other collaborators to the Azure DevOps organization and project with Basic access. 
-
 ## Questions
 
 Ask your workshop instructor if setup or account access fails.
