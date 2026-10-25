@@ -25,10 +25,11 @@
 ## 📋 Pre-requisites
 
 1. Complete Labs 1 through 3.
-1. Confirm that the environments are named **Dev**, **Hotfix**, **UAT**, and **Production**, as specified in Lab 1.
+1. Confirm that **Development 1** and **Production** are available, as verified in Lab 1.
 1. Confirm that the Azure DevOps Power Platform project repository from Lab 1 is initialized and that you can access it.
-1. Confirm that **Dev** and **Production** are Managed Environments.
-   Git integration requires **Dev** to be managed, and the deployment target must also be managed.
+   Complete [Connect Git and commit the table in Lab 2](../../lab2/lab2.md#connect-git-and-commit-the-table) so that **Development 1** uses solution-scoped Git integration with root Git folder `PP`.
+1. Confirm that **Development 1** and **Production** are Managed Environments.
+   Git integration requires **Development 1** to be managed, and the deployment target must also be managed.
    Refer to the Managed Environments steps in Lab 3 and the [Git integration prerequisites](https://learn.microsoft.com/power-platform/alm/git-integration/connecting-to-azure-devops#prerequisites).
 1. Install VS Code Desktop from this [download link](https://code.visualstudio.com/download).
 1. Install Git from this [download link](https://git-scm.com/install/windows).
@@ -36,7 +37,7 @@
 
 ## 🗒️ Overview
 
-In this lab, you will create a Power Pages site in **Dev**, add it to the **PPCCALMDev** solution, and connect that solution to the Azure DevOps repository created in Lab 1.
+In this lab, you will create a Power Pages site in **Development 1**, add it to the **PPCCALMDev** solution, and connect that solution to the Azure DevOps repository created in Lab 1.
 You will deploy the solution to **Production**, edit the site through the repository, and use an environment variable to configure local sign-in differently in each environment.
 
 ## 🎯 Tasks
@@ -103,30 +104,10 @@ You will deploy the solution to **Production**, edit the site through the reposi
 
 ### 🔗 Connect the solution to the repository
 
-Lab 1 created and initialized the **Power Platform** Azure DevOps project and repository.
-In this lab, configure solution-scoped Git integration and connect **PPCCALMDev** to the Lab 1 repository before committing it.
-Use `PP` as the root Git folder for this lab.
-If solution-scoped Git integration is already configured for the Lab 1 repository, keep the existing connection and go directly to the **PPCCALMDev** solution binding below.
+Reuse the solution-scoped Git connection configured in Lab 2 for the **Power Platform** Azure DevOps repository and root Git folder `PP`.
+Connect the new **PPCCALMDev** solution to that existing connection before committing it.
 
-1. In the **Dev** environment, go to **Solutions** and select **Connect to Git**.
-
-    ![Connect to Git](images/connect-to-git.png)
-
-1. Configure the connection using these settings:
-
-    - **Connection type**: Solution
-    - **Organization**: Your Azure DevOps organization from Lab 1
-    - **Project**: Power Platform
-    - **Repository**: Power Platform
-    - **Branch**: `main`
-    - **Root Git folder**: `PP`
-
-    ![Example solution-scoped Git connection using PP as the root folder](images/connect-to-git-repo.png)
-
-    _The image is an edited example using the organization name `ppcc2026-example`.
-    Select your own organization and the project and repository created in Lab 1._
-
-1. Click **Connect** to open the solution connection page.
+1. In the **Development 1** environment, go to **Solutions**, select the three dots next to **PPCCALMDev**, and select **Connect to Git**.
 
 1. On the solution connection page, use these settings:
 
@@ -205,7 +186,7 @@ Workshop sites are expected to be **Private**, so select the Microsoft account t
 
 ### 🛠️ Committing changes to Source Control
 
-1. Go back to **Dev**, navigate to **Solutions Explorer**, and select the connected **PPCCALMDev** solution.
+1. Go back to **Development 1**, navigate to **Solutions Explorer**, and select the connected **PPCCALMDev** solution.
 
 1. Select **Source Control** from the left menu.
 
@@ -234,6 +215,11 @@ Workshop sites are expected to be **Private**, so select the Microsoft account t
     Your organization name will differ._
 
 ### 💻 Cloning the repository locally
+
+The Azure DevOps and VS Code screenshots in this section and the editing section below are edited examples using the **Power Platform** repository and the `PP/PPCCALMDev` solution folder.
+Azure DevOps screenshots use `ppcc2026-example` as the organization name.
+Use your own organization and local clone location.
+VS Code may display `PP/PPCCALMDev` as a compact folder path.
 
 1. Click on **Files** from the left menu in Azure DevOps to go to the repository view.
 
@@ -285,7 +271,7 @@ Workshop sites are expected to be **Private**, so select the Microsoft account t
 
 ### 🛠️ Pulling changes in Solution Explorer
 
-1. Go back to **Power Pages Maker Studio** in **Dev** environment and navigate to **Solutions Explorer**.
+1. Go back to **Power Pages Maker Studio** in **Development 1** environment and navigate to **Solutions Explorer**.
 
 1. Select **Source Control** from the left menu and click on **Check for updates** button. _This might take a while._
 
@@ -364,9 +350,9 @@ Wait for the deployment to complete.
 
 ### 🔍 Verify changes
 
-1. Open the website preview in **Dev** environment by clicking on **Preview** -> **Desktop**.
+1. Open the website preview in **Development 1** environment by clicking on **Preview** -> **Desktop**.
 
-    ![Preview Site in Dev](images/preview-site-devenv.png)
+    ![Preview site in the development environment](images/preview-site-devenv.png)
 
 1. Click on **Sign In** button to verify that the local login is enabled.
 
@@ -388,19 +374,19 @@ Installing the plugin does not change the site you created in this lab.
 ### Prerequisites
 
 1. Install the latest [GitHub Copilot CLI](https://github.com/features/copilot/cli/) and sign in with a GitHub account that has access to Copilot.
-1. Install [Node.js](https://nodejs.org/) 18 or later, the [Power Platform CLI](https://learn.microsoft.com/power-platform/developer/cli/introduction), and the latest [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli).
+1. Install [Node.js](https://nodejs.org/) 22 LTS, the [Power Platform CLI](https://learn.microsoft.com/power-platform/developer/cli/introduction), and the latest [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli).
    PAC CLI 2.6.3 or later is required if you use the plugin's server logic features.
-1. Before using skills that connect to Power Platform, authenticate PAC CLI to **Dev** and Azure CLI to the same tenant:
+1. Before using skills that connect to Power Platform, authenticate PAC CLI to **Development 1** and Azure CLI to the same tenant:
 
     ```text
-    pac auth create --environment <Dev environment URL>
+    pac auth create --environment <Development 1 environment URL>
     az login --allow-no-subscriptions
     pac auth list
     ```
 
-    Replace `<Dev environment URL>` with your environment's instance URL.
+    Replace `<Development 1 environment URL>` with your environment's instance URL.
     You can find it in Power Pages home under **Settings** > **Session details**.
-    Verify that the selected PAC authentication profile points to **Dev**.
+    Verify that the selected PAC authentication profile points to **Development 1**.
 
 ### Install the plugin
 
@@ -432,7 +418,7 @@ Installing the plugin does not change the site you created in this lab.
 
 This optional exercise requires JavaScript file support to be preconfigured by the workshop administrator.
 Do not change blocked attachment or other tenant security settings during the lab.
-Skip this section unless the facilitator confirms that **Dev** and **Production** are ready for the exercise.
+Skip this section unless the facilitator confirms that **Development 1** and **Production** are ready for the exercise.
 
 ### Deploy Single Page Application site to Power Pages
 
@@ -440,9 +426,9 @@ Skip this section unless the facilitator confirms that **Dev** and **Production*
 
 1. Navigate to `samples/bring-your-own-code/react/car-sales-website` folder and open it in VS Code.
 
-1. Complete the steps provided in the [README.md](https://github.com/microsoft/power-pages-samples/tree/main/samples/bring-your-own-code/react/car-sales-website#readme) file to set up the local project and upload the website to **Dev**.
+1. Complete the steps provided in the [README.md](https://github.com/microsoft/power-pages-samples/tree/main/samples/bring-your-own-code/react/car-sales-website#readme) file to set up the local project and upload the website to **Development 1**.
 
-1. Switch to **Production** and import the solution used in **Dev** to ensure that the dependencies are available.
+1. Switch to **Production** and import the solution used in **Development 1** to ensure that the dependencies are available.
 
 1. Follow the same steps as above to add the site to a solution and deploy it to **Production** using Power Pipelines.
 

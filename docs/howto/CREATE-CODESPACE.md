@@ -1,9 +1,12 @@
-## Create a GitHub Codespace
+# Create a GitHub Codespace
 
-A codespace is a cloud-hosted development environment you can access from anywhere. It has everything you need, including a text editor, terminal, and debugger. Codespaces are powered by Visual Studio Code and run in a containerized environment. For this workshop, we are going to use codespaces to do our development.
+A codespace is a cloud-hosted development environment with Visual Studio Code, a terminal, and a debugger.
 
-1. Make sure that you are in your forked repository (_your-username/PPCC24-ALM) and then find and click on the **<> Code** button
-1. On the **Code** pop up, select the **Codespaces** tab
-1. Click **Create codespace on main**
+This is optional reference material. [Lab 2](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#prerequisites) uses local VS Code on your Windows machine or the workshop VM; follow its setup instructions for the lab.
 
-    A codespace will now be created for you in a new tab. This will take a few seconds. But once it's done, you will have a fully functional Visual Studio Code environment in your browser. You can now start developing!
+1. Open your forked repository, `your-username/PPCC26-ALM`, in GitHub.
+1. Select **Code**, then the **Codespaces** tab.
+1. Select **Create codespace on main**.
+1. Wait for the codespace to open in a new browser tab.
+
+For help, ask your workshop instructor.

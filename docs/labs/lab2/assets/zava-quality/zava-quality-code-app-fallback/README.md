@@ -1,24 +1,44 @@
-# Zava Quality Incident Tracker fallback
+# Zava Quality Incident Tracker prepared project
 
-Use this project only when AI-assisted generation does not produce a runnable project within the Lab 2 time box.
+Use this prepared project in Task 3 of Lab 2.
 
-The project contains local synthetic data and has no connector, database, backend, authentication code, or environment-specific configuration.
+## Scope
 
-## Run locally
+- One incident list and one required **Issue** text input, limited to 100 characters.
+- Only one business field. Dataverse still supplies the row ID and other system columns.
+- Real Dataverse rows after the connection is configured.
+- Explicit connection-required errors and disabled saving until Dataverse is connected.
 
-Copy this folder to a working folder outside the workshop repository, then run:
+In **Task 3**, Copilot connects `loadIncidents` and `createIncident` in `src/data.ts` to your generated Dataverse service. Until then, those functions report a connection-required error.
+
+## Prepare the local project
+
+Follow [Task 3: Create a code app locally](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#task-3-create-a-code-app-locally) for the copyable commands.
+
+1. On your own Windows machine or the optional workshop VM, open PowerShell from Start. Check Node.js 22 or later, npm, and Git. Use a current VS Code version with access to GitHub Copilot Chat; the lab includes plugin installation.
+1. Run the lab's workspace commands one at a time: `cd C:\`, `md repo\ppcc26-alm`, then `cd repo\ppcc26-alm`. Use a fresh workspace, not an existing Git repository. If the folder already exists or a command fails, stop and ask your instructor for a fresh writable workspace.
+1. Use the lab's `degit` command to retrieve this prepared app from the public workshop repository's **main** branch as `zava-quality-incident-tracker`. No prior workshop clone or preloaded code is required. Use a fresh destination.
+1. Run `cd zava-quality-incident-tracker`, then `code .` to open the app folder in VS Code. If `code` is not recognized, open VS Code from Start and use **File** > **Open Folder** to open the app folder.
+1. Open a new integrated terminal, run `npm ci`, then check `npx --no-install pa --version`. The project pins Power Apps CLI **1.3.0**; no global installation is needed.
+1. Run `npx --no-install pa app init`, sign in with the workshop Microsoft identity, and initialize in **Development 1**. Check `environmentId` in `power.config.json`.
+1. Complete [Install the code apps plugin in VS Code](https://github.com/microsoft/PPCC26-ALM/blob/main/docs/labs/lab2/lab2.md#install-the-code-apps-plugin-in-vs-code): add the supplied VS Code user settings, install **code-apps-preview** from the `@agentPlugins` view, then run **Developer: Reload Window**. `npm ci` does not install these skills.
+1. Open a new Copilot Chat session in **Agent** mode. Type `/add-dataverse` in Chat, select the skill from the suggestions, and append the lab's binding request. Use your workshop GitHub Copilot identity for Chat. The plugin and skill are required: if the skill is missing, stop and ask your instructor rather than sending the prompt alone.
+
+The binding request names the existing **Quality Incident** table explicitly: `zava_qualityincident`, created in Task 1 with the `zava` publisher prefix. Copilot uses **native Dataverse** (`--connector dataverse`) and the generated service to connect `{ id, issue }` to the primary ID and **Issue** column. Review requested edits and commands, and confirm lint and build pass before continuing. Do not create a replacement table if binding fails.
+
+After the connection and build succeed, use the CLI's Local Play URL to create an issue, reload, and independently confirm its row in Development 1. Commit developer source locally. **Task 4** publishes runtime assets to the solution in Development 1, then exports and imports a managed solution package into Development 2. Run the deployed app there and compare it with the editable project in your developer Git branch: the solution carries registration metadata and built runtime assets, not the original React/TypeScript source project.
+
+## Validation
 
 ```powershell
-npm install
 npm run lint
 npm run build
-npm run dev
 ```
 
-Open the local URL printed by Vite. Stop the server with <kbd>Ctrl</kbd>+<kbd>C</kbd>.
+The prepared project builds and shows a connection-required error until Task 3 is complete. After connecting it, follow the lab's Local Play and Development 2 data checks.
 
-## Publish
+This project pins the workshop-tested Power Apps CLI 1.3.0 and requires Node.js 22 or later. Initialization creates your `power.config.json`; no environment or credentials are shipped.
 
-The project intentionally does not include `power.config.json`. Return to Task 6 in the lab to initialize it against the attendee's **Dev** environment and publish it to the **Zava Quality Operations** solution.
+## Questions
 
-The fallback was validated with Node.js 22 and `@microsoft/power-apps-cli` 1.3.0.
+Ask your workshop instructor if installation, table discovery, binding, build, or sign-in fails.

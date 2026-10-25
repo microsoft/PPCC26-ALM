@@ -1,6 +1,6 @@
 # 🚀 Lab 1: Setup and Configure
 
-Welcome to PPCC25! In this first lab, you’ll setup the necessary prerequisites to complete subsequent labs. In the real world, your organization might have less sophisticated or more sophisticated DevOps requirements. This workshop covers the most adopted tools for enterprise scale DevOps with the least amount of effort and complexity. 
+Welcome to PPCC26! In this first lab, you’ll setup the necessary prerequisites to complete subsequent labs. In the real world, your organization might have less sophisticated or more sophisticated DevOps requirements. This workshop covers the most adopted tools for enterprise scale DevOps with the least amount of effort and complexity.
 
 ✅ Lab 1 tasks
 
@@ -24,36 +24,41 @@ In this lab, you will go through the following tasks:
 
 
 ## Task 2: Verify your environments
-Go to the [Power Platform Admin Center](https://aka.ms/ppac) and confirm that your tenant has the following environments. If any are missing, create them manually.
 
-| Environment Name | Purpose |
-|---|---|---|
-| Development 1 | Primary development environment |
-| Development 2 | Secondary development environment |
-| Pipelines Host | Stores and manages custom pipelines |
-| Production | Where your solutions are shared with end users |
-| Test | Testing your solution |
+The workshop environments are already provisioned. Keep their existing names; do not rename them.
+
+| Environment name | Purpose |
+|---|---|
+| Development 1 | Primary development environment used in Labs 2-4 |
+| Development 2 | Managed solution deployment target in Lab 2 |
+| Test | Pipeline deployment target in Lab 3 |
+| Production | Deployment target for the Power Pages site in Lab 4 |
+| Pipelines Host | Custom pipeline configuration and run history in Lab 3 |
+
+1. In the [Power Platform admin center](https://aka.ms/ppac), select **Manage**, then **Environments**.
+1. Confirm that the environments above are listed. Other provisioned environments, such as **PowerApp01** through **PowerApp04** and the default environment, can remain unchanged.
+1. If an environment is missing, create it manually using the exact name above. If you don't have permission to create it, ask your workshop instructor for help.
+
+> **Screenshot names:** Some screenshots in these labs show earlier environment names. Always select the environment named in the written step, not the name shown in the screenshot.
 
 ![Required environments in the Power Platform admin center](https://github.com/user-attachments/assets/93bd49eb-316a-44d7-bdb7-0a47b0069577)
 
 ### Enable Managed Environments
 
-1. In the Power Platform Admin Center, select **Manage** > **Environments**.
-2. Select the **Development 1** environment.
-3. In the ribbon, click **Enable Managed Environments**.
-4. Click **Enable** in the fly out wizard.
-5. Repeat these steps for **Development 2**.
+1. Select **Development 1**.
+1. In the ribbon, click **Enable Managed Environments**, then click **Enable** in the fly out wizard.
+1. Repeat these steps for **Development 2**.
 
-   ![Enable ME](../lab3/assets/image64.png)
+   ![Enable Managed Environments](../lab3/assets/enable-managed-environments-pane.png)
 
 ![Managed Environment setup](https://github.com/user-attachments/assets/bd62a57e-e634-46c3-91fe-17ab5d119446)
 ![Managed Environment confirmation](https://github.com/user-attachments/assets/bb19f121-9848-49bf-bddc-477b2af068a7)
 
 ### Turn on Auto-Conversion for Pipelines Host
 
-1. In the Power Platform Admin Center, select **Deployments**.
-2. Select **Pipelines Host** from the host selector on the **Overview** page.
-3. Click **Turn on Auto-Conversion**.
+1. In the Power Platform admin center, select **Deployment** > **Overview**.
+1. Select **Pipelines Host** from the custom host selector.
+1. Click **Turn on Auto-Conversion**.
 
 This automatically enables target environments as Managed Environments when someone deploys to them.
 
@@ -86,3 +91,6 @@ If your tenant doesn't have a pre-existing project and repository, get a new ten
 
 Now you have a source code repository! If you’re not familiar with source code, don’t worry. In Lab 2 you’ll learn how to use source control within the comfort of your Power Platform environment. 
 While this lab only requires one user, in the real world you’ll need to add other collaborators to the Azure DevOps organization and project with Basic access. 
+## Questions
+
+Ask your workshop instructor if setup or account access fails.
