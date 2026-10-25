@@ -2,6 +2,8 @@
 
 Create a solution, author an agent, work with a local code app, then publish the app and deploy a solution package to **Development 2**.
 
+You can follow this written guide or open the [interactive workshop app](https://microsoft.github.io/PPCC26-ALM/labs/Lab%20Guide/PPCC26%20ALM%20Workshop%20-%20Lab%20Guide.html#/home) and select **Lab 2: Inner-loop ALM**. You only need to complete the lab once. If the app differs, use this guide's current steps and environment names: **Development 1** for authoring and **Development 2** for deployment, not an older target such as UAT.
+
 ## Lab outline
 
 Before each task, your instructor shows a **task / estimated time** slide followed by an **expected outcome** slide.
